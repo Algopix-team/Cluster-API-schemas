@@ -1,0 +1,23 @@
+title: DemandLevel
+type: object
+description: >
+  Any of those markets which have demand level info, will be returned. If none found will return { "US": -1 }.
+properties:
+  US:
+    $ref: ./DemandLevelNumber.v1.yaml
+  UK:
+    $ref: ./DemandLevelNumber.v1.yaml
+  DE:
+    $ref: ./DemandLevelNumber.v1.yaml
+  FR:
+    $ref: ./DemandLevelNumber.v1.yaml
+  ES:
+    $ref: ./DemandLevelNumber.v1.yaml
+  IT:
+    $ref: ./DemandLevelNumber.v1.yaml
+  AU:
+    $ref: ./DemandLevelNumber.v1.yaml
+  CA:
+    $ref: ./DemandLevelNumber.v1.yaml
+  GB:
+    $ref: ./DemandLevelNumber.v1.yaml

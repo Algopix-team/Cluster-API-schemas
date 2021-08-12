@@ -1,0 +1,17 @@
+title: ProductsSummary
+type: object
+properties:
+  productsCount:
+    type: number
+  brands:
+    type: array
+    items:
+      $ref: ./AttributeCoveragePercentage.v1.yaml
+  categories:
+    type: array
+    items:
+      $ref: ./AttributeCoveragePercentage.v1.yaml
+  manufacturers:
+    type: array
+    items:
+      $ref: ./AttributeCoveragePercentage.v1.yaml

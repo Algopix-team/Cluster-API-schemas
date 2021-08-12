@@ -1,0 +1,15 @@
+title: ProductMatchingResponse
+description: List of matching products.
+type: object
+required:
+  - matchingProducts
+  - totalMatches
+properties:
+  matchingProducts:
+    type: array
+    description: Array containing matching products
+    items:
+      $ref: ./ProductMatch.v1.yaml
+  totalMatches:
+    type: number
+    description: Total number of results

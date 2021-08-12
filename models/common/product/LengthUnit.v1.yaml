@@ -1,0 +1,5 @@
+title: LengthUnit
+type: string
+enum:
+  - INCH
+  - CM

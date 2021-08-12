@@ -1,0 +1,156 @@
+openapi: 3.0.3
+info:
+  title: Sellers Store
+  description: Sellers Store API provides a product list with with SERP ranking for the specified seller on market.
+  version: '1.0'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+servers:
+  - url: 'https://api.algopix.com'
+tags:
+  - name: Sellers store endpoints
+    description: This API set is the Algopix sellers store search. V1.0 supports searches using the seller’s id.
+paths:
+  '/v4/sellers/{sellerId}/listings':
+    get:
+      tags:
+        - Sellers store endpoints
+      summary: Get sellers store
+      description: This is a synchronous API endpoint. This endpoint returns a listings list with SERP ranking for the specified seller on market.
+      operationId: get-sellers-store
+      parameters:
+        - name: sellerId
+          in: path
+          description: 'Unique identifier of the seller. This can be sourced from the payload of the [product sellers API](https://algopix.stoplight.io/docs/algopix-api/Algopix-productsellers-1.0-resolved.yaml/paths/~1sellers/get).'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: market
+          required: true
+          description: 'the market of the store, currently supported market is AMAZON_US'
+          in: query
+          style: form
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+        - name: maxItems
+          description: Sets a max number of items to return in the collection.
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+        - name: contextKey
+          description: This key is used to retreive the following results pages. It was returned when making the initial request for products. this
+          in: query
+          explode: false
+          style: form
+          schema:
+            type: string
+          required: false
+        - name: pageNumber
+          description: the page number of the results to retreive. This parameter must be used in tandem with contextKey
+          in: query
+          explode: true
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/sellers-store/SellerStoreApiResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 60ff66fe-76b2-4a70-882a-3168947038ca
+                    result:
+                      contextKey: 60ff66fe-76b2-4a70-882a-3168947038ca
+                      totalPages: 13
+                      products:
+                        - productId:
+                            value: "0439887461"
+                            type: ASIN
+                          title: 25 NEW Illustrated Sight Word Readers Phonics Teaching Supples Prek Scholastic 25 Books That Teach 50 Must-know Sight Words!! (Sight Word Readers)
+                          offeredPrice:
+                            price:
+                              currencyCode: USD
+                              amount: 22.95
+                            date: 2021-08-09
+                          imageUrl: https://m.media-amazon.com/images/I/91XqAnOEqzL._AC_UY218_.jpg
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

@@ -1,0 +1,13 @@
+title: OneOfProductKeywordsMatchSpecificMarketData
+type: object
+oneOf:
+  - $ref: ./AmazonMarketSpecificProductData.v1.yaml
+  - $ref: ./EbayMarketSpecificProductData.v1.yaml
+  - $ref: ./WalmartMarketSpecificProductData.v1.yaml
+discriminator:
+  propertyName: objectType
+  mapping:
+    'AmazonMarketData': ./AmazonMarketSpecificProductData.v1.yaml
+    'EbayMarketData': ./EbayMarketSpecificProductData.v1.yaml
+    'WalmartMarketData': ./WalmartMarketSpecificProductData.v1.yaml
+description: Marketplace specific product attributes. e.g. Amazon products have seller rank. while ebay products contain a property of number of sold items

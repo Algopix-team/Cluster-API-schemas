@@ -1,0 +1,15 @@
+title: Coupon
+type: object
+description: Promoted Coupon that is associated with the listing
+properties:
+  amount:
+    type: integer
+  type:
+    type: string
+    enum:
+      - percentage
+      - amountOff
+  currency:
+    type: string
+    enum:
+      - USD

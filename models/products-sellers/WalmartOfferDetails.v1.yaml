@@ -1,0 +1,7 @@
+title: WalmartOfferDetails
+type: object
+properties:
+  price:
+    $ref: ../common/Price.v1.yaml
+  isFreeShippingEligible:
+    type: boolean

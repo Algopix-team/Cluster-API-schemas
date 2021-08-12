@@ -1,0 +1,9 @@
+title: PriceSavings
+type: object
+properties:
+  amount:
+    $ref: '../common/Price.v1.yaml'
+  percentage:
+    type: integer
+  pricePerUnit:
+    $ref: '../common/Price.v1.yaml'

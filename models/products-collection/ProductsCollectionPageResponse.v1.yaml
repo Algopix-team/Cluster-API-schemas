@@ -1,0 +1,11 @@
+title: ProductsCollectionPageResponse
+type: object
+properties:
+  totalPages:
+    description: Number of total pages.
+    type: integer
+  products:
+    description: Array of products and products variants.
+    type: array
+    items:
+      $ref: ./Product.v1.yaml

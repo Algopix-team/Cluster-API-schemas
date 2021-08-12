@@ -1,0 +1,9 @@
+title: AlgopixValidatedAttributesContentLanguages
+type: object
+properties:
+  languageName:
+    type: string
+  type:
+    type: string
+  audioFormat:
+    type: string

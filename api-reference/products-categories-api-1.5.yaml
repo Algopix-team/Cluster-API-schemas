@@ -1,0 +1,347 @@
+openapi: 3.0.2
+info:
+  title: Category Research API
+  description: Category Research API provides products by category (as specified by browseNodeId or googleCategoryId).
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: '1.5'
+servers:
+  - url: 'https://api.algopix.com'
+    description: Algopix API
+
+tags:
+  - name: Products category endpoints
+    description: This API allows users to search for products within specified categories.
+paths:
+  /v3/async/categories/products:
+    get:
+      description: This is an asynchronous API endpoint. This endpoint return products that belong to the specified category (as specified by browseNodeId or googleCategoryId). The results may be retrieved from [Products category results](https://docs.algopix.com/docs/algopix-api/api-reference/products-categories-api-1.5.yaml/paths/~1v3~1async~1categories~1products~1results/get).
+      tags:
+        - Products category endpoints
+      summary: Request Products category
+      operationId: request-products-category
+      parameters:
+        - name: market
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: browseNodeId
+          in: query
+          description: A valid Amazon node id that represents an Algopix category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
+          style: form
+          required: true
+          explode: true
+          schema:
+            type: string
+        - name: googleCategoryId
+          schema:
+            type: string
+          in: query
+          description: Google category id to search. Note, either pass a googleCategoryId here or a broseNodeId above.
+        - name: maxItems
+          in: query
+          description: Maximum number of items to return.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: number
+            maximum: 9600
+        - name: query
+          in: query
+          description: Keywords search within a cateogry.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - schema:
+            type: string
+            enum:
+              - PRODUCT_VARIANTS
+              - IN_STOCK
+          in: query
+          name: resources
+          description: This refines the search. PRODUCT_VARIANTS expands the search to find and analyze the variants of each product. IN_STOCK filters the in-stock items, it goes to the scrapper to get the products.
+        - name: excludeBrowseNodeIds
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - PRODUCT_VARIANTS
+                - IN_STOCK
+          in: query
+          style: form
+          allowEmptyValue: true
+          description: Specify browse node id/s to exclude from the search.
+        - schema:
+            type: boolean
+            example: true
+          in: query
+          name: searchExclusive
+          description: True/false switch. If "search exclusive" is enabled, only products from this category will be retrieved.
+        - schema:
+            type: string
+          in: query
+          name: fromDate
+          description: Search for products added to the category after the stated ISO date (time defaults to beginning of the day), e.g., '2020-01-22'.
+        - schema:
+            type: string
+          in: query
+          name: toDate
+          description: Search for products added to the category before the ISO date (time defaults to end of day), e.g., '2020-01-22'.
+      responses:
+        '200':
+          description: Success – request submitted; allowing you to track the query results via the endpoint get-ready-results .
+          content:
+            application/json:
+              schema:
+                $ref: '../models/common/api/ApiResult.v1.yaml'
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+  /v3/async/categories/products/results:
+    get:
+      description: This is an asynchronous API endpoint. This endpoint retrieves the results for the category analysis search from the endpoint [Request Products category](https://docs.algopix.com/docs/algopix-api/api-reference/products-categories-api-1.5.yaml/paths/~1v3~1async~1categories~1products/get). 
+      tags:
+        - Products category endpoints
+      summary: Products category results
+      operationId: products-category-results
+      parameters:
+        - name: market
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: categoryId
+          in: query
+          description: A valid Amazon node id that represents an Algopix category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success – category results returned. May contain multiple responses. Each product (result) is assigned with metadata and request id; representing the call that has been made in order to retrieve it whie performing GET category/analysisAsync/.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-categories/ProductCategoryResults.v1.0.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    result:
+                      - timestamp: 1610533193
+                        status: SUCCESS
+                        statusCode: 200
+                        requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
+                        result:
+                          aid: AIDSNOFJ1000
+                          title: 'Hanes Men''s Ecosmart Fleece Sweatshirt, Deep Red, 3XL'
+                          marketPrice:
+                            currencyCode: USD
+                            amount: 16.84
+                          imageUrl: 'https://m.media-amazon.com/images/I/31jK3huCcGL._SL160_.jpg'
+                      - timestamp: 1610533195
+                        status: SUCCESS
+                        statusCode: 200
+                        requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
+                        result:
+                          aid: AIDSNOFJ1001
+                          title: 'TICONN Neck Gaiter (2 Pack), Outdoor Breathable Face Cover, Ideal for Hiking Running Cycling Motorcycle Ski Snowboard (Blue Paisley, 2)'
+                          marketPrice:
+                            currencyCode: USD
+                            amount: 11.95
+                          imageUrl: 'https://m.media-amazon.com/images/I/616MgnRMBgL._SL160_.jpg'
+                      - timestamp: 1610533211
+                        status: SUCCESS
+                        statusCode: 200
+                        requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
+                        result:
+                          aid: AIDSNOFJ1002
+                          title: Hanes Mens EcoSmart Hooded Sweatshirt (P170) -Fatigue GR -4XL
+                          marketPrice:
+                            currencyCode: USD
+                            amount: 35.98
+                          imageUrl: 'https://m.media-amazon.com/images/I/31QG7qEyYxL._SL160_.jpg'
+                      - timestamp: 1610533214
+                        status: SUCCESS
+                        statusCode: 200
+                        requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
+                        result:
+                          aid: AIDSNOFJ1003
+                          title: 'Hanes Women''s V-Notch Pullover Fleece Sweatshirt, Bold Blue Heather, X Large'
+                          marketPrice:
+                            currencyCode: USD
+                            amount: 15.5
+                          imageUrl: 'https://m.media-amazon.com/images/I/31IPfxh22DL._SL75_.jpg'
+                      - timestamp: 1610533220
+                        status: SUCCESS
+                        statusCode: 200
+                        requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
+                        result:
+                          aid: AIDSNOFJ1004
+                          title: 'Colorfulkoala Women''s High Waisted Yoga Pants 7/8 Length Leggings with Pockets (M, Navy)'
+                          marketPrice:
+                            currencyCode: USD
+                            amount: 25
+                          imageUrl: 'https://m.media-amazon.com/images/I/31Zrp6AChCL._SL160_.jpg'
+                      - timestamp: 1610533221
+                        status: SUCCESS
+                        statusCode: 200
+                        requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
+                        result:
+                          aid: AIDSNOFJ1005
+                          title: 'RockDove Men''s Original Two-Tone Memory Foam Slipper, Size 13-14 US Men, Gray/Natural'
+                          marketPrice:
+                            currencyCode: USD
+                            amount: 23.99
+                          imageUrl: 'https://m.media-amazon.com/images/I/41gEZFbyM8L.jpg'
+                    asyncApiStatus:
+                      jobsStatus:
+                        49735783-e4c6-4260-bd13-7c46043bd54a:
+                          ProgressStatus: DONE
+                          jobResultsReadyForFetch: false
+                      jobsProcessing: false
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

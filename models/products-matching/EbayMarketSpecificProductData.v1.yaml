@@ -1,0 +1,16 @@
+title: EbayMarketSpecificProductData
+x-extends: ProductKeywordsMatchSpecificMarketData
+type: object
+required:
+  - objectType
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AmazonMarketData'
+      - 'EbayMarketData'
+      - 'WalmartMarketData'
+  soldItems:
+    type: number
+    description: The number of items sold of this product since it was listed
+description: Ebay market specific product properties

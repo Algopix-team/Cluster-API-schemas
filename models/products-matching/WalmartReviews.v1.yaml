@@ -1,0 +1,13 @@
+title: WalmartReviews
+type: object
+properties:
+  stars:
+    type: number
+    description: The number of review stars this product has in Walmart marketplace
+  starsImage:
+    type: string
+    description: Url to customer rating image
+  reviews:
+    type: string
+    description: number of reviews describing text
+description: An object holding walmart reviews information

@@ -1,0 +1,12 @@
+title: ProductCategoriesResults
+allOf:
+  - $ref: ../common/api/ApiResult.v1.yaml
+  - type: object
+    properties:
+      asyncApiStatus:
+        $ref: ./ProductCategoriesAsyncApiStatus.v1.0.yaml
+      responseList:
+        type: array
+        description: 'Contains up to 10 ready results, differentiated by their request id.'
+        items:
+          $ref: ./ProductCategoryResponse.v1.0.yaml

@@ -1,0 +1,18 @@
+titel: Image
+required:
+  - imageHeight
+  - imageType
+  - imageUrl
+  - imageWidth
+type: object
+properties:
+  imageType:
+    type: string
+  imageUrl:
+    type: string
+    description: Url of the image.
+  imageHeight:
+    $ref: ./ImageDimension.v1.yaml
+  imageWidth:
+    $ref: ./ImageDimension.v1.yaml
+description: A product image.

@@ -1,0 +1,9 @@
+title: AmazonPromotionItems
+type: object
+properties:
+  marketSpecificProductTitle:
+    type: string
+  promotions:
+    $ref: './Promotions.v1.yaml'
+  recommendations:
+    $ref: './Recommendations.v1.0.yaml'

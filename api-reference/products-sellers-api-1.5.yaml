@@ -1,0 +1,318 @@
+openapi: 3.0.1
+info:
+  title: Product Sellers API
+  description: Product Sellers API provides insights for sellers selling a specific product.
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: '2'
+servers:
+  - url: 'https://api.algopix.com'
+    description: Algopix API
+tags:
+  - name: Products Buy Box Owners endpoints
+paths:
+  /v3/async/sellers/buyboxowners:
+    get:
+      description: 'This is an asynchronous API endpoint. This endpoint searches info about the sellers that sell an specified item (given a specified item identifier) for a given marketplace. The results may be retrieved from [Buy Box Owners results](https://docs.algopix.com/docs/algopix-api/api-reference/products-sellers-api-1.5.yaml/paths/~1v3~1async~1sellers~1buyboxowners~1results/get).'
+      operationId: request-products-sellers
+      tags:
+        - Products Buy Box Owners endpoints
+      summary: Request Buy Box Owners
+      parameters:
+        - name: productId
+          in: query
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: productIdType
+          in: query
+          description: 'indicates the type of the Id sent under "ids", currently supported types are : ASIN, EBAY_ITEM_ID, WALMART_ITEM_ID, AID'
+          required: true
+          style: form
+          explode: false
+          schema:
+            $ref: ../models/common/product/ProductIdType.v1.yaml
+        - name: markets
+          in: query
+          description: 'Comma-delimited market list to search for item matching the given input. Up to three markets can be specified. If no value is specified, the default used is amazon_us. Currently available US Markets of Amazon, eBay and Walmart'
+          required: true
+          style: form
+          explode: false
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+        - name: resources
+          in: query
+          description: 'additional data points added to the request. In this version,only SellerDetails information is being supported'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - SellerDetails
+        - name: itemCondition
+          in: query
+          description: 'The condition of the item condition. supported values are NEW,REFERBISHED,USED. if no parameter is specified the response will not filter any items by condition.'
+          required: false
+          style: form
+          explode: false
+          schema:
+            $ref: ../models/common/product/ItemCondition.v1.yaml
+      responses:
+        '200':
+          description: Success - request submitted
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 60ff66fe-76b2-4a70-882a-3168947038ca
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+  /v3/async/sellers/buyboxowners/results:
+    get:
+      tags:
+        - Products Buy Box Owners endpoints
+      summary: Buy Box Owners results
+      description: 'This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request Buy Box Owners](https://docs.algopix.com/docs/algopix-api/api-reference/products-sellers-api-1.5.yaml/paths/~1v3~1async~1sellers~1buyboxowners/get).'
+      operationId: products-sellers-results
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-sellers/ProductSellersResults.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 28ce74ac-3b44-4186-94b1-15b643453a2e
+                    asyncApiStatus:
+                      resultsReadyCount: 3
+                      pendingRequestCount: 0
+                    responseList:
+                      - timestamp: 1628507462
+                        status: SUCCESS
+                        statusMessage: Ok
+                        statusCode: 200
+                        requestId: 28ce74ac-3b44-4186-94b1-15b643453a2f
+                        result:
+                          aid: AIDLGDA02005
+                          itemSellers:
+                            AMAZON_US:
+                              name: The Happy Bookstack
+                              id: A1D62822NDM1RG
+                              asin: "0545790357"
+                              businessName: David Jacobs
+                              businessAddress: 607 hwy 82 e. Bell buckle Tennessee 37020 US
+                              offer:
+                                price:
+                                  currencyCode: USD
+                                  amount: 0.0
+                                priceSavings:
+                                  amount:
+                                    currencyCode: USD
+                                    amount: 0.0
+                                  percentage: 0
+                                  pricePerUnit:
+                                    currencyCode: USD
+                                    amount: 0.0
+                                promotions:
+                                  - amount: 0.0
+                                    currency: USD
+                                    discountPercent: 0.0
+                                    displayAmount: "0.0 ($)"
+                                    pricePerUnit: 0.0
+                                    type: string
+                                deliveryInfo:
+                                  isAmazonFulfilled: true
+                                  isFreeShippingEligible: true
+                                  isPrimeEligible: true
+                                isBuyBoxWinner: true
+                                programEligibility:
+                                  primePantry: true
+                              defaultShippingCountry: string
+                              businessType: string
+                              tradeRegisterNumber: string
+                              vatNumber: string
+                              objectType: AMAZON
+                            WALMART_US:
+                              objectType: WALMART
+                              name: string
+                              offer:
+                                price:
+                                  currencyCode: USD
+                                  amount: 0.0
+                                isFreeShippingEligible: true
+                              walmartItemId: 0125648
+                              defaultShippingCountry: string
+                            EBAY_US:
+                              id: string
+                              name: string
+                              businessName: string
+                              businessType: string
+                              tradeRegisterNumber: string
+                              vatNumbers:
+                                - string
+                              businessAddress: string
+                              defaultShippingCountries:
+                                - string
+                              objectType: EBAY
+                              offer:
+                                price:
+                                  currencyCode: USD
+                                  amount: 0.0
+                                priceSavings:
+                                  amount:
+                                    currencyCode: USD
+                                    amount: 0.0
+                                  percentage: 0.0
+                                  pricePerUnit:
+                                    currencyCode: USD
+                                    amount: 0.0
+                                deliveryInfo:
+                                  shippingTypes:
+                                    - string
+                                  isFreeShippingEligible: true
+                              ebayListingId: string
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

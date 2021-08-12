@@ -1,0 +1,17 @@
+title: Dimensions
+type: object
+description: 'Container object for Height, Length, Weight, and Width'
+properties:
+  width:
+    $ref: ./LengthValue.v1.yaml
+  length:
+    $ref: ./LengthValue.v1.yaml
+  height:
+    $ref: ./LengthValue.v1.yaml
+  weight:
+    $ref: ./WeightValue.v1.yaml
+  origin:
+    type: string
+    enum:
+      - OFFICIAL
+      - ALGOPIX_ESTIMATED

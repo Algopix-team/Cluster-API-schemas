@@ -1,0 +1,44 @@
+title: Offer
+type: object
+properties:
+  marketPrice:
+    description: Lowest offering from a reputable seller.
+    $ref: '../common/Price.v1.yaml'
+  marketPlaceFees:
+    description: The fees associated with the marketplace.
+    $ref: '../common/Price.v1.yaml'
+  taxAmount:
+    description: The tax amount.
+    $ref: '../common/Price.v1.yaml'
+  fbaSellingFees:
+    $ref: '../common/Price.v1.yaml'
+    description: Costs for Fulfillment by Amazon (FBA).
+  listingUrl:
+    type: string
+    description: URL to the listing on the marketplace.
+  insights:
+    type: array
+    items:
+      type: string
+      enum:
+        - LISTING_IDENTIFIED_USING_KEYWORDS
+        - DISPLAYING_LOWEST_PRICE_FROM_A_HIGH_RANKED_SELLER
+        - CROSS_CHANNEL_COMPETITION
+        - LISTING_PRICE_INCLUDES_SHIPPING
+        - LISTED_BY_A_LOW_RANKED_SELLER
+        - OUT_OF_STOCK_ITEM
+        - LISTING_NOT_IN_REQUESTED_PRICE_RANGE
+    description: |-
+      Listing insights give you a better idea as to why and how Algopix makes its recommendations and decision.
+
+      LISTING_IDENTIFIED_USING_KEYWORDS: This listing was not identified using barcodes which might be less accurate. Please validate manually prior to sourcing this product.
+
+      DISPLAYING_LOWEST_PRICE_FROM_A_HIGH_RANKED_SELLER: When viewing the product in the marketplace, you might find an offering for a lower price from a seller with a low feedback score or a low number of ratings. We excluded this offer because we do not consider this to be your competition and it should thus not be part of your research.
+
+      CROSS_CHANNEL_COMPETITION: Although the product is recommended in this channel, notice that it is offered on another channel in the same country for a lower price. This means users who perform price comparison may decide to purchase the product on the other channel from a different seller.
+
+      LISTING_PRICE_INCLUDES_SHIPPING: In some cases, shipping cost is included in the listing price but may not be visible in the product page. This means that you might see a lower market price if you view the listing but the final price for the user will include shipping costs. We show the price plus shipping since this is your competition's actual price.
+
+      LISTED_BY_A_LOW_RANKED_SELLER: This listing is sold by a seller with less than 90% positive feedback or less than 100 ratings. There are no listings sold by a better-reviewed seller and this is currently the best alternative customers have in this channel. If you can compete with this listing's price and have a better feedback score this might be a good opportunity.
+
+      OUT_OF_STOCK_ITEM: This listing is currently out of stock so it might not be your immediate competition.

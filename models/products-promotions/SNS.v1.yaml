@@ -1,0 +1,18 @@
+title: SNS
+type: object
+description: 'The SNS feature lets customers to register for scheduled or recurring deliveries of the products they use or order on regularly in Amazon. The SNS offer details retrieved by Algopix represent the lowest SNS offer eligible for a certain listing (5%). Any promotion or copouns, if exists, would be applied in addition to the SNS subscription special price.'
+properties:
+  amount:
+    type: number
+  displayAmount:
+    type: string
+  pricePerUnit:
+    type: number
+  discountPercent:
+    type: number
+  currency:
+    type: string
+    enum:
+      - USD
+  recommendedFrequency:
+    type: string

@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Brands API
+  description: 'Brands API provides Algopix brands names, ids, markets and sub brands, by identifying specified brands and markets.'
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: '2.0'
+servers:
+  - url: 'https://api.algopix.com/v4'
+    description: Algopix API
+tags:
+  - name: Brands endpoints
+paths:
+  /v4/brands/{brandId}:
+    get:
+      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId and market.
+      tags:
+        - Brands endpoints
+      summary: Get Brand by brand id
+      operationId: get-brand-by-id
+      parameters:
+        - name: brandId
+          in: path
+          description: Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](https://docs.algopix.com/docs/algopix-api/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: market
+          required: true
+          in: query
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+      responses:
+        '200':
+          description: Success - request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '../models/brands/BrandsResponse.v1.yaml'
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: SUCCESS
+                    statusCode: 200
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+                    result:
+                      brands:
+                        - name: Plutus Brands
+                          id: Zmbdy2v1oa
+                          marketNames:
+                            - plutus brands
+                          subBrands:
+                            - 
+        '400':
+          description: Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+        '401':
+          description: API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+        '429':
+          description: Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+        '500':
+          description: Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+      security:
+        - apiKey: []
+          appId: []
+  /v4/brands:
+    get:
+      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name and market.
+      tags:
+        - Brands endpoints
+      summary: Get Brands by brand name
+      operationId: get-brands-by-name
+      parameters:
+        - name: brandName
+          in: query
+          required: false
+          explode: false
+          description: The name of the brand.
+          schema:
+            type: string
+        - name: market
+          required: true
+          in: query
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+      responses:
+        '200':
+          description: Success - request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '../models/brands/BrandsResponse.v1.yaml'
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: SUCCESS
+                    statusCode: 200
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+                    result:
+                      brands:
+                        - name: Plutus Brands
+                          id: Zmbdy2v1oa
+                          marketNames:
+                            - plutus brands
+                          subBrands:
+                            - 
+        '400':
+          description: Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+        '401':
+          description: API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+        '429':
+          description: Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+        '500':
+          description: Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+      security:
+        - apiKey: []
+          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

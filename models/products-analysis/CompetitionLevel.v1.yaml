@@ -1,0 +1,25 @@
+title: CompetitionLevel
+required:
+  - level
+  - objectType
+type: object
+properties:
+  level:
+    type: string
+    enum:
+      - HIGH
+      - MEDIUM
+      - LOW
+    description: Based on the number of sellers who offer the product for sale in each market.
+  objectType:
+    type: string
+    enum:
+      - AMAZON
+      - EBAY
+      - WALMART
+  numberOfOffers:
+    type: integer
+  lowestOfferFromReputableSeller:
+    $ref: './SellerOffer.v1.yaml'
+  lowestOffer:
+    $ref: './SellerOffer.v1.yaml'

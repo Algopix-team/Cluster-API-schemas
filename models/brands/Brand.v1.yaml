@@ -1,0 +1,21 @@
+title: Brand
+type: object
+description: The details of the Brand.
+properties:
+  name:
+    type: string
+    description: The name of the brand.
+  id:
+    type: string
+    description: The identifier of the brand.
+  marketNames:
+    type: array
+    description: Array of relevant market names.
+    items:
+      type: string
+      description: The name of the market.
+  subBrands:
+    type: array
+    description: Array of the sub brands of this brand.
+    items:
+      $ref: ./Brand.v1.yaml

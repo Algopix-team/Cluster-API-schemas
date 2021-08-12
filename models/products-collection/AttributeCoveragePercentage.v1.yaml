@@ -1,0 +1,9 @@
+title: AttributeCoveragePercentage
+type: object
+properties:
+  title:
+    type: string
+  id:
+     type: string
+  precentage:
+    type: number

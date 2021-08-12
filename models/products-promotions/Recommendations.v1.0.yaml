@@ -1,0 +1,11 @@
+title: Recommendations
+type: object
+properties:
+  frequentlyBoughtTogether:
+    type: array
+    items:
+      type: string
+  frequentlyViewedTogether:
+    type: array
+    items:
+      type: string

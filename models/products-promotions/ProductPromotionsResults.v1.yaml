@@ -1,0 +1,9 @@
+title: ProductPromotionsResults
+allOf: 
+  - $ref: '../common/api/AsyncApiResult.v1.yaml'
+  - type: object
+    properties:
+      responseList:
+        type: array
+        items:
+          $ref: './ProductPromotionsResponse.v1.yaml'

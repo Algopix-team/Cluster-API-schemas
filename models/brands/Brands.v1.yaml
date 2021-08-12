@@ -1,0 +1,8 @@
+title: Brands
+type: object
+properties:
+  brands:
+    description: Array of brands details.
+    type: array
+    items:
+      $ref: ./Brand.v1.yaml

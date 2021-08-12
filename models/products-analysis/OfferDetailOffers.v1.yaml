@@ -1,0 +1,10 @@
+title: OfferDetailOffers
+type: object
+properties:
+  NEW:
+    $ref: './Offer.v1.yaml'
+  REFURBISHED:
+    $ref: './Offer.v1.yaml'
+  USED:
+    $ref: './Offer.v1.yaml'
+description: Listing price of this item for every given item 

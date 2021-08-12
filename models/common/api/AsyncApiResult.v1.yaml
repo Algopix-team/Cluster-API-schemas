@@ -1,0 +1,7 @@
+title: AsyncApiResult
+allOf:
+  - $ref: ./ApiResult.v1.yaml
+  - type: object
+    properties:
+       asyncApiStatus:
+          $ref: './AsyncApiStatus.v1.yaml'

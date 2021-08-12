@@ -1,0 +1,13 @@
+title: ProductCategoriesAsyncApiStatus
+required:
+  - jobsStatus
+  - jobsProcessing
+type: object
+properties:
+  jobsStatus:
+    type: object
+    additionalProperties:
+      $ref: './JobsStatus.v1.0.yaml'
+  jobsProcessing:
+    type: boolean
+    description: are there any job in progress

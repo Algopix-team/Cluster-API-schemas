@@ -1,0 +1,14 @@
+title: ProductAttributes
+type: object
+properties:
+  Brand:
+    type: string
+  Size:
+    type: string
+  Color:
+    type: string
+  Manufacturer:
+    type: string
+  Model:
+    type: string
+description: 'Possible attributes for the product. If the product attribute is not specified in the market place, the corresponding property will not be set.'

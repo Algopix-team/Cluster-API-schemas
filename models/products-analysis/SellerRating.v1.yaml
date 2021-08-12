@@ -1,0 +1,8 @@
+title: sellerRating
+type: object
+properties:
+  positiveFeedbackRating:
+    type: string
+    description: Percentage of positive feedback the seller has
+  numberOfSellerRatings:
+    type: number

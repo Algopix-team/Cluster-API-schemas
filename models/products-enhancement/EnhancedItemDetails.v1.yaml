@@ -1,0 +1,21 @@
+title: EnhancedItemDetails
+type: object
+allOf:
+  - $ref: ../common/product/ItemDetails.v1.yaml
+  - type: object
+    properties:
+      algopixValidatedAttributes:
+        $ref : './AlgopixValidatedAttributes.v1.yaml'
+      marketplacesData:
+        type: object
+        additionalProperties:
+          $ref: './MarketplaceData.v1.yaml'
+      taxonomy:
+        description: 'a mapping between [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) and the market brands of that specific country locale item categories'
+        type: object
+        additionalProperties:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: './Taxonomy.v1.yaml'

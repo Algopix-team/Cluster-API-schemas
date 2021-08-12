@@ -1,0 +1,15 @@
+title: MarketSpecificData
+type: object
+allOf:
+  - $ref: './OneOfMarketSpecificData.v1.yaml'
+  - type: object
+    properties:
+      marketSpecificProductTitle:
+        type: string
+        description: The title of this product in this specific market
+      estimatedSalesRevenues:
+        description: 'For Amazon, this number reflects the Gross Merchandise Volume (GMV) from the past month, i.e., the estimated number of products sold in the last month, multiplied by the base price of the product.'
+        $ref: '../common/Price.v1.yaml'
+      estimatedUnitSold:
+        type: integer
+        description: 'The estimated number of products sold in the last month. For Amazon, the monthly sales estimate is a calculation based on the product''s Best Sellers Rank combined with additional demand indicators and sales history.'

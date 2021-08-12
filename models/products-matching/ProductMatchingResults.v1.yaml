@@ -1,0 +1,10 @@
+title: ProductMatchingResults
+type: object
+allOf:
+  - $ref: ../common/api/AsyncApiResult.v1.yaml
+  - type: object
+    properties:
+      responseList:
+        type: array
+        items:
+          $ref: './ProductMatchingApiResponse.v1.yaml'

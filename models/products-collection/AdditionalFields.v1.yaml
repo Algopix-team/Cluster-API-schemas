@@ -1,0 +1,8 @@
+title: AdditionalFields
+type: string
+enum:
+  - UPC
+  - EAN
+  - COLOR
+  - BRAND
+  - MANUFACTURER

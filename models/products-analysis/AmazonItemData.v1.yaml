@@ -1,0 +1,29 @@
+title: AmazonItemData
+x-extends: MarketSpecificData
+required:
+  - objectType
+type: object
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AMAZON'
+      - 'EBAY'
+      - 'WALMART'
+    description: 'The market name this object is associated with, e.g. AMAZON.'
+  competition:
+    $ref: ./AmazonCompetition.v1.yaml
+  localAsin:
+    type: string
+    description: 'The ASIN found for this specific Amazon locale. Usually, this ASIN will be identical to the ASIN in ItemDetails.'
+  amazonCategories:
+    type: array
+    items:
+      $ref: './AmazonCategory.v1.yaml'
+  soldViaFBA:
+    type: boolean
+    description: 'TRUE if the product is sold via FBA by another seller, FALSE otherwise.'
+  numberOfOffersSoldViaFBA:
+    type: integer
+  customerRatingInfo:
+    $ref: './CustomerRating.v1.yaml'

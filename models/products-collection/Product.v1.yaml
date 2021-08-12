@@ -1,0 +1,23 @@
+title: Product
+type: object
+properties:
+  aid:
+    description: Algopix identifier.
+    type: string
+  parentAid:
+    description: Algopix identifier's parent.
+    type: string
+  title:
+    description: The title of the product.
+    type: string
+  marketPrice:
+    description: The price of the market.
+    $ref: ../common/Price.v1.yaml
+  imageUrl:
+    description: The url of the image.
+    type: string
+  variants:
+    description: Array of product variants.
+    type: array
+    items:
+      $ref: './Product.v1.yaml'

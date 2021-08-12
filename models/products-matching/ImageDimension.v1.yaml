@@ -1,0 +1,13 @@
+title: ImageDimension
+required:
+  - unit
+  - value
+type: object
+properties:
+  value:
+    type: number
+  unit:
+    type: string
+    enum:
+      - PIXELS
+description: The height or width of an image.

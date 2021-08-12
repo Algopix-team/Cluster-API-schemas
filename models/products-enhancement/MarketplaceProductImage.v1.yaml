@@ -1,0 +1,11 @@
+title: MarketplaceProductImage
+type: object
+properties:
+  imageType:
+    type: string
+    enum:
+      - small
+      - medium
+      - large
+  imageUrl:
+    type: string

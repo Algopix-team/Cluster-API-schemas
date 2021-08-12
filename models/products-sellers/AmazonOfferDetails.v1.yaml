@@ -1,0 +1,18 @@
+title: AmazonOfferDetails
+type: object
+properties:
+  price:
+    $ref: '../common/Price.v1.yaml'
+  priceSavings:
+    $ref: './PriceSavings.v1.yaml'
+  promotions:
+    type: array
+    items:
+      $ref: './Promotion.v1.yaml'
+  deliveryInfo:
+    $ref: './DeliveryInfo.v1.yaml'
+  isBuyBoxWinner:
+    type: boolean
+    description: Specifies whether the given offer is the winner of the BuyBox of an item. A Buy box offer is the best offer recommended by Amazon for any product
+  programEligibility:
+    $ref: './AmazonProgramElgibility.v1.yaml'

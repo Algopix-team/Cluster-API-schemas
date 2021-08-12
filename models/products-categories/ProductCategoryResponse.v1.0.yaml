@@ -1,0 +1,8 @@
+title: ProductCategoryResponse
+description: Each result that is ready to be fetched. Contains the metadata of the result and product information.
+allOf:
+  - $ref: ../common/api/ApiResult.v1.yaml
+  - type: object
+    properties:
+      result:
+        $ref: ./Product.v1.0.yaml

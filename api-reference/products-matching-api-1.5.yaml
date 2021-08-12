@@ -1,0 +1,312 @@
+openapi: 3.0.3
+info:
+  title: Product Matching API
+  description: 'Product Matching API provides retail products data, specified by AID or ASIN. Returns a list of up to ten products.'
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: 1.0.1
+servers:
+  - url: 'https://api.algopix.com'
+    description: Algopix API
+tags:
+  - name: Products matching endpoints
+paths:
+  /v3/async/products/matches:
+    get:
+      description: 'This is an asynchronous API endpoint. This endpoint searches retail products data, specified by keywords and other attributes. The results may be retrieved from [Products matching results](https://docs.algopix.com/docs/algopix-api/api-reference/products-matching-api-1.5.yaml/paths/~1v3~1async~1products~1matches~1results/get).'
+      operationId: request-products-matching
+      summary: Request products matching
+      tags:
+        - Products matching endpoints
+      parameters:
+        - name: keywords
+          in: query
+          description: Item keywords used to search for products.
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: color
+          in: query
+          description: Search products by color. Products with matching color will receive a higher score.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: brand
+          in: query
+          description: Search products by Brand. Products with matching brand will receive a higher score.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: googleGbCategoryId
+          in: query
+          description: |-
+            Search products by google product category. Products with matching categories recieve a higher score. Id of a google product category as described [here](https://support.google.com/merchants/answer/6324436?hl=en).  
+             For an extensive list of the available categories see [here](https://www.google.com/basepages/producttype/taxonomy-with-ids.en-GB.txt)
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: number
+        - name: amazonSearchIndex
+          in: query
+          description: 'The product category to search. For more information and an extensive list of the possible values, see [here](https://docs.google.com/spreadsheets/d/1h9Pio_f0fnjeEuOEqS-fEkuBgejiwsVshYhJUv0p0so/edit?usp=sharing)'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: amazonCategoryId
+          in: query
+          description: |2-
+
+
+
+
+             Search products by amazon browse node id. Products associated with the amazon browse node recieve a higher score. Browse nodes are positive integers identifying a product category.  
+             list is availible here [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt)  
+             Specifying a browse node requires a `searchindex` to be set. Browse node work with every `searchindex`, **except for** _All_ and _Blended_.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: minPrice
+          in: query
+          description: ' the minimum price of a products to return by the search'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: maxPrice
+          in: query
+          description: ' the maximum price of a products to return by the search'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: currencyCode
+          in: query
+          description: 'The currency code of the specified minPrice & maxPrice parameters. the currencyCode parameter should comply with [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes. Currently supported currency codes: USD, EUR, CAD. defaults to USD if not specified'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfull search
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+  /v3/async/products/matches/results:
+    get:
+      operationId: products-matching-results
+      description: 'This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products matching](https://docs.algopix.com/docs/algopix-api/api-reference/products-matching-api-1.5.yaml/paths/~1v3~1async~1products~1matches/get).'
+      tags:
+        - Products matching endpoints
+      summary: Products matching results
+      responses:
+        '200':
+          description: Successful operation.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-matching/ProductMatchingResults.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+                    asyncApiStatus:
+                      resultsReadyCount: 3
+                      pendingRequestCount: 0
+                    responseList:
+                      - timestamp: 1610532838
+                        status: SUCCESS
+                        statusMessage: Ok
+                        statusCode: 200
+                        requestId: 49735463-e4b6-4960-bd83-7c90043bd14b
+                        result:
+                          matchingProducts:
+                            - title: Casio Men's Vintage A168WA-1 Electro Luminescence Watch
+                              aid: AIDSNOFJ1000
+                              matchingScores:
+                                titleMatchingScore: 0.043
+                                brandMatchingScore: 0.0
+                                colorMatchingScore: 0.0
+                                categoryMatchingScore: 0.0
+                                modelMatchingScore: 0.0
+                                algopixTotalScore: 0.039
+                              image:
+                                imageType: small
+                                imageUrl: https://m.media-amazon.com/images/I/418AS4GdpcS._SL75_.jpg
+                                imageHeight:
+                                  value: 75.00
+                                  unit: PIXELS
+                                imageWidth:
+                                  value: 40.00
+                                  unit: PIXELS
+                              price:
+                                currencyCode: USD
+                                amount: 18.0
+                              attributes:
+                                Brand: string
+                                Size: string
+                                Color: string
+                                Manufacturer: string
+                                Model: string
+                              keywordsIdentifiedSpecificMarketData:
+                                objectType: AmazonMarketData
+                                bestSellerRank: 6681
+                              listingUrl: https://www.amazon.com/dp/B000LAKYW8?tag=algopixnew-20&linkCode=osi&th=1&psc=1
+                          totalMatches: 1
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

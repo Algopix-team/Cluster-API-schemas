@@ -1,0 +1,28 @@
+title: ItemIds
+type: object
+description: The product identifier(s).
+properties:
+  ASIN:
+    type: array
+    description: a list of Amazon item identifiers.
+    items:
+      type: string
+  PARENT_ASIN:
+    type: array
+    description: a single item list of Amazon item identifier that represent the parent item of this item in Amazon market if applicable.
+    items:
+      type: string
+  EAN:
+    type: array
+    description: 'list of EANs, the most up to date UPC would be the first item in the array'
+    items:
+      type: string
+  UPC:
+    type: array
+    description: 'list of UPCs, the most up to date UPC would be the first item in the array'
+    items:
+      type: string
+  MPN:
+    type: array
+    items:
+      type: string

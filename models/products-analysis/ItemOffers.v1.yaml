@@ -1,0 +1,12 @@
+title: ItemOffers
+type: object
+properties:
+  itemDetails:
+    $ref: ../common/product/ItemDetails.v1.yaml
+  offers:
+    type: array
+    items:
+      $ref: ./OfferDetails.v1.yaml
+  demand:
+    $ref: ./DemandLevel.v1.yaml
+    description: 'a mapping between [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) and the relevant items demand level in that country.'

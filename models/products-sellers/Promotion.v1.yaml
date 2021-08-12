@@ -1,0 +1,15 @@
+title: Promotion    
+type: object
+properties:
+  amount:
+    type: number
+  currency:
+    type: string
+  discountPercent:
+    type: number
+  displayAmount:
+    type: string
+  pricePerUnit:
+    type: number
+  type:
+    type: string

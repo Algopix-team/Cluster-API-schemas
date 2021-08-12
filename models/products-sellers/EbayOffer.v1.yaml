@@ -1,0 +1,33 @@
+title: EbayOffer
+type: object
+properties:
+  id:
+    type: string
+  name:
+    type: string
+  businessName:
+    type: string
+  businessType:
+    type: string
+  tradeRegisterNumber:
+    type: string
+  vatNumbers:
+    type: array
+    items:
+      type: string
+  businessAddress:
+    type: string
+  defaultShippingCountries:
+    type: array
+    items:
+      type: string
+  objectType:
+    type: string
+    enum: 
+      - EBAY
+  offer:
+    $ref: './EbayOfferDetails.v1.yaml'
+  ebayListingId:
+    type: string
+required:
+  - objectType

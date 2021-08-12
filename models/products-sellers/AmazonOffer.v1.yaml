@@ -1,0 +1,36 @@
+title: AmazonOffer
+type: object
+properties:
+  name:
+    type: string
+    description: Sellers name
+  id:
+    type: string
+    description: Sellers marketplace Id
+  asin:
+    type: string
+    description: ASIN
+  businessName:
+    type: string
+    description: Seller business name. This data point would appear only if SellerDetails was sent throguh the resources parameter
+  businessAddress:
+    type: string
+    description: Seller business name. This data point would appear only if SellerDetails was sent throguh the resources parameter
+  offer:
+    $ref: './AmazonOfferDetails.v1.yaml'
+  defaultShippingCountry:
+    type: string
+  businessType:
+    type: string
+  tradeRegisterNumber:
+    type: string
+  vatNumber:
+    type: string
+  objectType:
+    type: string
+    enum: 
+      - AMAZON
+required:
+  - objectType
+
+  

@@ -1,0 +1,9 @@
+title: ProductIdType
+type: string
+enum:
+  - AID
+  - ASIN
+  - UPC
+  - EAN
+  - EBAY_ITEM_ID
+  - WALMART_ITEM_ID

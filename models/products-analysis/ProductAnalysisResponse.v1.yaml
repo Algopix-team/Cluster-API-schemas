@@ -1,0 +1,7 @@
+title: ProductAnalysisResponse
+allOf:
+  - $ref: ../common/api/ApiResult.v1.yaml
+  - type: object
+    properties:
+      result:
+        $ref: ./ItemOffers.v1.yaml

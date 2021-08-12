@@ -1,0 +1,9 @@
+title: EbayDeliveryInfo
+type: object
+properties:
+  shippingTypes:
+    type: array
+    items:
+      type: string
+  isFreeShippingEligible:
+    type: boolean

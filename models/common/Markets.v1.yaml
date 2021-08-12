@@ -1,0 +1,23 @@
+title: Markets
+description: The market to retrive results for.
+type: string
+enum:
+  - AMAZON_US
+  - AMAZON_CA
+  - AMAZON_MX
+  - AMAZON_UK
+  - AMAZON_DE
+  - AMAZON_FR
+  - AMAZON_ES
+  - AMAZON_IT
+  - AMAZON_AU
+  - EBAY_US
+  - EBAY_GB
+  - EBAY_DE
+  - EBAY_AU
+  - EBAY_AT
+  - EBAY_ES
+  - EBAY_FR
+  - EBAY_IT
+  - WALMART_US
+example: AMAZON_US

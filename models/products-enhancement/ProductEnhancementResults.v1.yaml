@@ -1,0 +1,14 @@
+title: ProductEnhancementResults
+required:
+  - result
+  - asyncApiStatus
+allOf:
+  - $ref: ../common/api/AsyncApiResult.v1.yaml
+  - type: object
+    properties:
+      responseList:
+        type: array
+        items:
+          $ref: './ProductEnhancementResponse.v1.yaml'
+      
+        

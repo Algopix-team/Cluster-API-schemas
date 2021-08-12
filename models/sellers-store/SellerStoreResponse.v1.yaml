@@ -1,0 +1,7 @@
+title: SellerStoreResponse
+allOf:
+  - type: object
+    properties:
+      contextKey:
+        type: string
+  - $ref: ./SellerStorePageResponse.v1.yaml

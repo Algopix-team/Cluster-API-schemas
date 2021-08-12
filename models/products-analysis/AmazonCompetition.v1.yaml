@@ -1,0 +1,15 @@
+title: AmazonCompetition
+type: object
+allOf:
+  - $ref: './CompetitionLevel.v1.yaml'
+  - type: object
+    properties:
+      buyBoxOffering:
+        $ref: './SellerOffer.v1.yaml'
+      amazonOfferState:
+        type: string
+        enum:
+          - NOT_SOLD_BY_AMAZON
+          - SOLD_BY_AMAZON
+          - OUT_OF_STOCK
+          - DATA_NOT_AVAILABLE

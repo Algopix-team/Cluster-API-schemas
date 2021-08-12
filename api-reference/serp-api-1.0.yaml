@@ -1,0 +1,349 @@
+openapi: 3.0.3
+info:
+  title: Search Engine Results Page
+  description: 'Search Engine Results Page API provides a product list with the SERP ranking for the specified market and search terms, and may return the raw html results of a page or the raw html results of a page.'
+  version: '1.0'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+servers:
+  - url: 'https://api.algopix.com'
+tags:
+  - name: Search engine results endpoints
+paths:
+  /v4/serp:
+    summary: SERP search results with ranking.
+    get:
+      tags:
+        - Search engine results endpoints
+      summary: Get Search engine results
+      description: This is a synchronous API endpoint. This endpoint searches a product list with the SERP ranking for the specified market and search terms.
+      operationId: get-search-engine
+      parameters:
+        - name: query
+          in: query
+          description: Item keywords to search by.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: categoryId
+          description: Unique identifier for a category.
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: market
+          description: Currently only AMAZON_US market is supported
+          in: query
+          style: form
+          explode: false
+          required: true
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+        - name: resources
+          in: query
+          style: form
+          explode: false
+          schema:
+            $ref: ../models/serp/SerpResource.v1.yaml
+        - name: contextKey
+          description: 'The context key is used to retreive the following results pages. When sending a request, for retrieve the next pages you will need to send this key which was returned when making the initial request for products.'
+          in: query
+          explode: false
+          style: form
+          schema:
+            type: string
+          required: false
+        - name: pageNumber
+          description: The page number of the results to retreive. This parameter must be used in tandem with contextKey.
+          in: query
+          explode: false
+          schema:
+            type: integer
+          required: false
+      responses:
+        '200':
+          description: Success – search results returned
+          content:
+            application/json:
+              schema:
+                $ref: ../models/serp/SerpResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+                    result:
+                      contextKey: 28ce74bc-3b34-4166-9441-15b643993a2e
+                      pageId: 2010_10_10_5f9b02dd-0c4e-4869-92cf-cc365eedf387
+                      totalPages: 7
+                      currentPage: 1
+                      request:
+                        market: AMAZON_US
+                        query: string
+                        categoryId: string
+                        pageNumber: 0
+                        resources:
+                          - IMAGE
+                          - HTML
+                      products:
+                        - productId: B00067LYHU
+                          productIdType: ASIN
+                          serpRank: 1
+                          title: A168W-1 Casio Illuminator Watch
+                          productPageUrl: https://www.amazon.com/dp/B00067LYHU
+                          currentPrice:
+                            currencyCode: USD
+                            amount: 24.95
+                          originalPrice:
+                            currencyCode: USD
+                            amount: 27.4
+                          rating: 4.7
+                          reviews: 985
+                          isAmazonChoice: false
+                          isBestSeller: true
+                          isSponsored: false
+                          imageUrl: https://m.media-amazon.com/images/I/71Un8PKS5LL._AC_UL320_.jpg
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+  '/v4/serp/{pageId}/html':
+    get:
+      tags:
+        - Search engine results endpoints
+      summary: Get search engine html
+      description: This endpoint returns the raw html results of a page.
+      operationId: get-search-engine-html
+      parameters:
+        - name: pageId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: market
+          description: currently only AMAZON_US market is supported
+          in: query
+          style: form
+          explode: false
+          required: true
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+      responses:
+        '200':
+          description: Success - Return Html file.
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+  '/v4/serp/{pageId}/image':
+    get:
+      tags:
+        - Search engine results endpoints
+      summary: Get search engine image
+      description: This endpoint returns the raw html results of a page.
+      operationId: get-search-engine-image
+      parameters:
+        - name: pageId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: market
+          description: currently only AMAZON_US market is supported
+          in: query
+          style: form
+          explode: false
+          required: true
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+      responses:
+        '200':
+          description: Success - Return Image.
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      description: Your provided API key.
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      description: Your provided application id.
+      in: header

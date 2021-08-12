@@ -1,0 +1,11 @@
+title: Promotions
+type: object
+properties:
+  sns:
+    $ref: './SNS.v1.yaml'
+  coupons:
+    type: array
+    items:
+      $ref: './Coupon.v1.yaml'
+  programEligibility:
+    $ref: 'ProgramEligibility.v1.yaml'

@@ -1,0 +1,46 @@
+title: MarketplaceData
+type: object
+properties:
+  marketCountryCode:
+    type: string
+  info:
+    type: object
+    additionalProperties:
+      type: string
+  features:
+    type: array
+    items:
+      type: string
+  frequentlyBought:
+    type: array
+    items:
+      type: string
+  marketBrand:
+    $ref: ../common/MarketBrand.v1.yaml
+  title:
+    type: string
+  manufacturer:
+    type: string
+  price:
+    $ref: ../common/Price.v1.yaml
+  productDetails:
+    type: object
+    additionalProperties:
+      type: string
+  productDescription:
+    type: string
+  fromManufacturer:
+    type: string
+  manufacturerDataTable:
+    type: object
+    additionalProperties:
+      type: string
+  productOverview:
+    type: object
+    additionalProperties:
+      type: string
+  images:
+    type: array
+    items:
+      $ref: ./MarketplaceProductImage.v1.yaml
+description: 'All available data points from a specific marketplace'

@@ -1,0 +1,6 @@
+title: ItemCondition
+type: string
+enum:
+  - NEW
+  - REFURBISHED
+  - USED

@@ -1,0 +1,18 @@
+title: WalmartOffer
+type: object
+properties:
+  objectType:
+    type: string
+    enum: 
+      - WALMART
+  name:
+    type: string
+    description: seller name
+  offer:
+    $ref: './WalmartOfferDetails.v1.yaml'
+  walmartItemId:
+    type: number
+  defaultShippingCountry:
+    type: string
+required:
+  - objectType

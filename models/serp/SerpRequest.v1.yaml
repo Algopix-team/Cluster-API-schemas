@@ -1,0 +1,19 @@
+title: SerpRequest
+type: object
+properties:
+  market:
+    $ref: ../common/Markets.v1.yaml
+  query:
+    type: string
+    description: A query string to search across products.
+  categoryId:
+    type: string
+    description: Search for specific items by category id.
+  pageNumber:
+    type: integer
+    description: The page number to get the products for.
+  resources:
+    type: array
+    items:
+      $ref: ./SerpResource.v1.yaml
+

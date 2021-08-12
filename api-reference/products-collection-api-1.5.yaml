@@ -1,0 +1,651 @@
+openapi: 3.0.3
+info:
+  title: Product Collections
+  description: Products collection API allows users to search for products across a wide range of marketplaces by brand.
+  version: '1.0'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+servers:
+  - url: 'https://api.algopix.com/v1'
+tags:
+  - name: Products collection endpoints
+  - name: get products collection
+    description: Algopix products collection API allows users to search for products across a wide range of marketplaces by brand.
+  - name: get products collection page
+    description: returns a specific page of a product collection request made previously.
+  - name: get products collection summary
+  - name: request products collection report
+  - name: get products collection report
+paths:
+  /v4/products:
+    get:
+      tags:
+        - Products collection endpoints
+      operationId: get-products-collection
+      summary: Get products collection
+      description: This is a synchronous API endpoint. This endpoint returns the product list according to the brand and marketplaces provided.
+      parameters:
+        - name: local
+          required: false
+          description: the local of the product.
+          in: query
+          schema:
+            $ref: ../models/products-collection/Locals.v1.yaml
+            default: 'US'
+        - name: brandId
+          in: query
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](https://docs.algopix.com/docs/algopix-api/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: brandName
+          in: query
+          description: brand name
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: categories
+          in: query
+          description: list of comma delimited category ids
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: excludeCategories
+          in: query
+          description: list of comma delimited category ids to exclude
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: maxItems
+          description: Set a max number of items to return in the collection.
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: integer
+        - name: contextKey
+          description: A key which was returned when making the initial request for products. This key is used to retreive the following results pages.
+          in: query
+          explode: false
+          style: form
+          schema:
+            type: string
+          required: true
+        - name: pageNumber
+          description: The page number of the results to retreive. This parameter must be used in tandem with contextKey
+          in: query
+          explode: true
+          schema:
+            type: integer
+          required: false
+        - name: resources
+          description: comma delimited resource list to include in the response.
+          in: query
+          explode: false
+          schema:
+            $ref: ../models/products-collection/ResourceType.v1.yaml
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-collection/ProductsCollectionApiResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    result:
+                      totalPages: 9
+                      products:
+                        - aid: AIDVM8W02001
+                          parentAid: AIDVM8W02001
+                          title: adidas Men's Adilette Shower Slides
+                          marketPrice:
+                            currencyCode: USD
+                            amount: 65
+                          imageUrl: 'https://m.media-amazon.com/images/I/31p8fsS9UdL._SL160_.jpg'
+                          variants:
+                            - aid: string
+                              parentAid: string
+                              title: string
+                              marketPrice:
+                                currencyCode: string
+                                amount: 0
+                              imageUrl: string
+                              variants:
+                                - {}
+                      contextKey: efb6cfea-4921-40c3-941a-7977d84f12f7
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+  /v4/products/reports:
+    post:
+      tags:
+        - Products collection endpoints
+      operationId: create-products-collection-report
+      summary: create a products report
+      description: 'Request creating a products report. this endpoint triggers the background creation of a report. use the <code>"/products/reports/status"</code> endpoint to get the status of the report generation. use the <code>"/products/reports/{reportId}"</code> endpoint to download the report.'
+      parameters:
+        - name: local
+          required: false
+          in: query
+          description: the local of the product.
+          schema:
+            $ref: ../models/products-collection/Locals.v1.yaml
+            default: 'US'
+        - name: brandId
+          in: query
+          description: Unique identifier for a brand.
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: brandName
+          in: query
+          description: brand name
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: categories
+          in: query
+          description: list of comma delimited category ids
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: excludeCategories
+          in: query
+          description: category id to exclude
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: maxItems
+          description: Set a max number of items to return in the collection.
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: integer
+        - name: additionalFields
+          description: Comma-delimited market Fields to add to the reports. u must be authirzied for each Field
+          required: false
+          in: query
+          schema:
+            $ref: ../models/products-collection/AdditionalFields.v1.yaml
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-collection/ProductsCollectionCreateReportResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    result:
+                      reportId: 01f33a78-6948-47b3-8dbc-e431e1s37998
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+  /v4/products/reports/status:
+    get:
+      tags:
+        - Products collection endpoints
+      operationId: get-products-report-status
+      parameters:
+        - name: reportId
+          description: report id
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: string
+      summary: Get report status
+      description: get all report status
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-collection/ProductsCollectionReportStatusResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    result:
+                      reports:
+                        - id: b0cded8c-e3d5-4e57-9114-0bd09ce2d5c1
+                          status: IN_PROGRESS
+                          type: PRODUCTS_COLLECTION
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+  '/v4/products/reports/{reportId}':
+    get:
+      tags:
+        - Products collection endpoints
+      summary: Get ready report
+      description: This endpoint returns collection report file
+      operationId: get-products-collection-report
+      parameters:
+        - name: reportId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Success – return zipped csv file.
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+  /v4/products/summary:
+    get:
+      tags:
+        - Products collection endpoints
+      operationId: get-products-collection-summary
+      summary: Get products collection summary
+      description: This is a synchronous API endpoint. This endpoint returns summary of the product list according to the brand and marketplaces provided.
+      parameters:
+        - name: local
+          required: false
+          in: query
+          description: the local of the product.
+          schema:
+            $ref: ../models/products-collection/Locals.v1.yaml
+            default: 'US'
+        - name: brandId
+          in: query
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](https://docs.algopix.com/docs/algopix-api/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: brandName
+          in: query
+          description: brand name
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: categories
+          in: query
+          description: list of comma delimted category ids
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: excludeCategories
+          in: query
+          description: list of comma delimited category ids to exclude
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-collection/ProductsSummaryResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+                    result:
+                      productsCount: 7090
+                      brands:
+                        - title: nike
+                          id: 11nohTBQB_
+                          precentage: 97.60
+                      categories:
+                        - id: "7148223411"
+                          precentage: 100.00
+                      manufacturers:
+                        - title: nike
+                          id: 11nohTBQB_
+                          precentage: 83.30
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+        - appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

@@ -1,0 +1,7 @@
+#title: ProductsCollectionPageApiResponse
+#type: object
+#properties:
+#  allOf:
+#    - $ref: '../common/api/ApiResult.v1.yaml'
+#  result:
+#    $ref: './ProductsCollectionPageResponse.v1.yaml'

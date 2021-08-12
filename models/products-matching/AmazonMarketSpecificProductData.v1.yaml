@@ -1,0 +1,16 @@
+title: AmazonMarketSpecificProductData
+x-extends: ProductKeywordsMatchSpecificMarketData
+type: object
+required:
+  - objectType
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AmazonMarketData'
+      - 'EbayMarketData'
+      - 'WalmartMarketData'
+  bestSellerRank:
+    type: number
+    description: The best seller rank of the product in the marketplace on which the search was run.
+description: Amazon market specific product properties

@@ -1,0 +1,42 @@
+title: ItemDetails
+type: object
+properties:
+  aid:
+    type: string
+    description: algopix item identifier
+  relatedAids:
+    type: array
+    description: AIDs of items that are related to this item. 
+    items:
+      type: string
+  baseTitle:
+    type: string
+  ids:
+    $ref: './ItemIds.v1.yaml'
+  titles:
+    $ref: './ItemTitles.v1.yaml'
+  description:
+    type: string
+    description: The item description (if available).
+  brand:
+    type: string
+    description: The brand name (if available).
+  model:
+    type: string
+    description: The item model (if available).
+  color:
+    type: string
+    description: The item color (if available).
+  size:
+    type: string
+    description: The item size (if available).
+  msrp:
+    description: The item MSRP (Manufacturer Suggested Retail Price).
+    $ref: '../Price.v1.yaml' 
+  itemDimensions:
+    $ref: './Dimensions.v1.yaml'
+  packageDimensions:
+    $ref: './Dimensions.v1.yaml'
+  imageUrl:
+    type: string
+    description: The item image URL.

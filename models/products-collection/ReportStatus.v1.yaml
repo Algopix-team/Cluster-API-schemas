@@ -1,0 +1,7 @@
+title: ReportStatus
+type: string
+enum:
+  - CREATED
+  - IN_PROGRESS
+  - SUCCESS
+  - FAILED

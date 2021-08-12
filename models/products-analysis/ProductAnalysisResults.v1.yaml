@@ -1,0 +1,9 @@
+title: ProductAnalysisResults
+allOf:
+  - $ref: ../common/api/AsyncApiResult.v1.yaml
+  - type: object
+    properties:
+      result:
+        type: array
+        items:
+          $ref: ./ProductAnalysisResponse.v1.yaml

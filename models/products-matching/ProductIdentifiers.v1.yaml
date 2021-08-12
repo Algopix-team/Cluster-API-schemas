@@ -1,0 +1,16 @@
+title: ProductIdentifiers
+type: object
+properties:
+  ASIN:
+    type: array
+    items:
+      type: string
+  UPC:
+    type: array
+    items:
+      type: string
+  EAN:
+    type: array
+    items:
+      type: string
+description: Identifiers matching the product.

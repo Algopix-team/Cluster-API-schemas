@@ -1,0 +1,15 @@
+title: WalmartMarketSpecificProductData
+x-extends: ProductKeywordsMatchSpecificMarketData
+type: object
+required:
+  - objectType
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AmazonMarketData'
+      - 'EbayMarketData'
+      - 'WalmartMarketData'
+  reviews:
+    $ref: ./WalmartReviews.v1.yaml
+description: Walmart market specific product properties

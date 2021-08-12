@@ -1,0 +1,10 @@
+title: ProductsCollectionCreateReport
+allOf:
+  - $ref: ../common/api/ApiResult.v1.yaml
+  - type: object
+    properties:
+      result:
+        type: object
+        properties:
+          reportId:
+            type: string

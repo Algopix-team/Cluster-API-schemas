@@ -1,0 +1,4 @@
+title: ResourceType
+type: string
+enum:
+  - PRODUCT_VARIANTS

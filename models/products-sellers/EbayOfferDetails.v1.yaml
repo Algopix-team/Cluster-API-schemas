@@ -1,0 +1,9 @@
+title: EbayOfferDetails
+type: object
+properties:
+  price:
+    $ref: ../common/Price.v1.yaml
+  priceSavings:
+    $ref: ./PriceSavings.v1.yaml
+  deliveryInfo:
+    $ref: ./EbayDeliveryInfo.v1.yaml

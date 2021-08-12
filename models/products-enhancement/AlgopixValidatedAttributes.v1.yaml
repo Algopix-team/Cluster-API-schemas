@@ -1,0 +1,206 @@
+title: AlgopixValidatedAttributes
+type: object
+description: All the availible attributes a product has and that were verified by Algopix
+properties:
+  actors:
+    type: array
+    items:
+      type: string
+  artists:
+    type: array
+    items:
+      type: string
+  aspectRatio:
+    type: string
+  audienceRating:
+    type: string
+  authors:
+    type: array
+    items:
+      type: string
+  backFinding:
+    type: string
+  bandMaterialType:
+    type: string
+  binding:
+    type: string
+  blurayReigon:
+    type: string
+  ceroAgeRating:
+    type: string
+  chainType:
+    type: string
+  claspType:
+    type: string
+  cpuManafacturer:
+    type: string
+  cpuSpeed:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  cpuType:
+    type: string
+  contributors:
+    type: array
+    items:
+      $ref: './AlgopixValidatedAttributesContributors.v1.yaml'
+  department:
+    type: string
+  directors:
+    type: array
+    items:
+      type: string
+  displaySize:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  edition:
+    type: string
+  episodeSequence:
+    type: string
+  esrbAgeRating:
+    type: string
+  flavor:
+    type: string
+  formats:
+    type: array
+    items:
+      type: string
+  gemType:
+    type: array
+    items:
+      type: string
+  genere:
+    type: string
+  golfClubFlex:
+    type: string
+  golfClubLoft:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  handOrientation:
+    type: string
+  hardDiskInterface:
+    type: string
+  hardDiskSize:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  hardwarePlatform:
+    type: string
+  hazardousMaterialType:
+    type: string
+  adultProduct:
+    type: boolean
+  autographed:
+    type: boolean
+  eligibleForTradeIn:
+    type: boolean
+  memorabilia:
+    type: boolean
+  issuesPerYear:
+    type: string
+  itemPartNumber:
+    type: string
+  label:
+    type: string
+  contentLanguages:
+    type: array
+    items:
+      $ref: './AlgopixValidatedAttributesContentLanguages.v1.yaml'
+  legalDisclaimer:
+    type: string
+  #  manafacturer:
+  #    type: string
+  manufacturerMaximumAge:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  manufacturerMinimumAge:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  manufacturerPartsWarrantyDescription:
+    type: string
+  materialTypes:
+    type: array
+    items:
+      type: string
+  maximumResolution:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  metalStamp:
+    type: string
+  metalType:
+    type: string
+  #  model:
+  #    type: string
+  numberOfDiscs:
+    type: integer
+  numberOfIssues:
+    type: integer
+  numberOfItems:
+    type: integer
+  numberOfPages:
+    type: integer
+  numberOfTracks:
+    type: integer
+  operatingSystems:
+    type: array
+    items:
+      type: string
+  opticalZoom:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  partNumber:
+    type: string
+  pegiRating:
+    type: string
+  platform:
+    type: array
+    items:
+      type: string
+  processorCount:
+    type: integer
+  productGroup:
+    type: string
+  productTypeName:
+    type: string
+  productTypeSubcategory:
+    type: string
+  publicationDate:
+    type: string
+  publisher:
+    type: string
+  regionCode:
+    type: string
+  releaseDate:
+    type: string
+  ringSize:
+    type: string
+  runningTime:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  shaftMaterial:
+    type: string
+  scent:
+    type: string
+  seasonSequence:
+    type: string
+  seikodoProductCode:
+    type: string
+  #  size:
+  #    type: string
+  sizePerPearl:
+    type: string
+  studio:
+    type: string
+  subscriptionLength:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  #  systemMemorySize:
+  #    type: string
+  systemMemorySize:
+    $ref: ./GenericMeasuredValue.v1.yaml
+  systemMemoryType:
+    type: string
+  theatricalReleaseDate:
+    type: string
+  title:
+    type: string
+  totalDiamondWeight:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  totalGemWeight:
+    $ref: './GenericMeasuredValue.v1.yaml'
+  tradeInPrice:
+    $ref: '../common/Price.v1.yaml'
+  warranty:
+    type: string
+  weeeTaxValue:
+    $ref: ../common/Price.v1.yaml
+  lang:
+    type: string

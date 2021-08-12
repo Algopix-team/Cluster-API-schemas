@@ -1,0 +1,5 @@
+title: WeightUnit
+type: string
+enum:
+  - OUNCE
+  - POUND

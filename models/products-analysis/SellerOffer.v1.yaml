@@ -1,0 +1,7 @@
+title: SellerOffer
+type: object
+properties:
+  price:
+    $ref: '../common/Price.v1.yaml'
+  sellerRating:
+    $ref: './SellerRating.v1.yaml'

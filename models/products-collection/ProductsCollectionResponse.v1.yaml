@@ -1,0 +1,8 @@
+title: ProductsCollectionResponse
+allOf:
+  - $ref: ./ProductsCollectionPageResponse.v1.yaml
+  - type: object
+    description: Context Key. This key is used to retreive the following results pages.
+    properties:
+      contextKey:
+        type: string

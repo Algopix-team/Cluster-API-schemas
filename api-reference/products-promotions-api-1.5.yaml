@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: Listings Promotions Information
+  description: Listings Promotions Information API provides promotional data in specified Amazon listings by AID or ASIN.
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: '1.0'
+servers:
+  - url: 'https://api.algopix.com'
+    description: Algopix API
+tags:
+  - name: Products promotions endpoints
+paths:
+  /v3/async/promotions:
+    get:
+      tags:
+        - Products promotions endpoints
+      description: 'This is an asynchronous API endpoint. This endpoint searches promotional data in specified Amazon listings by AID or ASIN. The results may be retrieved from [Products promotions results](https://docs.algopix.com/docs/algopix-api/api-reference/products-promotions-api-1.5.yaml/paths/~1v3~1async~1promotions~1results/get).'
+      operationId: request-products-promotions
+      summary: Request products promotions
+      parameters:
+        - name: productId
+          in: query
+          description: 'Algopix Identifier (AID) or [ASIN](https://algopix.com/tools/asin-to-upc). Identify which was applied in idType below.'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: market
+          in: query
+          description: market
+          required: true
+          explode: false
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+        - name: productIdType
+          in: query
+          description: The identifier type that was parsed as the id. currently supported ASIN and AID
+          required: true
+          explode: true
+          schema:
+            $ref: ../models/common/product/ProductIdType.v1.yaml
+      responses:
+        '200':
+          description: Success – search initiated.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+  /v3/async/promotions/results:
+    get:
+      tags:
+        - Products promotions endpoints
+      summary: Products promotions results
+      description: 'This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products promotions](https://docs.algopix.com/docs/algopix-api/api-reference/products-promotions-api-1.5.yaml/paths/~1v3~1async~1promotions/get).'
+      operationId: products-promotions-results
+      responses:
+        '200':
+          description: Success – search results returned.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-promotions/ProductPromotionsResults.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+                    asyncApiStatus:
+                      resultsReadyCount: 3
+                      pendingRequestCount: 0
+                    responseList:
+                      - timestamp: 1610532838
+                        status: SUCCESS
+                        statusMessage: Ok
+                        statusCode: 200
+                        requestId: 49735463-e4b6-4960-bd83-7c90043bd14b
+                        result:
+                          aid: AIDSNOFJ1000
+                          ids:
+                            ASIN:
+                              - "05457908495"
+                          AMAZON_US:
+                            marketSpecificProductTitle: >
+                              Amazon Basics 48 Pack AA High-Performance Alkaline Batteries, 10-Year Shelf Life, Easy to Open Value Pack
+                            promotions:
+                              sns:
+                                amount: 14.24
+                                displayAmount: "$14.24 (5%)"
+                                pricePerUnit: 0.3
+                                discountPercent: 14.24
+                                currency: USD
+                                recommendedFrequency: 4 months
+                              coupons:
+                                - amount: 0
+                                  type: percentage
+                                  currency: USD
+                              programEligibility:
+                                isPrimeExclusive: true
+                                isPrimePantry: true
+                            recommendations:
+                              frequentlyBoughtTogether:
+                                - string
+                              frequentlyViewedTogether:
+                                - string
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

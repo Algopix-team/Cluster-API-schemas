@@ -1,0 +1,29 @@
+titel: ProductMatchingScores
+required:
+  - algopixTotalScore
+  - brandMatchingScore
+  - categoryMatchingScore
+  - colorMatchingScore
+  - titleMatchingScore
+  - modelMatchingScore
+type: object
+properties:
+  titleMatchingScore:
+    type: number
+    description: Score between 0 to 1 representing the matching strength between the product title and input title
+  brandMatchingScore:
+    type: number
+    description: Score between 0 to 1 representing the matching strength between the product brand and input brand
+  colorMatchingScore:
+    type: number
+    description: Score between 0 to 1 representing the matching strength between the product color and input color
+  categoryMatchingScore:
+    type: number
+    description: Score between 0 to 1 representing the matching strength between the product category and input category
+  modelMatchingScore:
+    type: number
+    description: Score between 0 to 1 representing the strength between the product model and input model
+  algopixTotalScore:
+    type: number
+    description: A score between 0 to 1 representing the overall  score of the product to all query parameters
+description: Scores between 0 to 1 describing how well the product matches the query in various properties.

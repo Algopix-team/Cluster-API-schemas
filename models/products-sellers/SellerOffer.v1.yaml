@@ -1,0 +1,8 @@
+title: SellerOffer
+type: object
+properties:
+  aid:
+    type: string
+    description: the Algopix AID associated with the product
+  itemSellers:
+    $ref: './ItemSellers.v1.yaml'

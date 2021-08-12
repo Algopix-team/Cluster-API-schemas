@@ -1,0 +1,17 @@
+title: Taxonomy
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: string
+  ancestorsPathIds:
+    type: array
+    description: an array which contains the category path id of this item. The order of the ids in the array relates to their position in the browse node hierarchy
+    items:
+      type: string
+  ancestorsPathNames:
+    type: array
+    description: an array which contains the category path names of this item. The order of the names in the array relates to their position in the browse node hierarchy
+    items:
+      type: string

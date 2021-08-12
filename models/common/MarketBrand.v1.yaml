@@ -1,0 +1,6 @@
+title: MarketBrand
+type: string
+enum:
+  - AMAZON
+  - EBAY
+  - WALMART

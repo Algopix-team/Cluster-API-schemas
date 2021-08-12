@@ -1,0 +1,392 @@
+openapi: 3.0.3
+info:
+  title: Product Details
+  description: 'Product Details API provides available attributes data in specified products by GTIN, ASIN or AID.'
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: '1.0'
+servers:
+  - url: 'https://api.algopix.com'
+    description: Algopix API
+tags:
+  - name: Products details endpoints
+paths:
+  /v3/async/products/details:
+    get:
+      description: This is an asynchronous API endpoint. This endpoint searches available attributes data in specified products by GTIN, ASIN or AID'. The results may be retrieved from [Products details results](https://docs.algopix.com/docs/algopix-api/api-reference/products-enhancement-api-1.5.yaml/paths/~1v3~1async~1products~1details~1results/get).
+      tags:
+        - Products details endpoints
+      summary: Request products details
+      operationId: request-product-details
+
+      parameters:
+        - name: productId
+          in: query
+          description: 'A product identifier to send through the API. Algopix supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)'
+          required: true
+          explode: false
+          schema:
+            type: string
+
+        - name: markets
+          in: query
+          description: 'Comma-delimited market list to search for market specific data. In this version,Algopix supports Amazon_US and eBay_US markets'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - EBAY_US
+              - AMAZON_US
+
+        - name: resources
+          in: query
+          description: 'Comma-delimited resource list to search for specific product. In this version,Algopix supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available. '
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - TAXONOMY
+              - MARKETPLACE_DATA
+              # - BASE_TITLE // unofficial, creates a title which is made of the common words of all the variations of this product including the parent product title. s
+
+        - name: productIdType
+          description: 'the type of the identifier'
+          in: query
+          style: form   
+          schema:
+            $ref: ../models/common/product/ProductIdType.v1.yaml
+
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+  /v3/async/products/details/results:
+    get:
+      description: This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products details](https://docs.algopix.com/docs/algopix-api/api-reference/products-enhancement-api-1.5.yaml/paths/~1v3~1async~1products~1details/get). 
+      tags:
+        - Products details endpoints
+      operationId: products-details-results
+      summary: Products details results
+      responses:
+        '200':
+          description: (GET /async/product/details/results).
+          content:
+            application/json:
+              schema:
+                $ref: '../models/products-enhancement/ProductEnhancementResults.v1.yaml'
+              examples:
+                example-1:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    result:
+                      aid: AIDSNOFJ1000
+                      model: CA-53W-1ER
+                      color: grey
+                      brand: Casio
+                      itemDimensions:
+                        width:
+                          value: 0.94
+                          unit: INCH
+                        length:
+                          value: 0.39
+                          unit: INCH
+                        height:
+                          value: 1.3
+                          unit: INCH
+                        weight:
+                          value: 0.96
+                          unit: OUNCE
+                      algopixValidatedAttributes:
+                        partNumber: CA53W-1CR
+                        bandMaterialType: Plastic
+                        claspType: Buckle
+                        contributors:
+                          - name: Casio
+                            role: Designer
+                        label: Casio
+                        contentLanguages:
+                          - languageName: english
+                            type: Unknown
+                        materialTypes:
+                          - Resin
+                        metalStamp: staineless steel
+                        numberOfItems: 1
+                        publisher: Casio
+                        studio: Casio
+                        title: Casio Men's Vintage CA53W-1 Calculator Watch
+                        warranty: 1 year warranty
+                        lang: en-US
+                        adultProduct: false
+                        autographed: false
+                        memorabilia: false
+                      marketplacesData:
+                        AMAZON_US:
+                          title: Casio Men's Vintage CA53W-1 Calculator Watch
+                          features:
+                            - Imported
+                            - '8-Digit Calculator, Constants for addition, subtraction, multiplication and division'
+                            - Water Resistant
+                            - >
+                              '1/100 second stopwatch, Measuring capacity: 23:59''59.99"; Measuring modes: Elapsed time, split time, 1st-2nd place times'
+                            - Auto Calendar (pre-programmed until the year 2079)
+                            - 'Size of case/total weight, 42.0 x 33.0 x 7.0mm / 29g'
+                            - Dual Time
+                            - Daily Alarm
+                            - Hourly Time Signal
+                            - >
+                              'Accuracy: +/-15 seconds per month'
+                            - Battery CR2016
+                            - >
+                              'Approx. battery life: 5 year'
+                            - Module 437/3208
+                          productDetails:
+                            brandSellerOrCollectionName: Casio
+                            modelNumber: CA-53W-1ER
+                            partNumber: CA53W-1CR
+                            modelYear: '2018'
+                            itemShape: Rectangle
+                            dialWindowMaterialType: Mineral
+                            displayType: Digital
+                            clasp: Buckle
+                            metalStamp: staineless steel
+                            caseMaterial: Resin
+                            caseDiameter: 35 millimeters
+                            caseThickness: 8 millimeters
+                            bandMaterial: Plastic
+                            bandLength: mens
+                            bandWidth: 20 millimeters
+                            bandColor: Black
+                            dialColor: Black
+                            bezelMaterial: Resin
+                            bezelFunction: Stationary
+                            calendar: Perpetual Calendar
+                            specialFeatures: 'alarm-feature, Luminous, Water Resistant'
+                            movement: Quartz
+                            waterResistantDepth: 165 Feet
+                            warranty: 'If this product is sold by Amazon, please review the manufacturer’s website for warranty information. If this product is sold by another party, please contact the seller directly for warranty information for this product. You may also be able to find warranty information on the manufacturer’s website.'
+                          productOverview:
+                            brand: casio
+                          productDescription: 'Ever unsure just how much to tip your server at a restaurant? With this 8-digit calculator watch, you can do so with confidence.'
+                          images:
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/61uWaEms7CL._AC_UL1015_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41On7KcSztL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41On7KcSztL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/61O2x0OT-kL._AC_UL1500_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41nAvjbpbIL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41nAvjbpbIL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/512YOMhiYBL._AC_UL1454_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/31KJig6OgcL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/31KJig6OgcL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/61%2B9M-bAivL._AC_UL1110_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41h5l0JZoiL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41h5l0JZoiL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/71ehj94Ai9L._AC_UL1500_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/410JYKnP2xL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/410JYKnP2xL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/71iNmxLoXCL._AC_UL1111_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51KoS8eouqL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51KoS8eouqL._AC_SR38,50_.jpg'
+                      taxonomy:
+                        US:
+                          AMAZON:
+                            - name: Shops
+                              id: '7581669011'
+                              ancestorsPathIds:
+                                - '7141123011'
+                                - '7141124011'
+                                - '7147441011'
+                              ancestorsPathNames:
+                                - 'Clothing, Shoes & Jewelry'
+                                - Departments
+                                - Men
+                            - name: Wrist Watches
+                              id: '6358540011'
+                              ancestorsPathIds:
+                                - '7141123011'
+                                - '7141124011'
+                                - '7147441011'
+                                - '6358539011'
+                              ancestorsPathNames:
+                                - 'Clothing, Shoes & Jewelry'
+                                - Departments
+                                - Men
+                                - Watches
+                          GOOGLE:
+                            - name: Watches
+                              id: '201'
+                              ancestorsPathIds:
+                                - '166'
+                                - '188'
+                              ancestorsPathNames:
+                                - Apparel & Accessories
+                                - Jewelry
+                    asyncApiStatus:
+                      resultsReadyCount: 3
+                      pendingRequestCount: 0
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: [ ]
+          appId: [ ]
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

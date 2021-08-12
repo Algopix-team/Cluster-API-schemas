@@ -1,0 +1,7 @@
+title: ProgramEligibility
+type: object
+properties:
+  isPrimeExclusive:
+    type: boolean
+  isPrimePantry:
+    type: boolean

@@ -1,0 +1,12 @@
+title: Price
+type: object
+properties:
+  currencyCode:
+    type: string
+    description: ISO 4217[currency codes](https://en.wikipedia.org/wiki/ISO_4217)
+  amount:
+    type: number
+    description: 'The price relates to the MSRP (manufacturers suggested retail price), if provided.'
+required:
+  - currencyCode
+  - amount

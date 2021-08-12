@@ -1,0 +1,11 @@
+title: JobsStatus
+type: object
+properties:
+  ProgressStatus:
+    type: string
+    enum:
+      - DONE
+      - IN PROGRESS
+  jobResultsReadyForFetch:
+    type: boolean
+description: 'Allows you to see single request status. If the ProgressStatus is DONE and JobsResultsReadyForFetch is false- the entire category has been pulled. As long as the ProgressStatus is IN PROGRESS, you should expect results to keep coming for that request ID'

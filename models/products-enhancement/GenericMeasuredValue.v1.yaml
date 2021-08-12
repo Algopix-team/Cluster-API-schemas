@@ -1,0 +1,7 @@
+title: GenericMeasuredValue
+type: object
+properties:
+  value:
+    type: number
+  unitType:
+    type: string

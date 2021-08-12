@@ -1,0 +1,421 @@
+openapi: 3.0.0
+info:
+  title: Product Analysis API
+  description: 'Product analysis API provides comprehensive data of a product across different channels, including various product details, lowest price from a reputable seller, competition, demand and estimated sales analysis.'
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: '2.0'
+servers:
+  - url: 'https://api.algopix.com'
+    description: Algopix API
+tags:
+  - name: Products analysis endpoints
+    description: 'Performs product analyis including marketplace offers, competition and demand analysis'
+paths:
+  /v3/async/products/analysis:
+    get:
+      description: 'This is an asynchronous API endpoint. This endpoint identifies a product and returns its product analysis information in selected markets. The results may be retrieved from [Products analysis results](https://docs.algopix.com/docs/algopix-api/api-reference/products-analysis-api-1.5.yaml/paths/~1v3~1async~1products~1analysis~1results/get).'
+      tags:
+        - Products analysis endpoints
+      summary: Request products analysis
+      operationId: products-analysis-endpoints
+      parameters:
+        - name: keywords
+          in: query
+          description: 'Item keywords to search by, alternatively pass [EAN, UPC](https://en.wikipedia.org/wiki/International_Article_Number), or [ASIN](https://algopix.com/tools/asin-to-upc) for a more precise search. Populate idType according to the item passed here.'
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: markets
+          in: query
+          description: 'Comma-delimited market list to search. Specify up to four markets (default is amazon_us). Currently available markets include Amazon, eBay, and Walmart (see enum list for supported options).'
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: ../models/common/Markets.v1.yaml
+        - name: minItemPrice
+          in: query
+          description: 'Price which may be used during the item identification process to filter items which cost more than the minimum price. Using this optional parameter may affect performance. Relevant only when keywords parameter contains a keyword query and not a UPC, EAN or ASIN.'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: maxItemPrice
+          in: query
+          description: 'Price which may be used during the item identification process to filter items which cost less than the specified maximum price. Using this optional parameter may affect performance. Relevant only when keyword parameter contains keywords query and not a UPC, EAN or ASIN.'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: currencyCode
+          in: query
+          description: 'The currency code of the specified minItemPrice & maxItemPrice parameters, this is a required parameter if either minItemPrice and/or maxItemPrice parameters are used. the currencyCode parameters should comply with [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes.'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - USD
+              - EUR
+              - CAD
+        - name: idType
+          in: query
+          description: 'Improves identification accuracy of item keywords. If not specified, this will be automatically determined.'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+            enum:
+              - ASIN
+              - EAN
+              - UPC
+              - EBAY_ITEM_ID
+              - WALMART_ITEM_ID
+              - KEYWORDS
+        - name: productCondition
+          in: query
+          description: The item condition which is used to filter results.
+          required: false
+          style: form
+          explode: false
+          schema:
+            $ref: ../models/common/product/ItemCondition.v1.yaml
+      responses:
+        '200':
+          description: Success - request submitted
+          content:
+            application/json:
+              schema:
+                $ref: '../models/common/api/ApiResult.v1.yaml'
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 60ff66fe-76b2-4a70-882a-3168947038ca
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+  /v3/async/products/analysis/results:
+    get:
+      operationId: products-analysis-results
+      description: 'This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products analysis](https://docs.algopix.com/docs/algopix-api/api-reference/products-analysis-api-1.5.yaml/paths/~1v3~1async~1products~1analysis/get).'
+      tags:
+        - Products analysis endpoints
+      summary: Products analysis results
+      responses:
+        '200':
+          description: Success – results returned.
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-analysis/ProductAnalysisResults.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 28ce74ac-3b44-4186-94b1-15b643453a2e
+                    asyncApiStatus:
+                      resultsReadyCount: 3
+                      pendingRequestCount: 0
+                    result:
+                      - timestamp: 1628508641
+                        status: SUCCESS
+                        statusMessage: Ok
+                        statusCode: 200
+                        requestId: 60ff66fe-76b2-4a70-882a-3168947038ca
+                        result:
+                          itemDetails:
+                            aid: AIDLGDA02005
+                            relatedAids:
+                              - "AIDLGDA02006"
+                            baseTitle: Harry Potter and the Sorcerer's Stone
+                            ids:
+                              ASIN:
+                                - "05457908495"
+                              PARENT_ASIN:
+                                - "05457908496"
+                              EAN:
+                                - "7805457904689"
+                              UPC:
+                                - "7805457904687"
+                              MPN:
+                                - "7805457904682"
+                              ISBN:
+                                - "7805457904646"
+                            titles:
+                              en: >
+                                Harry Potter and the Sorcerer's Stone: The Illustrated Edition (Harry Potter, Book 1)
+                              de: string
+                              it: string
+                              fr: string
+                              es: string
+                            description: string
+                            brand: string
+                            model: string
+                            color: string
+                            size: string
+                            msrp:
+                              currencyCode: string
+                              amount: 0
+                            itemDimensions:
+                              width:
+                                value: 1.1
+                                unit: INCH
+                              length:
+                                value: 9.1
+                                unit: INCH
+                              height:
+                                value: 10.5
+                                unit: INCH
+                              weight:
+                                value: 53.6
+                                unit: OUNCE
+                              origin: OFFICIAL
+                            packageDimensions:
+                              width:
+                                value: 9.21
+                                unit: INCH
+                              length:
+                                value: 10.83
+                                unit: INCH
+                              height:
+                                value: 1.18
+                                unit: INCH
+                              weight:
+                                value: 52.96
+                                unit: OUNCE
+                              origin: OFFICIAL
+                            imageUrl: string
+                          offers:
+                            - timestamp: 1628506494
+                              marketBrand: AMAZON
+                              countryCode: US
+                              marketSpecificData:
+                                objectType: AMAZON
+                                competition:
+                                  level: HIGH
+                                  objectType: AMAZON
+                                  numberOfOffers: 72
+                                  lowestOfferFromReputableSeller:
+                                    price:
+                                      currencyCode: USD
+                                      amount: 17.1
+                                    sellerRating:
+                                      positiveFeedbackRating: 95-97%
+                                      numberOfSellerRatings: 22729
+                                  lowestOffer:
+                                    price:
+                                      currencyCode: USD
+                                      amount: 17.1
+                                    sellerRating:
+                                      positiveFeedbackRating: 95-97%
+                                      numberOfSellerRatings: 22729
+                                marketSpecificProductTitle: >
+                                  Harry Potter and the Sorcerer's Stone: The Illustrated Edition (Harry Potter, Book 1)
+                                estimatedSalesRevenues:
+                                  currencyCode: USD
+                                  amount: 127901.16
+                                estimatedUnitSold: 7479
+                              offers:
+                                NEW:
+                                  marketPrice:
+                                    currencyCode: USD
+                                    amount: 17.1
+                                  marketPlaceFees:
+                                    currencyCode: USD
+                                    amount: 5.96
+                                  taxAmount:
+                                    currencyCode: USD
+                                    amount: 0.0
+                                  fbaSellingFees:
+                                    currencyCode: USD
+                                    amount: 5.98
+                                  listingUrl: https://www.amazon.com/dp/05457908495
+                                  insights:
+                                    - LISTING_IDENTIFIED_USING_KEYWORDS
+                                    - LISTING_PRICE_INCLUDES_SHIPPING
+                                REFURBISHED:
+                                  marketPrice:
+                                    currencyCode: USD
+                                    amount: 13.6
+                                  marketPlaceFees:
+                                    currencyCode: USD
+                                    amount: 5.20
+                                  taxAmount:
+                                    currencyCode: USD
+                                    amount: 0.0
+                                  fbaSellingFees:
+                                    currencyCode: USD
+                                    amount: 5.98
+                                  listingUrl: https://www.amazon.com/dp/05457908495
+                                  insights:
+                                    - LISTING_IDENTIFIED_USING_KEYWORDS
+                                USED:
+                                  marketPrice:
+                                    currencyCode: USD
+                                    amount: 12.5
+                                  marketPlaceFees:
+                                    currencyCode: USD
+                                    amount: 4.65
+                                  taxAmount:
+                                    currencyCode: USD
+                                    amount: 0.0
+                                  fbaSellingFees:
+                                    currencyCode: USD
+                                    amount: 5.98
+                                  listingUrl: USD
+                                  insights:
+                                    - LISTING_IDENTIFIED_USING_KEYWORDS
+                                    - LISTING_PRICE_INCLUDES_SHIPPING
+                              imageSet:
+                                - https://m.media-amazon.com/images/I/61Doz7TSTCL.jpg
+                          demand:
+                            US: -1
+                            UK: -1
+                            DE: -1
+                            FR: -1
+                            ES: -1
+                            IT: -1
+                            AU: -1
+                            CA: -1
+                            GB: -1
+        '400':
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '401':
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '429':
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '500':
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+      security:
+        - apiKey: []
+          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

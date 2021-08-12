@@ -1,0 +1,10 @@
+title: Report
+type: object
+properties:
+  id:
+    type: string
+  status:
+    $ref: 'ReportStatus.v1.yaml'
+  type:
+    type: string
+

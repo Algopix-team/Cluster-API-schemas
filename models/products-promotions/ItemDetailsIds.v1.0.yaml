@@ -1,0 +1,8 @@
+title: ItemDetailsIds
+description: The product identifier(s).
+type: object
+properties:
+  ASIN:
+    type: array
+    items:
+      type: string

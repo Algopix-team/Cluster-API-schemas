@@ -1,0 +1,16 @@
+title: Product
+type: object
+properties:
+  aid:
+    type: string
+    description: Unique Algopix identifier
+  parentAid:
+    type: string
+  title:
+    type: string
+    description: Product title
+  marketPrice:
+    $ref: ../common/Price.v1.yaml
+  imageUrl:
+    type: string
+description: 'Contains the information regarding product- aid,title, market price and image URL'

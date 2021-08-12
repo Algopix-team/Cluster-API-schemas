@@ -1,0 +1,12 @@
+title: OneOfMarketSpecificData
+type: object
+oneOf:
+  - $ref: './WalmartItemData.v1.yaml'
+  - $ref: './AmazonItemData.v1.yaml'
+  - $ref: './EbayItemData.v1.yaml'
+discriminator:
+  propertyName: objectType
+  mapping:
+    "WALMART": './WalmartItemData.v1.yaml'
+    "AMAZON": './AmazonItemData.v1.yaml'
+    "EBAY": './EbayItemData.v1.yaml'

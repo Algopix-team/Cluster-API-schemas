@@ -1,0 +1,11 @@
+title: AsyncApiStatus
+required:
+  - resultsReadyCount
+  - pendingRequestCount
+type: object
+properties:
+  resultsReadyCount:
+    type: number
+  pendingRequestCount:
+    type: number
+    description: 'Counters indicating the amount of calls that are pending/ready to collect. When both counters are set to 0, there are no more results in the queue.'

@@ -1,0 +1,21 @@
+title: ProductMatch
+type: object
+properties:
+  title:
+    type: string
+    description: Product title
+  aid:
+    type: string
+  matchingScores:
+    $ref: ./ProductMatchingScores.v1.yaml
+  image:
+    $ref: ./Image.v1.yaml
+  price:
+    $ref: ../common/Price.v1.yaml
+  attributes:
+    $ref: ./ProductAttributes.v1.yaml
+  keywordsIdentifiedSpecificMarketData:
+    $ref: ./ProductKeywordsMatchSpecificMarketData.v1.yaml
+  listingUrl:
+    type: string
+    description: Link to the product listing on the marketplace the search was run.

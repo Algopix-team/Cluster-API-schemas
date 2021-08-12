@@ -1,0 +1,21 @@
+title: WalmartItemData
+x-extends: MarketSpecificData
+required:
+  - objectType
+type: object
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AMAZON'
+      - 'EBAY'
+      - 'WALMART'
+    description: 'The market name this object is associated with, e.g. AMAZON.'
+  walmartItemId:
+    type: integer
+  competition:
+    $ref: './CompetitionLevel.v1.yaml'
+  walmartCategories:
+    type: array
+    items:
+      $ref: ./Taxonomy.v1.yaml

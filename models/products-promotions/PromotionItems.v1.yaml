@@ -1,0 +1,9 @@
+title: PromotionItems
+type: object
+properties:
+  aid:
+    type: string
+  ids:
+    $ref: './ItemDetailsIds.v1.0.yaml'
+  AMAZON_US:
+    $ref: './AmazonPromotionItems.v1.yaml'

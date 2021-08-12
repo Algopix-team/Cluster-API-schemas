@@ -1,0 +1,4 @@
+title: ProductKeywordsMatchSpecificMarketData
+type: object
+allOf:
+  - $ref: './OneOfProductKeywordsMatchSpecificMarketData.v1.yaml'

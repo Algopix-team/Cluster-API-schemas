@@ -1,0 +1,25 @@
+title: OfferDetails
+type: object
+properties:
+  timestamp:
+    type: number
+    description: 'The number of seconds passed since epoch, representing the time this offer was retrieved'
+  marketBrand:
+    type: string
+    enum: 
+      - AMAZON
+      - EBAY
+      - WALMART
+    description: 'Market brand name, e.g., Amazon, eBay etc.'
+  countryCode:
+    type: string
+    description: 'Market brand country code, see [ISO 3166-1 alpha-2](https://www.nationsonline.org/oneworld/country_code_list.htm)'
+  marketSpecificData:
+    $ref: './MarketSpecificData.v1.yaml'
+  offers:
+    $ref: './OfferDetailOffers.v1.yaml'
+  imageSet:
+    type: array
+    description: One or multiple image URLs for the respective marketplace.
+    items:
+      type: string

@@ -1,0 +1,7 @@
+title: ProductSellersResponse
+allOf:
+  - $ref: '../common/api/ApiResult.v1.yaml'
+  - type: object
+    properties:
+      result:
+        $ref: './SellerOffer.v1.yaml'

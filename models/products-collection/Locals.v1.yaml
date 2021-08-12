@@ -1,0 +1,4 @@
+title: Locals
+type: string
+enum:
+  - US
