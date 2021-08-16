@@ -8,14 +8,14 @@ info:
     email: support@algopix.com
   version: '2.0'
 servers:
-  - url: 'https://api.algopix.com/v4'
+  - url: 'https://api.algopix.com'
     description: Algopix API
 tags:
   - name: Brands endpoints
 paths:
   /v4/brands/{brandId}:
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId and market.
+      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId and market.<br>[**Don't miss our schemas**](https://docs.algopix.com/docs/algopix-api-documentation/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brand by brand id
@@ -54,21 +54,69 @@ paths:
                           marketNames:
                             - plutus brands
                           subBrands:
-                            - 
+                            -
         '400':
-          description: Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '429':
-          description: Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
       security:
         - apiKey: []
           appId: []
   /v4/brands:
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name and market.
+      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name and market.<br>[**Don't miss our schemas**](https://docs.algopix.com/docs/algopix-api-documentation/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brands by brand name
@@ -107,15 +155,63 @@ paths:
                           marketNames:
                             - plutus brands
                           subBrands:
-                            - 
+                            -
         '400':
-          description: Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 400
+                    statusMessage: missing keywords parameter
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 401
+                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '429':
-          description: Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 429
+                    statusMessage: Too Many Requests
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507562
+                    status: ERROR
+                    statusCode: 500
+                    statusMessage: error
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
       security:
         - apiKey: []
           appId: []
@@ -125,6 +221,7 @@ components:
       type: apiKey
       name: X-API-KEY
       in: header
+      description: Read our [Authentication](https://docs.algopix.com/docs/algopix-api-documentation/docs/Making-a-request/Authentication.md) article
     appId:
       type: apiKey
       name: X-APP-ID

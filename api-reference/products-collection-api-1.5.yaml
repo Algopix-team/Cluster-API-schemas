@@ -7,7 +7,7 @@ info:
     name: Algopix Support
     email: support@algopix.com
 servers:
-  - url: 'https://api.algopix.com/v1'
+  - url: 'https://api.algopix.com'
 tags:
   - name: Products collection endpoints
   - name: get products collection
