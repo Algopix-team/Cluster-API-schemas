@@ -15,7 +15,7 @@ tags:
 paths:
   /v4/brands/{brandId}:
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId and market.<br>[**Don't miss our schemas**](https://docs.algopix.com/docs/algopix-api-documentation/docs/Making-a-request/Our-schemas.md)
+      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId and market.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brand by brand id
@@ -23,7 +23,7 @@ paths:
       parameters:
         - name: brandId
           in: path
-          description: Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](https://docs.algopix.com/docs/algopix-api/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).
+          description: Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](../~1v4~1brands/get).
           required: true
           explode: false
           schema:
@@ -35,7 +35,7 @@ paths:
             $ref: ../models/common/Markets.v1.yaml
       responses:
         '200':
-          description: Success - request submitted
+          description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
           content:
             application/json:
               schema:
@@ -56,7 +56,7 @@ paths:
                           subBrands:
                             -
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -70,7 +70,7 @@ paths:
                     statusMessage: missing keywords parameter
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -83,8 +83,22 @@ paths:
                     statusCode: 401
                     statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '403':
+          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507563
+                    status: ERROR
+                    statusCode: 403
+                    statusMessage: User Over Its Allowed Quota
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -98,7 +112,7 @@ paths:
                     statusMessage: Too Many Requests
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -116,7 +130,7 @@ paths:
           appId: []
   /v4/brands:
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name and market.<br>[**Don't miss our schemas**](https://docs.algopix.com/docs/algopix-api-documentation/docs/Making-a-request/Our-schemas.md)
+      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name and market.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brands by brand name
@@ -136,7 +150,7 @@ paths:
             $ref: ../models/common/Markets.v1.yaml
       responses:
         '200':
-          description: Success - request submitted
+          description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
           content:
             application/json:
               schema:
@@ -157,7 +171,7 @@ paths:
                           subBrands:
                             -
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -171,7 +185,7 @@ paths:
                     statusMessage: missing keywords parameter
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -184,8 +198,22 @@ paths:
                     statusCode: 401
                     statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '403':
+          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507563
+                    status: ERROR
+                    statusCode: 403
+                    statusMessage: User Over Its Allowed Quota
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -199,7 +227,7 @@ paths:
                     statusMessage: Too Many Requests
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -221,7 +249,7 @@ components:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](https://docs.algopix.com/docs/algopix-api-documentation/docs/Making-a-request/Authentication.md) article
+      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
     appId:
       type: apiKey
       name: X-APP-ID

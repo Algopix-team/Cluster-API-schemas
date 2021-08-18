@@ -24,7 +24,7 @@ paths:
         - Products collection endpoints
       operationId: get-products-collection
       summary: Get products collection
-      description: This is a synchronous API endpoint. This endpoint returns the product list according to the brand and marketplaces provided.
+      description: This is a synchronous API endpoint. This endpoint returns the product list according to the brand and marketplaces provided.</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       parameters:
         - name: local
           required: false
@@ -99,7 +99,7 @@ paths:
             $ref: ../models/products-collection/ResourceType.v1.yaml
       responses:
         '200':
-          description: Ok.
+          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
           content:
             application/json:
               schema:
@@ -134,7 +134,7 @@ paths:
                                 - {}
                       contextKey: efb6cfea-4921-40c3-941a-7977d84f12f7
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -148,7 +148,7 @@ paths:
                     statusMessage: missing keywords parameter
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -161,8 +161,22 @@ paths:
                     statusCode: 401
                     statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '403':
+          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507563
+                    status: ERROR
+                    statusCode: 403
+                    statusMessage: User Over Its Allowed Quota
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -176,7 +190,7 @@ paths:
                     statusMessage: Too Many Requests
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -197,8 +211,8 @@ paths:
       tags:
         - Products collection endpoints
       operationId: create-products-collection-report
-      summary: create a products report
-      description: 'Request creating a products report. this endpoint triggers the background creation of a report. use the <code>"/products/reports/status"</code> endpoint to get the status of the report generation. use the <code>"/products/reports/{reportId}"</code> endpoint to download the report.'
+      summary: Create a products report
+      description: Request creating a products report. This endpoint triggers the background creation of a report. Use the ["Get report status"](../~1v4~1products~1reports~1status/get) endpoint to get the status of the report generation. use the ["Get ready report"](../~1v4~1products~1reports~1%7BreportId%7D/get) endpoint to download the report.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       parameters:
         - name: local
           required: false
@@ -258,7 +272,7 @@ paths:
             $ref: ../models/products-collection/AdditionalFields.v1.yaml
       responses:
         '200':
-          description: Ok.
+          description: Ok.</br>**Notice - our examples were generate with mock data**
           content:
             application/json:
               schema:
@@ -274,7 +288,7 @@ paths:
                     result:
                       reportId: 01f33a78-6948-47b3-8dbc-e431e1s37998
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -288,7 +302,7 @@ paths:
                     statusMessage: missing keywords parameter
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -301,8 +315,22 @@ paths:
                     statusCode: 401
                     statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '403':
+          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507563
+                    status: ERROR
+                    statusCode: 403
+                    statusMessage: User Over Its Allowed Quota
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -316,7 +344,7 @@ paths:
                     statusMessage: Too Many Requests
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -337,6 +365,8 @@ paths:
       tags:
         - Products collection endpoints
       operationId: get-products-report-status
+      summary: Get report status
+      description: get all report status.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       parameters:
         - name: reportId
           description: report id
@@ -345,11 +375,9 @@ paths:
           explode: false
           schema:
             type: string
-      summary: Get report status
-      description: get all report status
       responses:
         '200':
-          description: Ok.
+          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
           content:
             application/json:
               schema:
@@ -368,7 +396,7 @@ paths:
                           status: IN_PROGRESS
                           type: PRODUCTS_COLLECTION
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -382,7 +410,7 @@ paths:
                     statusMessage: missing keywords parameter
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -395,8 +423,22 @@ paths:
                     statusCode: 401
                     statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '403':
+          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507563
+                    status: ERROR
+                    statusCode: 403
+                    statusMessage: User Over Its Allowed Quota
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -410,7 +452,7 @@ paths:
                     statusMessage: Too Many Requests
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -431,7 +473,7 @@ paths:
       tags:
         - Products collection endpoints
       summary: Get ready report
-      description: This endpoint returns collection report file
+      description: This endpoint returns collection report file.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: get-products-collection-report
       parameters:
         - name: reportId
@@ -443,7 +485,7 @@ paths:
         '200':
           description: Success – return zipped csv file.
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -457,7 +499,7 @@ paths:
                     statusMessage: missing keywords parameter
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -470,8 +512,22 @@ paths:
                     statusCode: 401
                     statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '403':
+          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507563
+                    status: ERROR
+                    statusCode: 403
+                    statusMessage: User Over Its Allowed Quota
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -485,7 +541,7 @@ paths:
                     statusMessage: Too Many Requests
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -507,7 +563,7 @@ paths:
         - Products collection endpoints
       operationId: get-products-collection-summary
       summary: Get products collection summary
-      description: This is a synchronous API endpoint. This endpoint returns summary of the product list according to the brand and marketplaces provided.
+      description: This is a synchronous API endpoint. This endpoint returns summary of the product list according to the brand and marketplaces provided.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       parameters:
         - name: local
           required: false
@@ -554,7 +610,7 @@ paths:
               type: string
       responses:
         '200':
-          description: Ok.
+          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
           content:
             application/json:
               schema:
@@ -581,7 +637,7 @@ paths:
                           id: 11nohTBQB_
                           precentage: 83.30
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -595,7 +651,7 @@ paths:
                     statusMessage: missing keywords parameter
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -608,8 +664,22 @@ paths:
                     statusCode: 401
                     statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+        '403':
+          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/common/api/ApiResult.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1628507563
+                    status: ERROR
+                    statusCode: 403
+                    statusMessage: User Over Its Allowed Quota
+                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -623,7 +693,7 @@ paths:
                     statusMessage: Too Many Requests
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](../docs/Making-a-request/How-to-handle-a-response.md) section.'
+          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
             application/json:
               schema:
@@ -645,6 +715,7 @@ components:
       type: apiKey
       name: X-API-KEY
       in: header
+      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
     appId:
       type: apiKey
       name: X-APP-ID
