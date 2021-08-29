@@ -40,7 +40,6 @@ paths:
             enum:
               - EBAY_US
               - AMAZON_US
-
         - name: resources
           in: query
           description: 'Comma-delimited resource list to search for specific product. In this version,Algopix supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available. '
