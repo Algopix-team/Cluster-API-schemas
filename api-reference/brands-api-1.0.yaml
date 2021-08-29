@@ -15,7 +15,7 @@ tags:
 paths:
   /v4/brands/{brandId}:
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId and market.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brand by brand id
@@ -28,11 +28,6 @@ paths:
           explode: false
           schema:
             type: string
-        - name: market
-          required: true
-          in: query
-          schema:
-            $ref: ../models/common/Markets.v1.yaml
       responses:
         '200':
           description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
@@ -130,7 +125,7 @@ paths:
           appId: []
   /v4/brands:
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name and market.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brands by brand name
@@ -143,11 +138,6 @@ paths:
           description: The name of the brand.
           schema:
             type: string
-        - name: market
-          required: true
-          in: query
-          schema:
-            $ref: ../models/common/Markets.v1.yaml
       responses:
         '200':
           description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
