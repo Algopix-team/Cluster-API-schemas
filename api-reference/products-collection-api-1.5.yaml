@@ -24,7 +24,7 @@ paths:
         - Products collection endpoints
       operationId: get-products-collection
       summary: Get products collection
-      description: This is a synchronous API endpoint. This endpoint returns the product list according to the brand and marketplaces provided.</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: This is a synchronous API endpoint. This endpoint returns the product list according to the brand and marketplaces provided.</br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       parameters:
         - name: local
           required: false
