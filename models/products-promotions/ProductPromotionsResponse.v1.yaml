@@ -1,7 +1,7 @@
 title: ProductPromotionsResponse
-allOf: 
-- $ref: '../common/api/ApiResult.v1.yaml'
-- type: object
-  properties:
-    result:
-      $ref: './PromotionItems.v1.yaml'
+allOf:
+  - $ref: '../common/api/ApiResult.v1.yaml'
+  - type: object
+    properties:
+      result:
+        $ref: './PromotionItems.v1.yaml'
