@@ -6,3 +6,5 @@ enum:
   - COLOR
   - BRAND
   - MANUFACTURER
+  - UPC_PREFIX
+  - ATTRIBUTES

@@ -13,19 +13,19 @@ servers:
 tags:
   - name: Brands endpoints
 paths:
-  /v4/brands/{brandId}:
+  /v4/brands:
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       tags:
         - Brands endpoints
-      summary: Get Brand by brand id
-      operationId: get-brand-by-id
+      summary: Get Brands by brand name
+      operationId: get-brands-by-name
       parameters:
-        - name: brandId
-          in: path
-          description: Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](../~1v4~1brands/get).
-          required: true
+        - name: brandName
+          in: query
+          required: false
           explode: false
+          description: The name of the brand.
           schema:
             type: string
       responses:
@@ -34,7 +34,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../models/brands/BrandsResponse.v1.yaml'
+                $ref: ../models/brands/BrandsResponse.v1.yaml
               examples:
                 Response Example:
                   value:
@@ -49,7 +49,7 @@ paths:
                           marketNames:
                             - plutus brands
                           subBrands:
-                            -
+                            - null
         '400':
           description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
@@ -123,19 +123,19 @@ paths:
       security:
         - apiKey: []
           appId: []
-  /v4/brands:
+  '/v4/brands/{brandId}':
     get:
-      description: This is a synchronous API endpoint. This endpoint retrives brand names, ids and sub brands for the specified brand name.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'This is a synchronous API endpoint. This endpoint retrives Algopix name, and sub brands for the specified brandId.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       tags:
         - Brands endpoints
-      summary: Get Brands by brand name
-      operationId: get-brands-by-name
+      summary: Get Brand by brand id
+      operationId: get-brand-by-id
       parameters:
-        - name: brandName
-          in: query
-          required: false
+        - name: brandId
+          in: path
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](../~1v4~1brands/get).'
+          required: true
           explode: false
-          description: The name of the brand.
           schema:
             type: string
       responses:
@@ -144,7 +144,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../models/brands/BrandsResponse.v1.yaml'
+                $ref: ../models/brands/BrandsResponse.v1.yaml
               examples:
                 Response Example:
                   value:
@@ -159,7 +159,7 @@ paths:
                           marketNames:
                             - plutus brands
                           subBrands:
-                            -
+                            - null
         '400':
           description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
           content:
@@ -239,7 +239,7 @@ components:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
+      description: 'Read our [Authentication](/docs/Making-a-request/Authentication.md) article'
     appId:
       type: apiKey
       name: X-APP-ID

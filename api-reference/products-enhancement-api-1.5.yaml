@@ -15,7 +15,7 @@ tags:
 paths:
   /v3/async/products/details:
     get:
-      description: This is an asynchronous API endpoint. This endpoint searches available attributes data in specified products by GTIN, ASIN or AID. The results may be retrieved from [Products details results](../~1v3~1async~1products~1details~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'This is an asynchronous API endpoint. This endpoint searches available attributes data in specified products by GTIN, ASIN or AID. The results may be retrieved from [Products details results](../~1v3~1async~1products~1details~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       tags:
         - Products details endpoints
       summary: Request products details
@@ -28,7 +28,6 @@ paths:
           explode: false
           schema:
             type: string
-
         - name: markets
           in: query
           description: 'Comma-delimited market list to search for market specific data. In this version,Algopix supports Amazon_US and eBay_US markets'
@@ -51,9 +50,8 @@ paths:
             enum:
               - TAXONOMY
               - MARKETPLACE_DATA
-              # - BASE_TITLE // unofficial, creates a title which is made of the common words of all the variations of this product including the parent product title. s
         - name: productIdType
-          description: 'the type of the identifier'
+          description: the type of the identifier
           in: query
           style: form
           schema:
@@ -148,7 +146,7 @@ paths:
           appId: []
   /v3/async/products/details/results:
     get:
-      description: This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products details](../~1v3~1async~1products~1details/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products details](../~1v3~1async~1products~1details/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       tags:
         - Products details endpoints
       operationId: products-details-results
@@ -159,7 +157,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../models/products-enhancement/ProductEnhancementResults.v1.yaml'
+                $ref: ../models/products-enhancement/ProductEnhancementResults.v1.yaml
               examples:
                 Response Example:
                   value:
@@ -170,9 +168,38 @@ paths:
                     requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
                     result:
                       aid: AIDSNOFJ1000
+                      relatedAids:
+                        - AIDSNOFJ1050
+                        - AIDSNOFJ1051
+                      baseTitle:  Casio watch
+                      ids:
+                        ASIN:
+                          - B002R8H01D
+                        PARENT_ASIN:
+                          - B002R8H01E
+                        EAN:
+                          - String
+                        UPC:
+                          - String
+                          - String
+                        MPN:
+                          - String
+                        ISBN:
+                          - String
+                      titles:
+                        en: String
+                        de: String
+                        it: String
+                        fr: String
+                        es: String
+                      description: String
+                      brand: Casio
                       model: CA-53W-1ER
                       color: grey
-                      brand: Casio
+                      size: String
+                      msrp:
+                        currencyCode: USD
+                        amount: 53.60
                       itemDimensions:
                         width:
                           value: 0.94
@@ -186,6 +213,22 @@ paths:
                         weight:
                           value: 0.96
                           unit: OUNCE
+                        origin: String
+                      packageDimensions:
+                        width:
+                          value: 1.34
+                          unit: INCH
+                        length:
+                          value: 2.19
+                          unit: INCH
+                        height:
+                          value: 1.5
+                          unit: INCH
+                        weight:
+                          value: 0.96
+                          unit: OUNCE
+                        origin: String
+                      imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41nAvjbpbIL._AC_SR38,50_.jpg'
                       algopixValidatedAttributes:
                         partNumber: CA53W-1CR
                         bandMaterialType: Plastic
@@ -216,17 +259,17 @@ paths:
                             - Imported
                             - '8-Digit Calculator, Constants for addition, subtraction, multiplication and division'
                             - Water Resistant
-                            - >
+                            - |
                               '1/100 second stopwatch, Measuring capacity: 23:59''59.99"; Measuring modes: Elapsed time, split time, 1st-2nd place times'
                             - Auto Calendar (pre-programmed until the year 2079)
                             - 'Size of case/total weight, 42.0 x 33.0 x 7.0mm / 29g'
                             - Dual Time
                             - Daily Alarm
                             - Hourly Time Signal
-                            - >
+                            - |
                               'Accuracy: +/-15 seconds per month'
                             - Battery CR2016
-                            - >
+                            - |
                               'Approx. battery life: 5 year'
                             - Module 437/3208
                           productDetails:
@@ -402,15 +445,15 @@ paths:
                     statusMessage: error
                     requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
       security:
-        - apiKey: [ ]
-          appId: [ ]
+        - apiKey: []
+          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
+      description: 'Read our [Authentication](/docs/Making-a-request/Authentication.md) article'
     appId:
       type: apiKey
       name: X-APP-ID

@@ -24,14 +24,14 @@ paths:
         - Products collection endpoints
       operationId: get-products-collection
       summary: Get products collection
-      description: This is a synchronous API endpoint. This endpoint returns the product list according to the brand and marketplaces provided.</br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'This is a synchronous API endpoint. This endpoint returns the product list according to the brand and marketplaces provided.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       parameters:
         - name: local
           required: false
           description: the local of the product.
           in: query
           schema:
-            $ref: ../models/products-collection/Locals.v1.yaml
+            $ref: ../models/common/Locals.v1.yaml
             default: US
         - name: brandId
           in: query
@@ -212,14 +212,14 @@ paths:
         - Products collection endpoints
       operationId: get-products-collection-summary
       summary: Get products collection summary
-      description: This is a synchronous API endpoint. This endpoint returns summary of the product list according to the brand and marketplaces provided.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'This is a synchronous API endpoint. This endpoint returns summary of the product list according to the brand and marketplaces provided.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       parameters:
         - name: local
           required: false
           in: query
           description: the local of the product.
           schema:
-            $ref: ../models/products-collection/Locals.v1.yaml
+            $ref: ../models/common/Locals.v1.yaml
             default: US
         - name: brandId
           in: query
@@ -364,14 +364,14 @@ paths:
         - Products collection endpoints
       operationId: create-products-collection-report
       summary: Create a products report
-      description: Request creating a products report. This endpoint triggers the background creation of a report. Use the ["Get report status"](../~1v4~1products~1reports~1status/get) endpoint to get the status of the report generation. use the ["Get ready report"](../~1v4~1products~1reports~1%7BreportId%7D/get) endpoint to download the report.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'Request creating a products report. This endpoint triggers the background creation of a report. Use the ["Get report status"](../~1v4~1products~1reports~1status/get) endpoint to get the status of the report generation. use the ["Get ready report"](../~1v4~1products~1reports~1%7BreportId%7D/get) endpoint to download the report.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       parameters:
         - name: local
           required: false
           in: query
           description: The local of the product.
           schema:
-            $ref: ../models/products-collection/Locals.v1.yaml
+            $ref: ../models/common/Locals.v1.yaml
             default: US
         - name: brandId
           in: query
@@ -518,7 +518,7 @@ paths:
         - Products collection endpoints
       operationId: get-products-report-status
       summary: Get report status
-      description: Get all report status.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'Get all report status.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       parameters:
         - name: reportId
           description: Report identifier
@@ -625,7 +625,7 @@ paths:
       tags:
         - Products collection endpoints
       summary: Get ready report
-      description: This endpoint returns collection report file.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: 'This endpoint returns collection report file.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
       operationId: get-products-collection-report
       parameters:
         - name: reportId
