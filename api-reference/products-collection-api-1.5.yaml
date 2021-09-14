@@ -35,7 +35,7 @@ paths:
             default: US
         - name: brandId
           in: query
-          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](https://docs.algopix.com/docs/algopix-api/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](/brands/src/main/resources/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
           required: false
           style: form
           explode: false
@@ -223,7 +223,7 @@ paths:
             default: US
         - name: brandId
           in: query
-          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](https://docs.algopix.com/docs/algopix-api/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](/brands/src/main/resources/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
           required: false
           style: form
           explode: false
