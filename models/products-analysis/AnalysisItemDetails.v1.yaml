@@ -1,0 +1,8 @@
+title: AnalysisItemDetails
+type: object
+allOf:
+  - $ref: ../common/product/ItemDetails.v1.yaml
+  - type: object
+    properties:
+      ids:
+        $ref: '../common/product/ItemIds.v1.yaml'
