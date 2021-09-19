@@ -1,0 +1,12 @@
+title: ObjectType
+type: object
+required:
+  - objectType
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AMAZON'
+      - 'EBAY'
+      - 'WALMART'
+  description: 'The market name this object is associated with, e.g. AMAZON.'

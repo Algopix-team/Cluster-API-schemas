@@ -1,0 +1,12 @@
+title: CustomerRating
+type: object
+properties:
+  ratingScore:
+    type: number
+    description: 'The product rating system is 1 to 5 stars, with 5 stars being the bestt'
+  numberOfRaters:
+    type: integer
+    description: The numbers of users who have rated the product
+  numberOfReviews:
+    type: integer
+description: Reviews and number of raters

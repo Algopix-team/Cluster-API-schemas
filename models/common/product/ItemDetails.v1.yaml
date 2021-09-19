@@ -11,8 +11,6 @@ properties:
       type: string
   baseTitle:
     type: string
-  ids:
-    $ref: './ItemIds.v1.yaml'
   titles:
     $ref: './ItemTitles.v1.yaml'
   description:

@@ -1,0 +1,20 @@
+title: AmazonCategory
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: string
+  bestSellerRanking:
+    type: integer
+    description: The product's Best Sellers Rank on Amazon for the category identified.
+  ancestorsPathIds:
+    type: array
+    description: an array which contains the browse nodes path Id of this item. The order of the ids in the array relates to their position in the browse node hierarchy
+    items:
+      type: string
+  ancestorsPathNames:
+    type: array
+    description: an array which contains the browse nodes path names of this item. The order of the names in the array relates to their position in the browse node hierarchy
+    items:
+      type: string

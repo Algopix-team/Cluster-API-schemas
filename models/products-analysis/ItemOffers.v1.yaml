@@ -2,7 +2,7 @@ title: ItemOffers
 type: object
 properties:
   itemDetails:
-    $ref: ../common/product/ItemDetails.v1.yaml
+    $ref: ./AnalysisItemDetails.v1.yaml
   offers:
     type: array
     items:

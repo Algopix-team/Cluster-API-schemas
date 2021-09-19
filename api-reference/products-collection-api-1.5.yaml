@@ -239,7 +239,7 @@ paths:
             type: string
         - name: categories
           in: query
-          description: list of comma delimited category ids
+          description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale.
           required: false
           style: form
           explode: false
@@ -249,7 +249,7 @@ paths:
               type: string
         - name: excludeCategories
           in: query
-          description: list of comma delimited category ids to exclude
+          description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale to exclude.
           required: false
           style: form
           explode: false
@@ -391,7 +391,7 @@ paths:
             type: string
         - name: categories
           in: query
-          description: Comma-delimited list of category ids
+          description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale.
           required: false
           style: form
           explode: false
@@ -401,7 +401,7 @@ paths:
               type: string
         - name: excludeCategories
           in: query
-          description: Comma-delimited list of category ids to exclude
+          description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale to exclude.
           required: false
           style: form
           explode: false
