@@ -81,6 +81,7 @@ paths:
               - EBAY_ITEM_ID
               - WALMART_ITEM_ID
               - KEYWORDS
+              - AID
         - name: productCondition
           in: query
           description: The item condition which is used to filter results.
