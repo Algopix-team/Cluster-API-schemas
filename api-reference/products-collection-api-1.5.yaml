@@ -83,7 +83,7 @@ paths:
           style: form
           schema:
             type: string
-          required: true
+          required: false
         - name: pageNumber
           description: The page number of the results to retreive. This parameter must be used in tandem with contextKey
           in: query
