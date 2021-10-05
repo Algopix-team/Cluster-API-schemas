@@ -1,0 +1,13 @@
+description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+content:
+  application/json:
+    schema:
+      $ref: '../api/ApiResult.v1.yaml'
+    examples:
+      Response Example:
+        value:
+          timestamp: 1628507562
+          status: ERROR
+          statusCode: 400
+          statusMessage: missing keywords parameter
+          requestId: 28ce74bc-3b34-4166-9441-15b643993a2e

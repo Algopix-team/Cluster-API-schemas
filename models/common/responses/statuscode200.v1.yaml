@@ -1,0 +1,14 @@
+# type: object
+description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
+content:
+  application/json:
+    schema:
+      $ref: '../api/ApiResult.v1.yaml'
+    examples:
+      Response Example:
+        value:
+          timestamp: 1610532938
+          status: SUCCESS
+          statusCode: 200
+          statusMessage: Ok
+          requestId: 60ff66fe-76b2-4a70-882a-3168947038ca

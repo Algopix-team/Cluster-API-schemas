@@ -15,4 +15,4 @@ properties:
     type: boolean
     description: Specifies whether the given offer is the winner of the BuyBox of an item. A Buy box offer is the best offer recommended by Amazon for any product
   programEligibility:
-    $ref: './AmazonProgramElgibility.v1.yaml'
+    $ref: './AmazonProgramEligibility.v1.yaml'

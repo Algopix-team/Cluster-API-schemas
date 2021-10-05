@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
-  title: Category Research API
-  description: Category Research API provides products by category (as specified by browseNodeId or googleCategoryId).
+  title: Products Categories API
+  description: Products Categories API provides products by category (as specified by browseNodeId or googleCategoryId).
   termsOfService: 'https://algopix.com/policies'
   contact:
     name: Algopix Support
@@ -12,22 +12,17 @@ servers:
     description: Algopix API
 
 tags:
-  - name: Products category endpoints
+  - name: Products categories endpoints
     description: This API allows users to search for products within specified categories.
 paths:
   /v3/async/categories/products:
     get:
-      description: This is an asynchronous API endpoint. This endpoint return products that belong to the specified category (as specified by browseNodeId or googleCategoryId). The results may be retrieved from [Products category results](../~1v3~1async~1categories~1products~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: This is an asynchronous API endpoint. This endpoint return products that belong to the specified category (as specified by browseNodeId or googleCategoryId). Currently available only for Amazon US market. for The results may be retrieved from [Products categories results](../~1v3~1async~1categories~1products~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
-        - Products category endpoints
-      summary: Request Products category
+        - Products categories endpoints
+      summary: Request Products categories
       operationId: request-products-category
       parameters:
-        - name: market
-          in: query
-          required: true
-          schema:
-            type: string
         - name: browseNodeId
           in: query
           description: A valid Amazon node id that represents an Algopix category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
@@ -68,16 +63,10 @@ paths:
           description: This refines the search. PRODUCT_VARIANTS expands the search to find and analyze the variants of each product. IN_STOCK filters the in-stock items, it goes to the scrapper to get the products.
         - name: excludeBrowseNodeIds
           schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - PRODUCT_VARIANTS
-                - IN_STOCK
+            type: string
           in: query
           style: form
-          allowEmptyValue: true
-          description: Specify browse node id/s to exclude from the search.
+          description: Specify browse node ids to exclude from the search. (See browseNodeId parameter).
         - schema:
             type: boolean
             example: true
@@ -96,116 +85,31 @@ paths:
           description: Search for products added to the category before the ISO date (time defaults to end of day), e.g., '2020-01-22'.
       responses:
         '200':
-          description: Success – request submitted.</br>**Notice - our examples were generate with mock data**
-          content:
-            application/json:
-              schema:
-                $ref: '../models/common/api/ApiResult.v1.yaml'
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1610532938
-                    status: SUCCESS
-                    statusCode: 200
-                    statusMessage: Ok
-                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
+          $ref: '../models/common/responses/statuscode200.v1.yaml'
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 400
-                    statusMessage: missing keywords parameter
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 401
-                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
         '403':
-          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507563
-                    status: ERROR
-                    statusCode: 403
-                    statusMessage: User Over Its Allowed Quota
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 429
-                    statusMessage: Too Many Requests
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 500
-                    statusMessage: error
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
       security:
         - apiKey: []
           appId: []
   /v3/async/categories/products/results:
     get:
-      description: This is an asynchronous API endpoint. This endpoint retrieves the results for the category analysis search from the endpoint [Request Products category](../~1v3~1async~1categories~1products/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: This is an asynchronous API endpoint. This endpoint retrieves the results for the category analysis search from the endpoint [Request Products categories](../~1v3~1async~1categories~1products/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
-        - Products category endpoints
-      summary: Products category results
+        - Products categories endpoints
+      summary: Products categories results
       operationId: products-category-results
-      parameters:
-        - name: market
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: categoryId
-          in: query
-          description: A valid Amazon node id that represents an Algopix category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
-          required: true
-          explode: true
-          schema:
-            type: string
       responses:
         '200':
           description: Success.</br>**Notice - our examples were generate with mock data**
-          #          description: Success – category results returned. May contain multiple responses. Each product (result) is assigned with metadata and request id; representing the call that has been made in order to retrieve it whie performing GET category/analysisAsync/.
+          #          description: Success – category results returned. May contain multiple responses. Each product (result) is assigned with metadata and request id; representing the call that has been made in order to retrieve it while performing GET category/analysisAsync/.
           content:
             application/json:
               schema:
@@ -225,7 +129,7 @@ paths:
                         requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
                         result:
                           aid: AIDSNOFJ1000
-                          title: 'Hanes Men''s Ecosmart Fleece Sweatshirt, Deep Red, 3XL'
+                          title: Hanes Men's Ecosmart Fleece Sweatshirt, Deep Red, 3XL
                           marketPrice:
                             currencyCode: USD
                             amount: 16.84
@@ -258,7 +162,7 @@ paths:
                         requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
                         result:
                           aid: AIDSNOFJ1003
-                          title: 'Hanes Women''s V-Notch Pullover Fleece Sweatshirt, Bold Blue Heather, X Large'
+                          title: Hanes Women's V-Notch Pullover Fleece Sweatshirt, Bold Blue Heather, X Large
                           marketPrice:
                             currencyCode: USD
                             amount: 15.5
@@ -269,7 +173,7 @@ paths:
                         requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
                         result:
                           aid: AIDSNOFJ1004
-                          title: 'Colorfulkoala Women''s High Waisted Yoga Pants 7/8 Length Leggings with Pockets (M, Navy)'
+                          title: Colorfulkoala Women's High Waisted Yoga Pants 7/8 Length Leggings with Pockets (M, Navy)
                           marketPrice:
                             currencyCode: USD
                             amount: 25
@@ -280,7 +184,7 @@ paths:
                         requestId: 60ff46fe-72b2-5a70-883a-316894c238ca
                         result:
                           aid: AIDSNOFJ1005
-                          title: 'RockDove Men''s Original Two-Tone Memory Foam Slipper, Size 13-14 US Men, Gray/Natural'
+                          title: RockDove Men's Original Two-Tone Memory Foam Slipper, Size 13-14 US Men, Gray/Natural
                           marketPrice:
                             currencyCode: USD
                             amount: 23.99
@@ -292,75 +196,15 @@ paths:
                           jobResultsReadyForFetch: false
                       jobsProcessing: false
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 400
-                    statusMessage: missing keywords parameter
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 401
-                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
         '403':
-          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507563
-                    status: ERROR
-                    statusCode: 403
-                    statusMessage: User Over Its Allowed Quota
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 429
-                    statusMessage: Too Many Requests
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 500
-                    statusMessage: error
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
       security:
         - apiKey: []
           appId: []
