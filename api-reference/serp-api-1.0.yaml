@@ -42,15 +42,18 @@ paths:
           explode: false
           required: true
           schema:
-            $ref: ../models/common/Markets.v1.yaml
+            type: string
+            enum:
+              - AMAZON_US
         - name: resources
+          description: Resources is processing the results origin file in the specified format (html or image), which can be retrieved in the appropriate endpoint.
           in: query
           style: form
           explode: false
           schema:
             $ref: ../models/serp/SerpResource.v1.yaml
         - name: contextKey
-          description: 'The context key is used to retreive the following results pages. When sending a request, for retrieve the next pages you will need to send this key which was returned when making the initial request for products.'
+          description: 'The context key is used to retrieve the following results pages. When sending a request, for retrieve the next pages you will need to send this key which was returned when making the initial request for products.'
           in: query
           explode: false
           style: form
@@ -111,75 +114,15 @@ paths:
                           isSponsored: false
                           imageUrl: https://m.media-amazon.com/images/I/71Un8PKS5LL._AC_UL320_.jpg
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 400
-                    statusMessage: missing keywords parameter
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 401
-                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
         '403':
-          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507563
-                    status: ERROR
-                    statusCode: 403
-                    statusMessage: User Over Its Allowed Quota
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 429
-                    statusMessage: Too Many Requests
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 500
-                    statusMessage: error
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
       security:
         - apiKey: []
         - appId: []
@@ -188,10 +131,11 @@ paths:
       tags:
         - Search engine results endpoints
       summary: Get search engine html
-      description: This endpoint returns the raw html results of a page.
+      description: This endpoint retrieves the page's raw html results. Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its html.
       operationId: get-search-engine-html
       parameters:
         - name: pageId
+          description: The pageId which has been retrieved through the [Get Search engine results](../~1v4~1serp/get) endpoint.
           in: path
           schema:
             type: string
@@ -208,75 +152,15 @@ paths:
         '200':
           description: Success - Return Html file.
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 400
-                    statusMessage: missing keywords parameter
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 401
-                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
         '403':
-          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507563
-                    status: ERROR
-                    statusCode: 403
-                    statusMessage: User Over Its Allowed Quota
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 429
-                    statusMessage: Too Many Requests
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 500
-                    statusMessage: error
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
       security:
         - apiKey: []
         - appId: []
@@ -285,10 +169,11 @@ paths:
       tags:
         - Search engine results endpoints
       summary: Get search engine image
-      description: This endpoint returns the raw html results of a page.
+      description: This endpoint retrieves an image of the page's results.  Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its image.
       operationId: get-search-engine-image
       parameters:
         - name: pageId
+          description: The pageId which has been retrieved through the [Get Search engine results](../~1v4~1serp/get) endpoint.
           in: path
           schema:
             type: string
@@ -305,75 +190,15 @@ paths:
         '200':
           description: Success - Return Image.
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 400
-                    statusMessage: missing keywords parameter
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 401
-                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
         '403':
-          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507563
-                    status: ERROR
-                    statusCode: 403
-                    statusMessage: User Over Its Allowed Quota
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 429
-                    statusMessage: Too Many Requests
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 500
-                    statusMessage: error
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
       security:
         - apiKey: []
         - appId: []

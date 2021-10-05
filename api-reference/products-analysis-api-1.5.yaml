@@ -37,7 +37,26 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: ../models/common/Markets.v1.yaml
+            type: string
+            enum:
+              - AMAZON_US
+              - AMAZON_CA
+              - AMAZON_MX
+              - AMAZON_UK
+              - AMAZON_DE
+              - AMAZON_FR
+              - AMAZON_ES
+              - AMAZON_IT
+              - AMAZON_AU
+              - EBAY_US
+              - EBAY_GB
+              - EBAY_DE
+              - EBAY_AU
+              - EBAY_AT
+              - EBAY_ES
+              - EBAY_FR
+              - EBAY_IT
+              - WALMART_US
         - name: minItemPrice
           in: query
           description: 'Price which may be used during the item identification process to filter items which cost more than the minimum price. Using this optional parameter may affect performance. Relevant only when keywords parameter contains a keyword query and not a UPC, EAN or ASIN.'
@@ -92,89 +111,17 @@ paths:
             $ref: ../models/common/product/ItemCondition.v1.yaml
       responses:
         '200':
-          description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
-          content:
-            application/json:
-              schema:
-                $ref: '../models/common/api/ApiResult.v1.yaml'
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1610532938
-                    status: SUCCESS
-                    statusCode: 200
-                    statusMessage: Ok
-                    requestId: 60ff66fe-76b2-4a70-882a-3168947038ca
+          $ref: '../models/common/responses/statuscode200.v1.yaml'
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 400
-                    statusMessage: missing keywords parameter
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 401
-                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
         '403':
-          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507563
-                    status: ERROR
-                    statusCode: 403
-                    statusMessage: User Over Its Allowed Quota
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 429
-                    statusMessage: Too Many Requests
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 500
-                    statusMessage: error
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
       security:
         - apiKey: []
           appId: []
@@ -366,75 +313,15 @@ paths:
                             CA: -1
                             GB: -1
         '400':
-          description: 'Bad request. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 400
-                    statusMessage: missing keywords parameter
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
-          description: 'API key or App ID is missing or invalid. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 401
-                    statusMessage: API key ('X-API-KEY') or App ID ('X-APP-ID') is missing or invalid
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
         '403':
-          description: 'API key is not configured with this APi or you reached your daily quota. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507563
-                    status: ERROR
-                    statusCode: 403
-                    statusMessage: User Over Its Allowed Quota
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a24
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
         '429':
-          description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 429
-                    statusMessage: Too Many Requests
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
-          description: 'Oops, something went wrong. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/common/api/ApiResult.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1628507562
-                    status: ERROR
-                    statusCode: 500
-                    statusMessage: error
-                    requestId: 28ce74bc-3b34-4166-9441-15b643993a2e
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
       security:
         - apiKey: []
           appId: []
