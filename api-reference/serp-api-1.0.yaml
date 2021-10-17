@@ -17,7 +17,9 @@ paths:
       tags:
         - Search engine results endpoints
       summary: Get Search engine results
-      description: This is a synchronous API endpoint. This endpoint searches a product list with the SERP ranking for the specified market and search terms.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is a synchronous API endpoint. This endpoint searches a product list with the SERP ranking for the specified market and search terms.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: get-search-engine
       parameters:
         - name: query
@@ -131,7 +133,8 @@ paths:
       tags:
         - Search engine results endpoints
       summary: Get search engine html
-      description: This endpoint retrieves the page's raw html results. Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its html.
+      description: |-
+        This endpoint retrieves the page's raw html results. Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its html.
       operationId: get-search-engine-html
       parameters:
         - name: pageId
@@ -169,7 +172,8 @@ paths:
       tags:
         - Search engine results endpoints
       summary: Get search engine image
-      description: This endpoint retrieves an image of the page's results.  Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its image.
+      description: |-
+        This endpoint retrieves an image of the page's results.  Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its image.
       operationId: get-search-engine-image
       parameters:
         - name: pageId

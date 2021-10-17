@@ -5,4 +5,4 @@ allOf:
   - type: object
     properties:
       ids:
-        $ref: '../common/product/ItemIds.v1.yaml'
+        $ref: ./AnalysisItemIds.v1.yaml

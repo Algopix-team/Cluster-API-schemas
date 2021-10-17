@@ -15,7 +15,10 @@ tags:
 paths:
   /v3/async/products/details:
     get:
-      description: 'This is an asynchronous API endpoint. This endpoint searches available attributes data in specified products by GTIN, ASIN or AID. The results may be retrieved from [Products details results](../~1v3~1async~1products~1details~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
+      description: |-
+        This is an asynchronous API endpoint. This endpoint searches available attributes data in specified products by GTIN, ASIN or AID. The results may be retrieved from [Products details results](../~1v3~1async~1products~1details~1results/get).
+        <br/>Please notice our ["How to Handle an asynchronous Response"](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Products details endpoints
       summary: Request products details
@@ -79,7 +82,10 @@ paths:
           appId: []
   /v3/async/products/details/results:
     get:
-      description: 'This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products details](../~1v3~1async~1products~1details/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products details](../~1v3~1async~1products~1details/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Products details endpoints
       operationId: products-details-results

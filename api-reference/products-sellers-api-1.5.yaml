@@ -15,7 +15,10 @@ tags:
 paths:
   /v3/async/sellers/buyboxowners:
     get:
-      description: This is an asynchronous API endpoint. This endpoint searches info about the sellers that sell an specified item (given a specified item identifier) for a given marketplace. The results may be retrieved from [Buy Box Owners results](../~1v3~1async~1sellers~1buyboxowners~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint searches info about the sellers that sell an specified item (given a specified item identifier) for a given marketplace. The results may be retrieved from [Buy Box Owners results](../~1v3~1async~1sellers~1buyboxowners~1results/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: request-products-sellers
       tags:
         - Buy Box Owners endpoints
@@ -91,7 +94,10 @@ paths:
       tags:
         - Buy Box Owners endpoints
       summary: Buy Box Owners results
-      description: This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request Buy Box Owners](../~1v3~1async~1sellers~1buyboxowners/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request Buy Box Owners](../~1v3~1async~1sellers~1buyboxowners/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: products-sellers-results
       responses:
         '200':
