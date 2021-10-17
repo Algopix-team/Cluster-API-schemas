@@ -1,0 +1,10 @@
+title: AnalysisItemIds
+type: object
+allOf:
+  - $ref: ../common/product/ItemIds.v1.yaml
+  - type: object
+    properties:
+      VARIATION_ASIN:
+        type: array
+        items:
+          type: string
