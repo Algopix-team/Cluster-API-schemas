@@ -17,7 +17,10 @@ tags:
 paths:
   /v3/async/categories/products:
     get:
-      description: This is an asynchronous API endpoint. This endpoint return products that belong to the specified category (as specified by browseNodeId or googleCategoryId). Currently available only for Amazon US market. for The results may be retrieved from [Products categories results](../~1v3~1async~1categories~1products~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint return products that belong to the specified category (as specified by browseNodeId or googleCategoryId). Currently available only for Amazon US market. for The results may be retrieved from [Products categories results](../~1v3~1async~1categories~1products~1results/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Products categories endpoints
       summary: Request Products categories
@@ -101,7 +104,10 @@ paths:
           appId: []
   /v3/async/categories/products/results:
     get:
-      description: This is an asynchronous API endpoint. This endpoint retrieves the results for the category analysis search from the endpoint [Request Products categories](../~1v3~1async~1categories~1products/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results for the category analysis search from the endpoint [Request Products categories](../~1v3~1async~1categories~1products/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Products categories endpoints
       summary: Products categories results

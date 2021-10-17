@@ -15,7 +15,10 @@ tags:
 paths:
   /v3/async/products/matches:
     get:
-      description: This is an asynchronous API endpoint. This endpoint searches retail products data, specified by keywords and other attributes. The results may be retrieved from [Products matching results](../~1v3~1async~1products~1matches~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint searches retail products data, specified by keywords and other attributes. The results may be retrieved from [Products matching results](../~1v3~1async~1products~1matches~1results/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: request-products-matching
       summary: Request products matching
       tags:
@@ -122,7 +125,10 @@ paths:
   /v3/async/products/matches/results:
     get:
       operationId: products-matching-results
-      description: This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products matching](../~1v3~1async~1products~1matches/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products matching](../~1v3~1async~1products~1matches/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Products matching endpoints
       summary: Products matching results

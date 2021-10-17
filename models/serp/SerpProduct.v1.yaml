@@ -9,14 +9,12 @@ properties:
     description: currently supported product Id is ASIN.
     $ref: ../common/product/ProductIdType.v1.yaml
   serpRank:
-    description: the position of this product in the search results. 
+    description: the position of this product in the search results.
     type: integer
   title:
     type: string
-    minLength: 1
   productPageUrl:
     type: string
-    minLength: 1
   currentPrice:
     $ref: ../common/Price.v1.yaml
   originalPrice:
@@ -29,13 +27,10 @@ properties:
     type: integer
   isAmazonChoice:
     type: boolean
-    example: false
   isBestSeller:
     type: boolean
-    example: true
   isSponsored:
     type: boolean
-    example: false
   imageUrl:
     type: string
 required:

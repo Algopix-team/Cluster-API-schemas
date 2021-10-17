@@ -17,7 +17,9 @@ paths:
       tags:
         - Sellers store endpoints
       summary: Get sellers store
-      description: This is a synchronous API endpoint. This endpoint returns a listings list with SERP ranking for the specified seller on market.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is a synchronous API endpoint. This endpoint returns a listings list with SERP ranking for the specified seller on market.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: get-sellers-store
       parameters:
         - name: sellerId

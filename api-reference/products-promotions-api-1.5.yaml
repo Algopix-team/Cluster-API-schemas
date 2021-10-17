@@ -17,7 +17,10 @@ paths:
     get:
       tags:
         - Products promotions endpoints
-      description: This is an asynchronous API endpoint. This endpoint searches promotional data in specified Amazon listings by AID or ASIN. The results may be retrieved from [Products promotions results](../~1v3~1async~1promotions~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint searches promotional data in specified Amazon listings by AID or ASIN. The results may be retrieved from [Products promotions results](../~1v3~1async~1promotions~1results/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: request-products-promotions
       summary: Request products promotions
       parameters:
@@ -68,7 +71,10 @@ paths:
       tags:
         - Products promotions endpoints
       summary: Products promotions results
-      description: This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products promotions](../~1v3~1async~1promotions/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products promotions](../~1v3~1async~1promotions/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: products-promotions-results
       responses:
         '200':

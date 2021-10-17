@@ -16,7 +16,10 @@ tags:
 paths:
   /v3/async/products/analysis:
     get:
-      description: This is an asynchronous API endpoint. This endpoint identifies a product and returns its product analysis information in selected markets. The results may be retrieved from [Products analysis results](../~1v3~1async~1products~1analysis~1results/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint identifies a product and returns its product analysis information in selected markets. The results may be retrieved from [Products analysis results](../~1v3~1async~1products~1analysis~1results/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Products analysis endpoints
       summary: Request products analysis
@@ -128,7 +131,10 @@ paths:
   /v3/async/products/analysis/results:
     get:
       operationId: products-analysis-results
-      description: This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products analysis](../~1v3~1async~1products~1analysis/get).</br>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products analysis](../~1v3~1async~1products~1analysis/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Products analysis endpoints
       summary: Products analysis results

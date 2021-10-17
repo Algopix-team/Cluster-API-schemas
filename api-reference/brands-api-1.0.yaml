@@ -15,7 +15,9 @@ tags:
 paths:
   /v4/brands:
     get:
-      description: 'This is a synchronous API endpoint. This endpoint retrieves brand names, ids and sub brands for the specified brand name.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
+      description: |-
+        This is a synchronous API endpoint. This endpoint retrieves brand names, ids and sub brands for the specified brand name.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brands by brand name
@@ -65,7 +67,9 @@ paths:
           appId: []
   '/v4/brands/{brandId}':
     get:
-      description: 'This is a synchronous API endpoint. This endpoint retrieves Algopix name, and sub brands for the specified brandId.<br>[**Don''t miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
+      description: |-
+        This is a synchronous API endpoint. This endpoint retrieves Algopix name, and sub brands for the specified brandId.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints
       summary: Get Brand by brand id
