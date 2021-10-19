@@ -1,0 +1,5 @@
+title: ItemListings
+type: object
+properties:
+  AMAZON_US:
+    $ref: './AmazonOffer.v1.yaml'

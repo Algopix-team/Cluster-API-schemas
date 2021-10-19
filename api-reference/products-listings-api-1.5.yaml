@@ -1,0 +1,265 @@
+openapi: 3.0.1
+info:
+  title: Product Listings API
+  description: Product Listings API provides insights for sellers selling a specific product.
+  termsOfService: 'https://algopix.com/policies'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+  version: '2'
+servers:
+  - url: 'https://api.algopix.com'
+    description: Algopix API
+tags:
+  - name: Products Listings endpoints
+paths:
+  /v3/async/products/listings:
+    get:
+      description: |-
+        This is an asynchronous API endpoint. This endpoint searches info about the product listings of a specified item (given a specified item identifier) for a given marketplace. The results may be retrieved from [Products Listings results](./b3A6MjI1NjIxMzE-products-listings-results).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+      operationId: request-products-listings
+      tags:
+        - Products Listings endpoints
+      summary: Request Products Listings
+      parameters:
+        - name: productId
+          in: query
+          description: The Id of the product.
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: productIdType
+          in: query
+          description: The type of the product id. Currently supports ASIN and AID (Algopix Identifier).
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+            enum:
+              - ASIN
+              - AID
+        - name: markets
+          in: query
+          description: 'Comma-delimited market list to search for item matching the given input. Up to three markets can be specified. Currently available AMAZON_US.' #US Markets of Amazon.' # If no value is specified, the default used is amazon_us.
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+            enum:
+              - AMAZON_US
+        - name: resources
+          in: query
+          description: |-
+            Additional data points added to the request. In this version,only SellerDetails information is being supported.
+            Sellerdetails contains Business Name and Address.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - SellerDetails
+        - name: itemCondition
+          in: query
+          description: 'Comma-delimited list of item conditions. supported values are NEW,REFURBISHED,USED.'
+          required: false
+          style: form
+          explode: false
+          schema:
+            $ref: ../models/common/product/ItemCondition.v1.yaml
+            default: NEW
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          $ref: '../models/common/responses/statuscode200.v1.yaml'
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+#      security:
+#        - apiKey: []
+#          appId: []
+  /v3/async/products/listings/results:
+    get:
+      tags:
+        - Products Listings endpoints
+      summary: Products Listings results
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request Products Listings](./b3A6MjI1NjIxMzA-request-products-listings).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+      operationId: products-listings-results
+      parameters:
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: Successful operation.</br>**Notice - our examples were generate with mock data**
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-listings/ProductListingsResults.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1633237002
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 7c53a4f4-c29d-4797-bcdf-357e321145f2
+                    result:
+                      AMAZON_US:
+                        asin: B084KC53RS
+                        aid: AIDAPE812001
+                        partialListings: false
+                        listings:
+                          - seller:
+                              name: Amazon.com
+                              id: ATVPDKIKX0DER
+                            price:
+                              currencyCode: USD
+                              amount: 19.99
+                            deliveryInfo:
+                              isAmazonFulfilled: true
+                              isFreeShippingEligible: true
+                              isPrimeEligible: true
+                            isBuyBoxWinner: true
+                            programEligibility:
+                              primePantry: false
+                          - seller:
+                              name: JohNathan Online
+                              id: A32I5KTR9WKCG
+                            price:
+                              currencyCode: USD
+                              amount: 25
+                            deliveryInfo:
+                              isAmazonFulfilled: false
+                            isBuyBoxWinner: false
+                            condition: NEW
+                          - seller:
+                              name: VINKO STORE
+                              id: A2PDTOPRYPQ02I
+                            price:
+                              currencyCode: USD
+                              amount: 33.9
+                            deliveryInfo:
+                              isAmazonFulfilled: false
+                            isBuyBoxWinner: false
+                            condition: NEW
+                          - seller:
+                              name: Country Farm Resellers
+                              id: A3CEO3H9NLIHCU
+                            price:
+                              currencyCode: USD
+                              amount: 35.75
+                            deliveryInfo:
+                              isAmazonFulfilled: true
+                            isBuyBoxWinner: false
+                            condition: NEW
+                          - seller:
+                              name: LaTop
+                              id: A3FOJL595SCE2F
+                            price:
+                              currencyCode: USD
+                              amount: 36.99
+                            deliveryInfo:
+                              isAmazonFulfilled: false
+                            isBuyBoxWinner: false
+                            condition: NEW
+                          - seller:
+                              name: USA-Supply
+                              id: AAV8W8PDNYLQJ
+                            price:
+                              currencyCode: USD
+                              amount: 37.95
+                            deliveryInfo:
+                              isAmazonFulfilled: false
+                            isBuyBoxWinner: false
+                            condition: NEW
+                          - seller:
+                              name: CyberToyShop
+                              id: A3NQ0BE25UCK1H
+                            price:
+                              currencyCode: USD
+                              amount: 37.99
+                            deliveryInfo:
+                              isAmazonFulfilled: false
+                            isBuyBoxWinner: false
+                            condition: NEW
+                          - seller:
+                              name: brklyn
+                              id: A3OIGZGEC0ALNF
+                            price:
+                              currencyCode: USD
+                              amount: 40
+                            deliveryInfo:
+                              isAmazonFulfilled: true
+                            isBuyBoxWinner: false
+                            condition: NEW
+                          - seller:
+                              name: Toys to The Future
+                              id: A3E0CJ1GMTFEBL
+                            price:
+                              currencyCode: USD
+                              amount: 32.95
+                            deliveryInfo:
+                              isAmazonFulfilled: false
+                            isBuyBoxWinner: false
+                            condition: NEW
+                        objectType: AMAZON
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+#      security:
+#        - apiKey: []
+#          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

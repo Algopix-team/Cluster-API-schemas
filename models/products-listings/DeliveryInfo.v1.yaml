@@ -1,0 +1,9 @@
+title: DeliveryInfo
+type: object
+properties:
+  isAmazonFulfilled:
+    type: boolean
+  isFreeShippingEligible:
+    type: boolean
+  isPrimeEligible:
+    type: boolean

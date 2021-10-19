@@ -1,0 +1,9 @@
+title: ProductListingsResults
+allOf:
+  - $ref: ../common/api/AsyncApiResult.v1.yaml
+  - type: object
+    properties:
+      responseList:
+        type: array
+        items:
+          $ref: './ProductListingsResponse.v1.yaml'

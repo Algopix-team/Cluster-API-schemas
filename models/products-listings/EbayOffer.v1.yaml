@@ -1,0 +1,15 @@
+title: EbayOffer
+type: object
+properties:
+  ebayListingId:
+    type: string
+  objectType:
+    type: string
+    enum: 
+      - EBAY
+  listings:
+    type: array
+    items:
+      $ref: './EbayOfferDetails.v1.yaml'
+required:
+  - objectType
