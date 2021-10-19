@@ -1,0 +1,27 @@
+title: EbayOfferDetails
+type: object
+properties:
+  seller:
+    $ref: './Seller.v1.yaml'
+  businessName:
+    type: string
+  businessType:
+    type: string
+  tradeRegisterNumber:
+    type: string
+  vatNumbers:
+    type: array
+    items:
+      type: string
+  businessAddress:
+    type: string
+  defaultShippingCountries:
+    type: array
+    items:
+      type: string
+  price:
+    $ref: ../common/Price.v1.yaml
+  priceSavings:
+    $ref: ./PriceSavings.v1.yaml
+  deliveryInfo:
+    $ref: ./EbayDeliveryInfo.v1.yaml

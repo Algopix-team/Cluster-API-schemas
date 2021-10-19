@@ -1,0 +1,24 @@
+title: AmazonOffer
+type: object
+properties:
+  asin:
+    type: string
+    description: ASIN
+  aid:
+    type: string
+    description: The AID (Algopix Identifier) associated with the product.
+  partialListings:
+    type: boolean
+    description: True if not all listings were returned.
+  listings:
+    type: array
+    items:
+      $ref: './AmazonOfferDetails.v1.yaml'
+  objectType:
+    type: string
+    enum: 
+      - AMAZON
+required:
+  - objectType
+
+  

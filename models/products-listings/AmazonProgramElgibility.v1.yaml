@@ -1,0 +1,5 @@
+title: AmazonProgramElgibility
+type: object
+properties:
+  primePantry:
+    type: boolean

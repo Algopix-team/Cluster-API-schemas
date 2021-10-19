@@ -1,0 +1,17 @@
+title: Promotion    
+type: object
+properties:
+  amount:
+    type: number
+  currency:
+    type: string
+    description: Currency code.
+  discountPercent:
+    type: number
+    description: The discount percentage.
+  displayAmount:
+    type: string
+  pricePerUnit:
+    type: number
+  type:
+    type: string
