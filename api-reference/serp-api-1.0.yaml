@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Search Engine Results Page
-  description: 'Search Engine Results Page API provides a product list with the SERP ranking for the specified market and search terms, and may return the raw html results of a page or the raw html results of a page.'
+  description: Search Engine Results Page API provides a product list with the SERP ranking for the specified market and search terms, and may return the raw html results of a page or an image of the page's results.
   version: '1.0'
   contact:
     name: Algopix Support
