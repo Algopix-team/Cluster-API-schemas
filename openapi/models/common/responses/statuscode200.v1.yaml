@@ -5,7 +5,7 @@ content:
     schema:
       $ref: '../api/ApiResult.v1.yaml'
     examples:
-      Response Example:
+      Response Example 200:
         value:
           timestamp: 1610532938
           status: SUCCESS
