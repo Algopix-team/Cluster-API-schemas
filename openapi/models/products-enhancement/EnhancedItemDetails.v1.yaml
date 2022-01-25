@@ -4,6 +4,8 @@ allOf:
   - $ref: ../common/product/ItemDetails.v1.yaml
   - type: object
     properties:
+      ids:
+        $ref: ../common/product/ItemIds.v1.yaml
       algopixValidatedAttributes:
         $ref : './AlgopixValidatedAttributes.v1.yaml'
       marketplacesData:
