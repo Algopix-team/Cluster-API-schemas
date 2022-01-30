@@ -13,4 +13,6 @@ properties:
   soldItems:
     type: number
     description: The number of items sold of this product since it was listed
+  ebayItemId:
+    type: string
 description: Ebay market specific product properties
