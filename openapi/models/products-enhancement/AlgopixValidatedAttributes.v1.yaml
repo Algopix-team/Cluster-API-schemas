@@ -66,7 +66,7 @@ properties:
     type: array
     items:
       type: string
-  genere:
+  genre:
     type: string
   golfClubFlex:
     type: string
