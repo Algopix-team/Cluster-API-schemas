@@ -1,0 +1,13 @@
+title: ReviewFitBreakDown
+type: object
+properties:
+  tooSmall:
+    type: integer
+  someWhatSmall:
+    type: integer
+  trueToSize:
+    type: integer
+  someWhatLarge:
+    type: integer
+  tooLarge:
+    type: integer

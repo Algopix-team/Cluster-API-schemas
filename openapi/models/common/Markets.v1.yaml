@@ -4,6 +4,7 @@ type: string
 enum:
   - AMAZON_US
   - AMAZON_CA
+  - AMAZON_BR
   - AMAZON_MX
   - AMAZON_UK
   - AMAZON_DE
