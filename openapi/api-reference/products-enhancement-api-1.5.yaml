@@ -64,6 +64,13 @@ paths:
             enum:
               - TAXONOMY
               - MARKETPLACE_DATA
+        - name: marketPlaceDataDaysUpdated
+            in: query
+            description: 'use to get update market place data with the resource MARKETPLACE_DATA, but has performance impact'
+            required: true
+            explode: false
+            schema:
+              type: integer
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'

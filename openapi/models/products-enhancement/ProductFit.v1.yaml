@@ -1,0 +1,13 @@
+title: ProductFit
+type: object
+properties:
+  size:
+    type: string
+  text:
+    type: string
+  quoting:
+    type: array
+    items:
+      type: string
+  reviewBreakDown:
+    $ref: ./ReviewFitBreakDown.v1.yaml

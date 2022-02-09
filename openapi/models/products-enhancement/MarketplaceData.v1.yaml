@@ -43,4 +43,6 @@ properties:
     type: array
     items:
       $ref: ./MarketplaceProductImage.v1.yaml
+  productFit:
+    $ref: ./ProductFit.v1.yaml
 description: 'All available data points from a specific marketplace'
