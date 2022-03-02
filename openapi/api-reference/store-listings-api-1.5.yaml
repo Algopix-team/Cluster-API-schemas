@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  title: Sellers Listings
-  description: Sellers Listings API provides the sellers offers on his stores
+  title: Store Listings
+  description: Store Listings API provides the sellers offers on his stores
   version: '1.0'
   contact:
     name: Algopix Support
@@ -9,26 +9,26 @@ info:
 servers:
   - url: 'https://api.algopix.com'
 tags:
-  - name: Sellers listings endpoints
-    description: This API set is the Algopix sellers listing search. V1.0 supports searches using the seller’s id.
+  - name: Store listings endpoints
+    description: This API set is the Algopix Store listing search. V1.0 supports searches using the seller’s id.
 paths:
   '/v4/sellers/{sellerId}/listings':
     get:
       tags:
-        - Sellers listings endpoints
-      summary: Get sellers listings
+        - Store listings endpoints
+      summary: Get store listings
       description: |-
         ## Introduction and Use Case
-        The **Seller Store** API was created for developers to **retrieve seller storefront listings** with deep granularity into the **product listing variants**. These real-time insights are typically used for:
+        The **Store Listings** API was created for developers to **retrieve seller storefront listings** with deep granularity into the **product listing variants**. These real-time insights are typically used for:
         - Discovering item-level product attributes by seller
         - Targeting sellers to your marketplace based on their inventory
         - Conducting market and product research for business development
 
         ## API Overview
 
-        **Seller Store** is a synchronous API endpoint that gets the sellers’ store listings. This API also allows users to retrieve seller storefront listings including the product listing variants, if they are being offered by the seller requested.
+        **Store Listings** is a synchronous API endpoint that gets the sellers’ store listings. This API also allows users to retrieve seller storefront listings including the product listing variants, if they are being offered by the seller requested.
 
-        If the seller listings have not been called from the Algopix database, the results will show no listings exist until a background process extracts the seller’s store data, and prepares the data for the API. This guarantees the most updated seller store data.
+        If the store listings have not been called from the Algopix database, the results will show no listings exist until a background process extracts the seller’s store data, and prepares the data for the API. This guarantees the most updated seller store data.
 
         > ### Note:
         >
@@ -38,12 +38,12 @@ paths:
 
         This version currently supports only Amazon US stores.
 
-        The associated API schemas can be found [here]().
-      operationId: get-sellers-listings
+        The associated API schemas can be found [here](https://github.com/Algopix-team/Algopix-API-schemas/blob/master/openapi/api-reference/store-listings-api-1.5.yaml).
+      operationId: get-store-listings
       parameters:
         - name: sellerId
           in: path
-          description: 'This requires the unique identifier of the seller. A seller ID (or sometimes called merchant ID) is a publicly available ID number that identifies a storefront and the products sold on Amazon and is unique to the region. This can be sourced from the Amazon webpage as a string of numbers usually found in the products or storefront URL. (The Seller ID appears as “me=[your ID]”.) Alternatively, the seller ID can be sourced by using the [Buy Box Owners API](/products-sellers/src/main/resources/api-reference/products-sellers-api-1.5.yaml).'
+          description: 'This requires the unique identifier of the seller. A seller ID (or sometimes called merchant ID) is a publicly available ID number that identifies a storefront and the products sold on Amazon and is unique to the region. This can be sourced from the Amazon webpage as a string of numbers usually found in the products or storefront URL. (The Seller ID appears as “me=[your ID]”.) Alternatively, the seller ID can be sourced by using the [Buy Box Owners API](./b3A6MTgxMDkwMDI-request-buy-box-owners).'
           required: true
           explode: false
           schema:
@@ -100,7 +100,7 @@ paths:
           required: true
       responses:
         '200':
-          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
