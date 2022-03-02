@@ -1,0 +1,16 @@
+title: SellerStoreResponse
+allOf:
+  - type: object
+    properties:
+      lastUpdated:
+        type: string
+        format: JavaTimeLocalDate
+      isRefreshing:
+          type: boolean
+      refreshStartedAt:
+        type: string
+        format: JavaTimeZoneDateTime
+      products:
+          type: array
+          items:
+            $ref: './SellerListing.v1.yaml'

@@ -1,0 +1,22 @@
+title: SellerListing
+type: object
+properties:
+  productId:
+    $ref: './ProductId.v1.yaml'
+  offeredPrice:
+    $ref: './OfferedPrice.v1.yaml'
+  brand:
+    type: string
+  title:
+    type: string
+  imageUrl:
+    type: string
+  leafCatgories:
+    type: array
+    items:
+      type: string
+  rootCatgories:
+    type: array
+    items:
+      type: string
+

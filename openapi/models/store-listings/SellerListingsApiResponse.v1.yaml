@@ -1,8 +1,8 @@
-title: SellerStoreApiResponse
+title: SellerListingsApiResponse
 type: object
 allOf:
   - $ref: ../common/api/ApiResult.v1.yaml
   - type: object
     properties:
       result:
-        $ref: '../sellers-store/SellerStoreResponse.v1.yaml'
+        $ref: '../sellers-listings/SellerListingsResponse.v1.yaml'

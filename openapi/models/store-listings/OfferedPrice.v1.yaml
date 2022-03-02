@@ -3,6 +3,6 @@ type: object
 properties:
   price:
     $ref: '../common/Price.v1.yaml'
-  date:
+  lastUpdated:
     type: string
     format: JavaTimeLocalDate

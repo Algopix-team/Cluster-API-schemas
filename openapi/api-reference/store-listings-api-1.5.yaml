@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: Sellers Listings
+  description: Sellers Listings API provides the sellers offers on his stores
+  version: '1.0'
+  contact:
+    name: Algopix Support
+    email: support@algopix.com
+servers:
+  - url: 'https://api.algopix.com'
+tags:
+  - name: Sellers listings endpoints
+    description: This API set is the Algopix sellers listing search. V1.0 supports searches using the seller’s id.
+paths:
+  '/v4/sellers/{sellerId}/listings':
+    get:
+      tags:
+        - Sellers listings endpoints
+      summary: Get sellers listings
+      description: |-
+        ## Introduction and Use Case
+        The **Seller Store** API was created for developers to **retrieve seller storefront listings** with deep granularity into the **product listing variants**. These real-time insights are typically used for:
+        - Discovering item-level product attributes by seller
+        - Targeting sellers to your marketplace based on their inventory
+        - Conducting market and product research for business development
+
+        ## API Overview
+
+        **Seller Store** is a synchronous API endpoint that gets the sellers’ store listings. This API also allows users to retrieve seller storefront listings including the product listing variants, if they are being offered by the seller requested.
+
+        If the seller listings have not been called from the Algopix database, the results will show no listings exist until a background process extracts the seller’s store data, and prepares the data for the API. This guarantees the most updated seller store data.
+
+        > ### Note:
+        >
+        > **The background process can take up to 24 hours to run, so you will need to make the call again to see results.**
+
+        The maximum amount of Amazon storefront listings that can be retrieved is limited to 2,400 items. However, with the addition of variations and the listings that do not appear in the seller storefront, the number of listings associated with the seller can reach up to 0.5M products.
+
+        This version currently supports only Amazon US stores.
+
+        The associated API schemas can be found [here]().
+      operationId: get-sellers-listings
+      parameters:
+        - name: sellerId
+          in: path
+          description: 'This requires the unique identifier of the seller. A seller ID (or sometimes called merchant ID) is a publicly available ID number that identifies a storefront and the products sold on Amazon and is unique to the region. This can be sourced from the Amazon webpage as a string of numbers usually found in the products or storefront URL. (The Seller ID appears as “me=[your ID]”.) Alternatively, the seller ID can be sourced by using the [Buy Box Owners API](/products-sellers/src/main/resources/api-reference/products-sellers-api-1.5.yaml).'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: market
+          required: true
+          description: 'The market of the store. The current supported market is AMAZON_US.'
+          in: query
+          style: form
+          schema:
+            type: string
+            enum:
+              - AMAZON_US
+        - name: daysLastUpdated
+          in: query
+          description: 'If the seller listings last retrieval is older than the daysLastUpdated, force new data retrieval processes. When the results are ready, they can be retrieved. The minimum days allowed is 7 days. (Note, due to the granularity of the data, the process can be lengthy.) If the parameters haven׳t been sent, the data that will be retrieved is the recent updated data of the seller. The recommendation is to have the data updated for the last 30 days.'
+          required: false
+          style: form
+          schema:
+            type: integer
+        - name: resources
+          description: 'Comma-delimited resource list to be included in the response.</br>If PRODUCT_DETAILS is being requested, additional attributes will be retrieved: Brand, Title, Image URL, Leaf Categories, and Root Categories. If this parameter hasn’t been sent, the data that will be retrieved for each listing is the ASIN, price, and last updated date. The last updated date refers to the update of the listing offer state in the Algopix database.'
+          in: query
+          explode: false
+          schema:
+            $ref: ../models/sellers-listings/ResourceType.v1.yaml
+        - name: responseType
+          required: false
+          description: 'The default response format is CSV, but can also be retrieved via JSON if needed.'
+          in: query
+          style: form
+          schema:
+            type: string
+            enum:
+              - CSV
+              - JSON
+        - name: storeListingOnly
+          in: query
+          description: 'If only the items presented in the storefront are needed, they are discoverable via the seller storefront (not including variants).'
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
+          content:
+            application/json:
+              schema:
+                $ref: ../models/sellers-listings/SellerListingsApiResponse.v1.yaml
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+#      security:
+#        - apiKey: []
+#        - appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header
