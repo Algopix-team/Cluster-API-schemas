@@ -38,7 +38,15 @@ paths:
             type: string
         - name: brandName
           in: query
-          description: brand name
+          description: 'The name of the brand'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: manufacturerName
+          in: query
+          description: 'The name of the manufacturer'
           required: false
           style: form
           explode: false
