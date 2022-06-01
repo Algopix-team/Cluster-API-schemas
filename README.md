@@ -1,8 +1,8 @@
 # Coming Soon...
 
-[comment]: <> (# algopix-api-docs)
+[comment]: <> (# cluster-api-docs)
 
-[comment]: <> (algopix customer facing API &amp; documentation )
+[comment]: <> (cluster customer facing API &amp; documentation )
 
 
 [comment]: <> (## API documentation)

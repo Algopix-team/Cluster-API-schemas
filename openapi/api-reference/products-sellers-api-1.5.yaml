@@ -2,14 +2,14 @@ openapi: 3.0.1
 info:
   title: Buy Box Owners API
   description: Buy Box Owners API provides insights for sellers selling a specific product.
-  termsOfService: 'https://algopix.com/policies'
+  termsOfService: 'https://datacluster.com/privacy-policy'
   contact:
-    name: Algopix Support
-    email: support@algopix.com
+    name: Cluster Support
+    email: support@datacluster.com
   version: '2'
 servers:
-  - url: 'https://api.algopix.com'
-    description: Algopix API
+  - url: 'https://api.datacluster.com'
+    description: Cluster API
 tags:
   - name: Buy Box Owners endpoints
 paths:

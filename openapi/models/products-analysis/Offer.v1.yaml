@@ -29,7 +29,7 @@ properties:
         - OUT_OF_STOCK_ITEM
         - LISTING_NOT_IN_REQUESTED_PRICE_RANGE
     description: |-
-      Listing insights give you a better idea as to why and how Algopix makes its recommendations and decision.
+      Listing insights give you a better idea as to why and how Cluster makes its recommendations and decision.
 
       LISTING_IDENTIFIED_USING_KEYWORDS: This listing was not identified using barcodes which might be less accurate. Please validate manually prior to sourcing this product.
 

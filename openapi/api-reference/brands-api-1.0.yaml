@@ -2,14 +2,14 @@ openapi: 3.0.0
 info:
   title: Brands API
   description: 'Brands API provides Algopix brands names, ids and sub brands, by identifying specified brands.'
-  termsOfService: 'https://algopix.com/policies'
+  termsOfService: 'https://datacluster.com/privacy-policy'
   contact:
-    name: Algopix Support
-    email: support@algopix.com
+    name: Cluster Support
+    email: support@datacluster.com
   version: '2.0'
 servers:
-  - url: 'https://api.algopix.com'
-    description: Algopix API
+  - url: 'https://api.datacluster.com'
+    description: Cluster API
 tags:
   - name: Brands endpoints
 paths:
@@ -68,7 +68,7 @@ paths:
   '/v4/brands/{brandId}':
     get:
       description: |-
-        This is a synchronous API endpoint. This endpoint retrieves Algopix name, and sub brands for the specified brandId.
+        This is a synchronous API endpoint. This endpoint retrieves Cluster name, and sub brands for the specified brandId.
         <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Brands endpoints

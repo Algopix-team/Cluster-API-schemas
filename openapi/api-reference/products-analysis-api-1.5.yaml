@@ -2,14 +2,14 @@ openapi: 3.0.0
 info:
   title: Product Analysis API
   description: 'Product analysis API provides comprehensive data of a product across different channels, including various product details, lowest price from a reputable seller, competition, demand and estimated sales analysis.'
-  termsOfService: 'https://algopix.com/policies'
+  termsOfService: 'https://datacluster.com/privacy-policy'
   contact:
-    name: Algopix Support
-    email: support@algopix.com
+    name: Cluster Support
+    email: support@datacluster.com
   version: '2.0'
 servers:
-  - url: 'https://api.algopix.com'
-    description: Algopix API
+  - url: 'https://api.datacluster.com'
+    description: Cluster API
 tags:
   - name: Products analysis endpoints
     description: 'Performs product analysis including marketplace offers, competition and demand analysis'

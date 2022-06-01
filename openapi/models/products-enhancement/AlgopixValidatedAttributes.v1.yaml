@@ -1,6 +1,6 @@
 title: AlgopixValidatedAttributes
 type: object
-description: All the availible attributes a product has and that were verified by Algopix
+description: All the availible attributes a product has and that were verified by Cluster
 properties:
   actors:
     type: array

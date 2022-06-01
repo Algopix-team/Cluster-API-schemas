@@ -2,14 +2,14 @@ openapi: 3.0.2
 info:
   title: Products Categories API
   description: Products Categories API provides products by category (as specified by browseNodeId or googleCategoryId).
-  termsOfService: 'https://algopix.com/policies'
+  termsOfService: 'https://datacluster.com/privacy-policy'
   contact:
-    name: Algopix Support
-    email: support@algopix.com
+    name: Cluster Support
+    email: support@datacluster.com
   version: '1.5'
 servers:
-  - url: 'https://api.algopix.com'
-    description: Algopix API
+  - url: 'https://api.datacluster.com'
+    description: Cluster API
 
 tags:
   - name: Products categories endpoints
@@ -28,7 +28,7 @@ paths:
       parameters:
         - name: browseNodeId
           in: query
-          description: A valid Amazon node id that represents an Algopix category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
+          description: A valid Amazon node id that represents an Cluster category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
           style: form
           required: true
           explode: true

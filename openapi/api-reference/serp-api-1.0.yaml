@@ -4,10 +4,10 @@ info:
   description: Search Engine Results Page API provides a product list with the SERP ranking for the specified market and search terms, and may return the raw html results of a page or an image of the page's results.
   version: '1.0'
   contact:
-    name: Algopix Support
-    email: support@algopix.com
+    name: Cluster Support
+    email: support@datacluster.com
 servers:
-  - url: 'https://api.algopix.com'
+  - url: 'https://api.datacluster.com'
 tags:
   - name: Search engine results endpoints
 paths:

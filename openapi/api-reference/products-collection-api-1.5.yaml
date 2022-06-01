@@ -4,10 +4,10 @@ info:
   description: Products collection API allows users to search for products across a wide range of marketplaces by brand.
   version: '1.0'
   contact:
-    name: Algopix Support
-    email: support@algopix.com
+    name: Cluster Support
+    email: support@datacluster.com
 servers:
-  - url: 'https://api.algopix.com'
+  - url: 'https://api.datacluster.com'
 tags:
   - name: Products collection endpoints
 paths:

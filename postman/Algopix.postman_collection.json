@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "1e84d30b-d3fc-4573-b66e-d8dd0d2929bb",
-		"name": "Algopix",
+		"name": "Cluster",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -31,11 +31,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/products/details?productId=&productIdType=&markets=&resources=",
+									"raw": "https://api.datacluster.com/v3/async/products/details?productId=&productIdType=&markets=&resources=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -48,22 +48,22 @@
 										{
 											"key": "productId",
 											"value": "",
-											"description": "(Required) A product identifier to send through the API. Algopix supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)."
+											"description": "(Required) A product identifier to send through the API. Cluster supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)."
 										},
 										{
 											"key": "productIdType",
 											"value": "",
-											"description": "The type of the product id. Currently supports ASIN, UPC, EAN and AID (Algopix Identifier)."
+											"description": "The type of the product id. Currently supports ASIN, UPC, EAN and AID (Cluster Identifier)."
 										},
 										{
 											"key": "markets",
 											"value": "",
-											"description": "Comma-delimited market list to search for market specific data. In this version,Algopix supports Amazon_US and eBay_US markets."
+											"description": "Comma-delimited market list to search for market specific data. In this version,Cluster supports Amazon_US and eBay_US markets."
 										},
 										{
 											"key": "resources",
 											"value": "",
-											"description": "Comma-delimited resource list to search for specific product. In this version,Algopix supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available."
+											"description": "Comma-delimited resource list to search for specific product. In this version,Cluster supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available."
 										}
 									]
 								},
@@ -176,11 +176,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/products/details/results",
+									"raw": "https://api.datacluster.com/v3/async/products/details/results",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -305,11 +305,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/products?local=&brandId=&brandName=&categories=&excludeCategories=&maxItems=&contextKey=&pageNumber=&resources=",
+									"raw": "https://api.datacluster.com/v4/products?local=&brandId=&brandName=&categories=&excludeCategories=&maxItems=&contextKey=&pageNumber=&resources=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -473,11 +473,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/products/summary?local=&brandId=&brandName=&categories=&excludeCategories=",
+									"raw": "https://api.datacluster.com/v4/products/summary?local=&brandId=&brandName=&categories=&excludeCategories=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -622,11 +622,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/products/reports?local=&brandId=&brandName=&categories=&excludeCategories=&maxItems=&additionalFields=",
+									"raw": "https://api.datacluster.com/v4/products/reports?local=&brandId=&brandName=&categories=&excludeCategories=&maxItems=&additionalFields=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -781,11 +781,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/products/reports/status?reportId=",
+									"raw": "https://api.datacluster.com/v4/products/reports/status?reportId=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -911,11 +911,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/products/reports/:reportId",
+									"raw": "https://api.datacluster.com/v4/products/reports/:reportId",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -1046,11 +1046,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/products/analysis?keywords=&markets=&minItemPrice=&maxItemPrice=&currencyCode=&idType=&productCondition=",
+									"raw": "https://api.datacluster.com/v3/async/products/analysis?keywords=&markets=&minItemPrice=&maxItemPrice=&currencyCode=&idType=&productCondition=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -1206,11 +1206,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/products/analysis/results",
+									"raw": "https://api.datacluster.com/v3/async/products/analysis/results",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -1335,11 +1335,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/products/matches?keywords=&color=&brand=&googleGbCategoryId=&amazonSearchIndex=&amazonCategoryId=&minPrice=&maxPrice=&currencyCode=",
+									"raw": "https://api.datacluster.com/v3/async/products/matches?keywords=&color=&brand=&googleGbCategoryId=&amazonSearchIndex=&amazonCategoryId=&minPrice=&maxPrice=&currencyCode=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -1505,11 +1505,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/products/matches/results",
+									"raw": "https://api.datacluster.com/v3/async/products/matches/results",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -1642,11 +1642,11 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.algopix.com/v3/async/promotions?productId=&productIdType=&market=",
+											"raw": "https://api.datacluster.com/v3/async/promotions?productId=&productIdType=&market=",
 											"protocol": "https",
 											"host": [
 												"api",
-												"algopix",
+												"datacluster",
 												"com"
 											],
 											"path": [
@@ -1781,11 +1781,11 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.algopix.com/v3/async/promotions/results",
+											"raw": "https://api.datacluster.com/v3/async/promotions/results",
 											"protocol": "https",
 											"host": [
 												"api",
-												"algopix",
+												"datacluster",
 												"com"
 											],
 											"path": [
@@ -1909,11 +1909,11 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.algopix.com/v3/async/sellers/buyboxowners?productId=&productIdType=&markets=&resources=",
+											"raw": "https://api.datacluster.com/v3/async/sellers/buyboxowners?productId=&productIdType=&markets=&resources=",
 											"protocol": "https",
 											"host": [
 												"api",
-												"algopix",
+												"datacluster",
 												"com"
 											],
 											"path": [
@@ -2054,11 +2054,11 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.algopix.com/v3/async/sellers/buyboxowners/results",
+											"raw": "https://api.datacluster.com/v3/async/sellers/buyboxowners/results",
 											"protocol": "https",
 											"host": [
 												"api",
-												"algopix",
+												"datacluster",
 												"com"
 											],
 											"path": [
@@ -2183,11 +2183,11 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.algopix.com/v3/async/products/listings?productId=&productIdType=&markets=&resources=&itemCondition=",
+											"raw": "https://api.datacluster.com/v3/async/products/listings?productId=&productIdType=&markets=&resources=&itemCondition=",
 											"protocol": "https",
 											"host": [
 												"api",
-												"algopix",
+												"datacluster",
 												"com"
 											],
 											"path": [
@@ -2333,11 +2333,11 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.algopix.com/v3/async/products/listings/results",
+											"raw": "https://api.datacluster.com/v3/async/products/listings/results",
 											"protocol": "https",
 											"host": [
 												"api",
-												"algopix",
+												"datacluster",
 												"com"
 											],
 											"path": [
@@ -2467,11 +2467,11 @@
 											}
 										],
 										"url": {
-											"raw": "https://api.algopix.com/v4/sellers/:sellerId/listings?market=&maxItems=&contextKey=&pageNumber=",
+											"raw": "https://api.datacluster.com/v4/sellers/:sellerId/listings?market=&maxItems=&contextKey=&pageNumber=",
 											"protocol": "https",
 											"host": [
 												"api",
-												"algopix",
+												"datacluster",
 												"com"
 											],
 											"path": [
@@ -2494,7 +2494,7 @@
 												{
 													"key": "resources",
 													"value": "",
-													"description": "Comma-delimited resource list to be included in the response.</br>If PRODUCT_DETAILS is being requested, additional attributes will be retrieved: Brand, Title, Image URL, Leaf Categories, and Root Categories. If this parameter hasn’t been sent, the data that will be retrieved for each listing is the ASIN, price, and last updated date. The last updated date refers to the update of the listing offer state in the Algopix database."
+													"description": "Comma-delimited resource list to be included in the response.</br>If PRODUCT_DETAILS is being requested, additional attributes will be retrieved: Brand, Title, Image URL, Leaf Categories, and Root Categories. If this parameter hasn’t been sent, the data that will be retrieved for each listing is the ASIN, price, and last updated date. The last updated date refers to the update of the listing offer state in the Cluster database."
 												},
 												{
 													"key": "responseType",
@@ -2631,11 +2631,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/categories/products?browseNodeId=&googleCategoryId=&maxItems=&query=&resources=&excludeBrowseNodeIds=&searchExclusive=&fromDate=&toDate=",
+									"raw": "https://api.datacluster.com/v3/async/categories/products?browseNodeId=&googleCategoryId=&maxItems=&query=&resources=&excludeBrowseNodeIds=&searchExclusive=&fromDate=&toDate=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -2801,11 +2801,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v3/async/categories/products/results",
+									"raw": "https://api.datacluster.com/v3/async/categories/products/results",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -2930,11 +2930,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/serp?query=&categoryId=&market=&resources=&contextKey=&pageNumber=",
+									"raw": "https://api.datacluster.com/v4/serp?query=&categoryId=&market=&resources=&contextKey=&pageNumber=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -3083,11 +3083,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/serp/:pageId/html?market=",
+									"raw": "https://api.datacluster.com/v4/serp/:pageId/html?market=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -3220,11 +3220,11 @@
 									}
 								],
 								"url": {
-									"raw": "https://api.algopix.com/v4/serp/:pageId/image?market=",
+									"raw": "https://api.datacluster.com/v4/serp/:pageId/image?market=",
 									"protocol": "https",
 									"host": [
 										"api",
-										"algopix",
+										"datacluster",
 										"com"
 									],
 									"path": [
@@ -3364,11 +3364,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.algopix.com/v4/brands?brandName=",
+							"raw": "https://api.datacluster.com/v4/brands?brandName=",
 							"protocol": "https",
 							"host": [
 								"api",
-								"algopix",
+								"datacluster",
 								"com"
 							],
 							"path": [
@@ -3492,11 +3492,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://api.algopix.com/v4/brands/:brandId",
+							"raw": "https://api.datacluster.com/v4/brands/:brandId",
 							"protocol": "https",
 							"host": [
 								"api",
-								"algopix",
+								"datacluster",
 								"com"
 							],
 							"path": [
@@ -3512,7 +3512,7 @@
 								}
 							]
 						},
-						"description": "This is a synchronous API endpoint. This endpoint retrieves Algopix name, and sub brands for the specified brandId."
+						"description": "This is a synchronous API endpoint. This endpoint retrieves Cluster name, and sub brands for the specified brandId."
 					},
 					"response": [
 						{

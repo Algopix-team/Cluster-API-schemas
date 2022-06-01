@@ -2,14 +2,14 @@ openapi: 3.0.3
 info:
   title: Product Details
   description: 'Product Details API provides available attributes data in specified products by GTIN, ASIN or AID.'
-  termsOfService: 'https://algopix.com/policies'
+  termsOfService: 'https://datacluster.com/privacy-policy'
   contact:
-    name: Algopix Support
-    email: support@algopix.com
+    name: Cluster Support
+    email: support@datacluster.com
   version: '1.0'
 servers:
-  - url: 'https://api.algopix.com'
-    description: Algopix API
+  - url: 'https://api.datacluster.com'
+    description: Cluster API
 tags:
   - name: Products details endpoints
 paths:
@@ -26,7 +26,7 @@ paths:
       parameters:
         - name: productId
           in: query
-          description: 'A product identifier to send through the API. Algopix supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)'
+          description: 'A product identifier to send through the API. Cluster supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)'
           required: true
           explode: false
           schema:
@@ -44,7 +44,7 @@ paths:
               - EAN
         - name: markets
           in: query
-          description: 'Comma-delimited market list to search for market specific data. In this version,Algopix supports Amazon_US and eBay_US markets'
+          description: 'Comma-delimited market list to search for market specific data. In this version,Cluster supports Amazon_US and eBay_US markets'
           required: false
           style: form
           explode: true
@@ -55,7 +55,7 @@ paths:
               - AMAZON_US
         - name: resources
           in: query
-          description: 'Comma-delimited resource list to search for specific product. In this version,Algopix supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available. '
+          description: 'Comma-delimited resource list to search for specific product. In this version,Cluster supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available. '
           required: false
           style: form
           explode: true
