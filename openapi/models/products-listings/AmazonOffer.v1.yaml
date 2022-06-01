@@ -6,7 +6,7 @@ properties:
     description: ASIN
   aid:
     type: string
-    description: The AID (Algopix Identifier) associated with the product.
+    description: The AID (Cluster Identifier) associated with the product.
   partialListings:
     type: boolean
     description: True if not all listings were returned.

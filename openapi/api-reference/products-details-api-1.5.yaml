@@ -26,13 +26,13 @@ paths:
       parameters:
         - name: productId
           in: query
-          description: 'A product identifier to send through the API. Cluster supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)'
+          description: 'A product identifier to send through the API. Cluster supports GTIN in 12 or 13 digit format, ASIN and AID (Cluster identifier)'
           required: true
           explode: false
           schema:
             type: string
         - name: productIdType
-          description: The type of the product id. Currently supports ASIN, UPC, EAN and AID (Algopix Identifier).
+          description: The type of the product id. Currently supports ASIN, UPC, EAN and AID (Cluster Identifier).
           in: query
           style: form
           schema:

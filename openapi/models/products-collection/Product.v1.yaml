@@ -2,10 +2,10 @@ title: Product
 type: object
 properties:
   aid:
-    description: Algopix identifier.
+    description: Cluster identifier.
     type: string
   parentAid:
-    description: Algopix identifier's parent.
+    description: Cluster identifier's parent.
     type: string
   title:
     description: The title of the product.

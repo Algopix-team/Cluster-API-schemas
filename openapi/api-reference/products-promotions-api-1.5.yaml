@@ -26,7 +26,7 @@ paths:
       parameters:
         - name: productId
           in: query
-          description: 'Currently available AID (Algopix Identifier) or ASIN. Identify which was applied in productIdType below.'
+          description: 'Currently available AID (Cluster Identifier) or ASIN. Identify which was applied in productIdType below.'
           required: true
           explode: false
           schema:

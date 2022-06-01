@@ -3,7 +3,7 @@ type: object
 properties:
   aid:
     type: string
-    description: Unique Algopix identifier
+    description: Unique Cluster identifier
   parentAid:
     type: string
   title:

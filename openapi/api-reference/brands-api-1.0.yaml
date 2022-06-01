@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Brands API
-  description: 'Brands API provides Algopix brands names, ids and sub brands, by identifying specified brands.'
+  description: 'Brands API provides Cluster brands names, ids and sub brands, by identifying specified brands.'
   termsOfService: 'https://datacluster.com/privacy-policy'
   contact:
     name: Cluster Support
@@ -77,7 +77,7 @@ paths:
       parameters:
         - name: brandId
           in: path
-          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](../~1v4~1brands/get).'
+          description: 'Cluster unique Brand Id [(see "Get Brands by brand name" endpoint)](../~1v4~1brands/get).'
           required: true
           explode: false
           schema:

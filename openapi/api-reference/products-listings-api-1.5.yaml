@@ -34,7 +34,7 @@ paths:
             type: string
         - name: productIdType
           in: query
-          description: The type of the product id. Currently supports ASIN and AID (Algopix Identifier).
+          description: The type of the product id. Currently supports ASIN and AID (Cluster Identifier).
           required: true
           style: form
           explode: false
