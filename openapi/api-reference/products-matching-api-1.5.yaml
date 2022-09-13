@@ -180,9 +180,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-  #      security:
-  #        - apiKey: [ ]
-  #          appId: [ ]
+        security:
+          - apiKey: [ ]
+            appId: [ ]
   /v3/async/products/matches:
     get:
       description: |-

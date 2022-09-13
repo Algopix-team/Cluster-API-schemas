@@ -36,129 +36,6 @@ tags:
   - name: Report
     description:
 paths:
-  /v4/products/performance/tracking-group:
-    post:
-      description: |-
-        ## Setup Tracking Groups API Overview
-        Setting up tracking groups are required as a first endpoint as they are unique for each user, and are being modified consistently during the integration phase (using real-time data). Tracking groups are the categories or groups of brands/categories that the user would like to track, including the signals he or she chooses to track for that group. Note that categories are being updated on a daily basis.
-        
-        In this **product performance groups endpoint**, users can more specifically: 
-        1. Create tracking groups.
-        2. View tracking groups.
-        3. Delete tracking groups.
-        
-        ### Create a Tracking Group
-        Choose a category or brand to track (see available categories [**here**](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt)). Create the tracking group using the tracking group endpoint.
-        
-        Next, you can view the tracking group, delete the tracking group, or create a performance report using the tracking group created. 
-
-      tags:
-        - Tracking group
-      summary: Create Tracking Group
-      operationId: product-performance-track
-      parameters:
-        - name: market
-          required: true
-          in: query
-          schema:
-            $ref: ../models/products-performance/performance/ProductPerformanceMarketsRequest.v1.yaml
-        - name: description
-          in: query
-          description: 'The description of the group tracked.'
-          required: true
-          style: form
-          explode: false
-          schema:
-            type: string
-        - name: brandId
-          in: query
-          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](./f14b28b08624a-get-brands-by-brand-name).'
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-        - name: brandName
-          in: query
-          description: 'The name of the brand.'
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-        - name: categories
-          in: query
-          description: |-
-            Comma-delimited list of category ids.
-            > ### **Note**: 
-            > must set at least one of brandId, brandName or categories
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-        - name: excludeCategories
-          in: query
-          description: 'List of comma delimited category ids to exclude.'
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: array
-            items:
-              type: string
-        - name: maxItems
-          description: 'Set a max number of items to return in the collection.'
-          in: query
-          style: form
-          explode: false
-          schema:
-            type: integer
-        - name: resources
-          description: 'Comma delimited resource list to include in the response.'
-          in: query
-          explode: false
-          schema:
-            $ref: ../models/products-performance/tracking/ResourceType.v1.yaml
-        - name: signals
-          description: 'Comma delimited signals to collect, which will determine which signals to track. Based on different parameters, users have the ability to track the group by the business logic.'
-          in: query
-          explode: false
-          schema:
-            $ref: ../models/products-performance/request/Resource.v1.yaml
-          example: 'BSR,PRICE,OFFERS'
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
-      responses:
-        '200':
-          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/products-performance/tracking/TrackingGroupCreateApiResponse.v1.yaml
-        '400':
-          $ref: '../models/common/responses/statuscode400.v1.yaml'
-        '401':
-          $ref: '../models/common/responses/statuscode401.v1.yaml'
-        '403':
-          $ref: '../models/common/responses/statuscode403.v1.yaml'
-        '429':
-          $ref: '../models/common/responses/statuscode429.v1.yaml'
-        '500':
-          $ref: '../models/common/responses/statuscode500.v1.yaml'
-#      security:
-#        - apiKey: [ ]
-#          appId: [ ]
-      x-internal: true
   /v4/async/products/performance/tracking-group:
     get:
       description: |-
@@ -344,9 +221,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-  #      security:
-  #        - apiKey: [ ]
-  #        - appId: [ ]
+        security:
+          - apiKey: [ ]
+          - appId: [ ]
   /v4/products/performance/tracking-group/report/status:
     get:
       tags:
@@ -409,9 +286,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-  #      security:
-  #        - apiKey: [ ]
-  #        - appId: [ ]
+        security:
+          - apiKey: [ ]
+          - appId: [ ]
   /v4/products/performance/tracking-group/report/{reportId}:
     get:
       tags:
@@ -452,9 +329,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-#      security:
-#        - apiKey: [ ]
-#        - appId: [ ]
+      security:
+        - apiKey: [ ]
+        - appId: [ ]
 components:
   securitySchemes:
     apiKey:

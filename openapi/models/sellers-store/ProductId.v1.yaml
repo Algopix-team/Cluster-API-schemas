@@ -1,7 +1,0 @@
-title: ProductId
-type: object
-properties:
-  value:
-    type: string
-  type:
-    $ref: '../common/product/ProductIdType.v1.yaml'

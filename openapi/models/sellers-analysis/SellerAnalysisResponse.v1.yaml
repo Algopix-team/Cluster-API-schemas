@@ -1,8 +1,0 @@
-title: SellerAnalysisResponse
-allOf:
-  - type: object
-    properties:
-      sellers:
-        type: array
-        items:
-          $ref: './SellerAnalysis.v1.yaml'

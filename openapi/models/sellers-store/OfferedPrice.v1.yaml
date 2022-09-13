@@ -1,8 +1,0 @@
-title: OfferedPrice
-type: object
-properties:
-  price:
-    $ref: '../common/Price.v1.yaml'
-  date:
-    type: string
-    format: JavaTimeLocalDate

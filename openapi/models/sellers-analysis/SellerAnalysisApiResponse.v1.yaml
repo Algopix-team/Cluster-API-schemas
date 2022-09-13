@@ -1,8 +1,0 @@
-title: SellerAnalysisApiResponse
-type: object
-allOf:
-  - $ref: ../common/api/ApiResult.v1.yaml
-  - type: object
-    properties:
-      result:
-        $ref: '../sellers-analysis/SellerAnalysisResponse.v1.yaml'

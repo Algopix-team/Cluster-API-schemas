@@ -1,7 +1,0 @@
-title: CategoryPercentage
-type: object
-properties:
-  name:
-    type: string
-  percentage:
-    type: integer

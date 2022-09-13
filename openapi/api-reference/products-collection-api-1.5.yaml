@@ -162,113 +162,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-  #      security:
-  #        - apiKey: []
-  #          appId: []
-  /v4/products/summary:
-    get:
-      tags:
-        - Sync endpoints
-      operationId: get-products-collection-summary
-      summary: Get products collection summary
-      description: |-
-        This is a synchronous API endpoint. This endpoint returns summary of a product list according to the brand and marketplaces provided.
-        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
-      parameters:
-        - name: local
-          required: false
-          in: query
-          description: The local of the product.
-          schema:
-            $ref: ../models/common/Locals.v1.yaml
-            default: US
-        - name: brandId
-          in: query
-          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](./b3A6MTgwOTAyOTA-get-brand-by-brand-id).'
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-        - name: brandName
-          in: query
-          description: The name of the brand
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-        - name: categories
-          in: query
-          description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale.
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-        - name: excludeCategories
-          in: query
-          description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale to exclude.
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: array
-            items:
-              type: string
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
-      responses:
-        '200':
-          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
-          content:
-            application/json:
-              schema:
-                $ref: ../models/products-collection/ProductsSummaryResponse.v1.yaml
-              examples:
-                Response Example:
-                  value:
-                    timestamp: 1610532938
-                    status: SUCCESS
-                    statusMessage: Ok
-                    statusCode: 200
-                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14a
-                    result:
-                      productsCount: 7090
-                      brands:
-                        - title: nike
-                          id: 11nohTBQB_
-                          percentage: 97.6
-                      categories:
-                        - id: '7148223411'
-                          percentage: 100
-                      manufacturers:
-                        - title: nike
-                          id: 11nohTBQB_
-                          percentage: 83.3
-        '400':
-          $ref: '../models/common/responses/statuscode400.v1.yaml'
-        '401':
-          $ref: '../models/common/responses/statuscode401.v1.yaml'
-        '403':
-          $ref: '../models/common/responses/statuscode403.v1.yaml'
-        '429':
-          $ref: '../models/common/responses/statuscode429.v1.yaml'
-        '500':
-          $ref: '../models/common/responses/statuscode500.v1.yaml'
-      x-internal: true
-  #      security:
-  #        - apiKey: []
-  #          appId: []
+        security:
+          - apiKey: []
+            appId: []
   /v4/products/reports:
     post:
       tags:
@@ -385,9 +281,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-  #      security:
-  #        - apiKey: []
-  #          appId: []
+        security:
+          - apiKey: []
+            appId: []
   /v4/products/reports/status:
     get:
       tags:
@@ -444,9 +340,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-  #      security:
-  #        - apiKey: []
-  #          appId: []
+        security:
+          - apiKey: []
+            appId: []
   '/v4/products/reports/{reportId}':
     get:
       tags:
@@ -484,9 +380,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-#      security:
-#        - apiKey: []
-#          appId: []
+      security:
+        - apiKey: []
+          appId: []
 components:
   securitySchemes:
     apiKey:
