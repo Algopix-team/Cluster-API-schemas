@@ -1,0 +1,4 @@
+title: ProductPerformanceTimeSeries
+type: object
+additionalProperties:
+  $ref: './ProductPerformanceDaySignals.v1.0.yaml'

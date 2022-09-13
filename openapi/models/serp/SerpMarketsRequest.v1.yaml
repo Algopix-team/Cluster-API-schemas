@@ -1,0 +1,6 @@
+title: SerpMarketsRequest
+description: The market to retrieve results for.
+type: string
+enum:
+  - AMAZON_US
+example: AMAZON_US

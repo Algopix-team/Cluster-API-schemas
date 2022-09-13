@@ -1,0 +1,13 @@
+title: ProductPerformanceDay
+type: object
+required:
+  - market
+properties:
+  market:
+    $ref: ./ProductPerformanceMarketsRequest.v1.yaml
+  asin:
+    type: string
+  timeSeries:
+    type: array
+    items:
+      $ref: ./ProductPerformanceDaySignals.v1.0.yaml

@@ -1,0 +1,11 @@
+title: SellerProduct
+type: object
+properties:
+  productId:
+    $ref: './ProductId.v1.yaml'
+  title:
+    type: string
+  offeredPrice:
+    $ref: './OfferedPrice.v1.yaml'
+  imageUrl:
+    type: string

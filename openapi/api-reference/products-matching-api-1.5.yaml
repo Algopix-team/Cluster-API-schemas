@@ -11,19 +11,23 @@ servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
 tags:
-  - name: Products matching endpoints
+  - name: Async endpoints
+  - name: Sync endpoint
 paths:
-  /v3/async/products/matches:
+  /v3/products/matches:
     get:
       description: |-
-        This is an asynchronous API endpoint. This endpoint searches retail products data, specified by keywords and other attributes. The results may be retrieved from [Products matching results](../~1v3~1async~1products~1matches~1results/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
-      operationId: request-products-matching
-      summary: Request products matching
+        This is a synchronous API endpoint.
+      summary: Products matching
+      operationId: get-products-matching
       tags:
-        - Products matching endpoints
+        - Sync endpoint
       parameters:
+        - name: market
+          in: query
+          schema:
+            $ref: ../models/products-matching/ProductMatchingMarketsRequest.v1.yaml
+            default: AMAZON_US
         - name: keywords
           in: query
           description: Item keywords used to search for products.
@@ -51,7 +55,7 @@ paths:
         - name: googleGbCategoryId
           in: query
           description: |-
-            Search products by google product category. Products with matching categories recieve a higher score. Id of a google product category as described [here](https://support.google.com/merchants/answer/6324436?hl=en).
+            Search products by google product category. Products with matching categories recieve a higher score. Id of a google product category as described [here](https://support.google.com/merchants/answer/6324436?hl=en).  
              For an extensive list of the available categories see [here](https://www.google.com/basepages/producttype/taxonomy-with-ids.en-GB.txt)
           required: false
           style: form
@@ -69,8 +73,8 @@ paths:
         - name: amazonCategoryId
           in: query
           description: |2-
-             Search products by amazon browse node id. Products associated with the amazon browse node recieve a higher score. Browse nodes are positive integers identifying a product category.
-             list is availible here [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt)
+             Search products by amazon browse node id. Products associated with the amazon browse node recieve a higher score. Browse nodes are positive integers identifying a product category.  
+             list is available here [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt)  
              Specifying a browse node requires a `searchindex` to be set. Browse node work with every `searchindex`, **except for** _All_ and _Blended_.
           required: false
           style: form
@@ -106,6 +110,188 @@ paths:
               - EUR
               - CAD
             default: USD
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-matching/ProductMatchingApiResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532838
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 49735463-e4b6-4960-bd83-7c90043bd14b
+                    result:
+                      matchingProducts:
+                        - title: Casio Men's Vintage A168WA-1 Electro Luminescence Watch
+                          aid: AIDSNOFJ1000
+                          matchingScores:
+                            titleMatchingScore: 0.043
+                            brandMatchingScore: 0.0
+                            colorMatchingScore: 0.0
+                            categoryMatchingScore: 0.0
+                            modelMatchingScore: 0.0
+                            algopixTotalScore: 0.039
+                          image:
+                            imageType: small
+                            imageUrl: https://m.media-amazon.com/images/I/418AS4GdpcS._SL75_.jpg
+                            imageHeight:
+                              value: 75.00
+                              unit: PIXELS
+                            imageWidth:
+                              value: 40.00
+                              unit: PIXELS
+                          price:
+                            currencyCode: USD
+                            amount: 18.0
+                          attributes:
+                            Brand: string
+                            Size: string
+                            Color: string
+                            Manufacturer: string
+                            Model: string
+                          keywordsIdentifiedSpecificMarketData:
+                            objectType: AmazonMarketData
+                            bestSellerRank: 6681
+                          listingUrl: https://www.amazon.com/dp/B000LAKYW8?tag=algopixnew-20&linkCode=osi&th=1&psc=1
+                      totalMatches: 1
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+  #      security:
+  #        - apiKey: [ ]
+  #          appId: [ ]
+  /v3/async/products/matches:
+    get:
+      description: |-
+        This is an asynchronous API endpoint. This endpoint searches retail products data, specified by keywords and other attributes. The results may be retrieved from [Products matching results](./b3A6MTgwOTAzMDY-products-matching-results).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+      operationId: request-products-matching
+      summary: Products matching request
+      tags:
+        - Async endpoints
+      parameters:
+        - name: market
+          in: query
+          schema:
+            $ref: ../models/products-matching/ProductMatchingMarketsRequest.v1.yaml
+            default: AMAZON_US
+        - name: keywords
+          in: query
+          description: Item keywords used to search for products.
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: color
+          in: query
+          description: Search products by color. Products with matching color will receive a higher score.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: brand
+          in: query
+          description: Search products by Brand. Products with matching brand will receive a higher score.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: googleGbCategoryId
+          in: query
+          description: |-
+            Search products by google product category. Products with matching categories recieve a higher score. Id of a google product category as described [here](https://support.google.com/merchants/answer/6324436?hl=en).  
+             For an extensive list of the available categories see [here](https://www.google.com/basepages/producttype/taxonomy-with-ids.en-GB.txt)
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: number
+        - name: amazonSearchIndex
+          in: query
+          description: 'The product category to search. For more information and an extensive list of the possible values, see [here](https://docs.google.com/spreadsheets/d/1h9Pio_f0fnjeEuOEqS-fEkuBgejiwsVshYhJUv0p0so/edit?usp=sharing)'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: amazonCategoryId
+          in: query
+          description: |2-
+             Search products by amazon browse node id. Products associated with the amazon browse node recieve a higher score. Browse nodes are positive integers identifying a product category.  
+             list is available here [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt)  
+             Specifying a browse node requires a `searchindex` to be set. Browse node work with every `searchindex`, **except for** _All_ and _Blended_.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: minPrice
+          in: query
+          description: ' The minimum price of a products to return by the search.'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: maxPrice
+          in: query
+          description: ' The maximum price of a products to return by the search.'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: number
+        - name: currencyCode
+          in: query
+          description: 'The currency code of the specified minPrice & maxPrice parameters. the currencyCode parameter should comply with [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency codes. Currently supported currency codes: USD, EUR, CAD. defaults to USD if not specified.'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - USD
+              - EUR
+              - CAD
+            default: USD
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'
@@ -119,22 +305,34 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+  #      security:
+  #        - apiKey: []
+  #          appId: []
   /v3/async/products/matches/results:
     get:
       operationId: products-matching-results
       description: |-
-        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products matching](../~1v3~1async~1products~1matches/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products matching](./b3A6MTgwOTAzMDU-request-products-matching).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       tags:
-        - Products matching endpoints
+        - Async endpoints
       summary: Products matching results
+      parameters:
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -200,16 +398,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
     appId:
       type: apiKey
       name: X-APP-ID

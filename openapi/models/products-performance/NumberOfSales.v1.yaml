@@ -1,0 +1,5 @@
+title: NumberOfSales
+type: object
+properties:
+  amount:
+    type: integer

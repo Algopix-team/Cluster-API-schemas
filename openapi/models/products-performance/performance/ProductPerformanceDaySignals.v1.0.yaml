@@ -1,0 +1,4 @@
+title: ProductPerformanceDaySignals
+type: object
+oneOf:
+  - $ref: './AmazonProductPerformanceDaySignals.v1.yaml'

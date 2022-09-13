@@ -1,0 +1,18 @@
+title: ProductPerformanceReportStatus
+type: object
+properties:
+  id:
+    type: string
+  status:
+    type: string
+    enum:
+      - DONE
+      - FAILED
+      - INPROGRESS
+      - QUEUED
+  requestDate:
+    type: string
+    description: the date the report was requested .  ISO date (time defaults to beginning of the day), e.g., '2020-01-22'.
+  requestDetails:
+    $ref: ../request/ProductPerformanceRequestDetails.v1.yaml
+    description: report requested parameters

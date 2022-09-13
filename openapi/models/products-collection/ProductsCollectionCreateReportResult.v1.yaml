@@ -1,0 +1,5 @@
+title: ProductsCollectionCreateReportResult
+type: object
+properties:
+  reportId:
+    type: string

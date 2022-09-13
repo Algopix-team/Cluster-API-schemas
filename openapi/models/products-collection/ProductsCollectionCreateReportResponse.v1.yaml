@@ -4,7 +4,4 @@ allOf:
   - type: object
     properties:
       result:
-        type: object
-        properties:
-          reportId:
-            type: string
+        $ref: ./ProductsCollectionCreateReportResult.v1.yaml

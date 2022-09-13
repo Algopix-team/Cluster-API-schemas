@@ -1,0 +1,7 @@
+title: AggregatedBuyBoxOffering
+type: object
+properties:
+  promimentSeller:
+    type: string
+  averagePrice:
+    $ref: '../../common/Price.v1.yaml'

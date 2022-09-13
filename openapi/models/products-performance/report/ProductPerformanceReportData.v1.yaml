@@ -1,0 +1,9 @@
+title: ProductPerformanceReportData
+type: object
+properties:
+  aid:
+    type: string
+  productPerformance:
+    type: array
+    items:
+      $ref: ./ProductPerformanceReportAggregatedData.v1.yaml

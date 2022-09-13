@@ -1,0 +1,27 @@
+title: Promotions
+type: object
+properties:
+  sns:
+    title: PromotionsSNS
+    type: object
+    properties:
+      price:
+        $ref: '../common/Price.v1.yaml'
+      discountPercent:
+        type: number
+  programEligibility:
+    title: PromotionsProgramEligibility
+    type: object
+    properties:
+      isPrimePantry:
+        type: boolean
+      isPrimeExclusive:
+        type: boolean
+  coupons:
+    title: PromotionsCoupons
+    type: object
+    properties:
+      price:
+        $ref: '../common/Price.v1.yaml'
+      type:
+        type: string

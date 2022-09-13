@@ -1,0 +1,4 @@
+title: ProductPerformanceReportAggregatedData
+type: object
+oneOf:
+  - $ref: './AmazonProductPerformanceAggregatedData.v1.yaml'

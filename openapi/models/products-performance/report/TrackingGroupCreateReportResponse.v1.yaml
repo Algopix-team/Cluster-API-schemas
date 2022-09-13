@@ -1,0 +1,7 @@
+title: TrackingGroupCreateReportResponse
+allOf:
+  - $ref: ../../common/api/ApiResult.v1.yaml
+  - type: object
+    properties:
+      result:
+        $ref: ./TrackingGroupCreateReportDetails.v1.yaml

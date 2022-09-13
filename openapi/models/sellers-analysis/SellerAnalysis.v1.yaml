@@ -1,0 +1,67 @@
+title: SellerAnalysis
+type: object
+properties:
+      date:
+        type: string
+        format: JavaTimeLocalDate
+      sellerId:
+        type: string
+      sellerName:
+        type: string
+      businessName:
+        type: string
+      businessAdress:
+        type: string
+      country:
+        type: string
+      reviewsLast30days:
+        type: integer
+      reviewsLast12Month:
+        type: integer
+      reviewsOverall:
+        type: integer
+      rating:
+        type: integer
+      starRate:
+        type: number
+        format: Double
+      numberOfListing:
+        type: integer
+      minPrice:
+        type: number
+        format: Double
+      maxPrice:
+        type: number
+        format: Double
+      avgBuyBoxPercentage:
+        description: average for the last 30 days
+        type: integer
+      paretoAvgBuyBoxPercentage:
+        description: average for the last 30 days
+        type: integer
+      fbaPercentage:
+        type: integer
+      medianRank:
+        description: median for the last 30 days
+        type: integer
+        format: int64
+      medianPrice:
+        description: median for the last 30 days
+        type: number
+        format: Double
+      sellerLaunchOverYear:
+        type: boolean
+      mainCateogires:
+        type: array
+        items:
+          $ref: './CategoryPercentage.v1.yaml'
+      leafCategories:
+        type: array
+        items:
+          $ref: './CategoryPercentage.v1.yaml'
+      market:
+          $ref: '../common/Markets.v1.yaml'
+      saleMarkets:
+        type: array
+        items:
+          $ref: '../common/Markets.v1.yaml'

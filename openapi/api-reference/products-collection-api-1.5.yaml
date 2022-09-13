@@ -9,17 +9,18 @@ info:
 servers:
   - url: 'https://api.datacluster.com'
 tags:
-  - name: Products collection endpoints
+  - name: Sync endpoints
+  - name: Report
 paths:
   /v4/products:
     get:
       tags:
-        - Products collection endpoints
+        - Sync endpoints
       operationId: get-products-collection
       summary: Get products collection
       description: |-
         This is a synchronous API endpoint. This endpoint returns a product list according to the brand and marketplaces provided.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)'
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)'
       parameters:
         - name: local
           required: false
@@ -30,7 +31,7 @@ paths:
             default: US
         - name: brandId
           in: query
-          description: 'Cluster unique Brand Id [(see "Get Brands by brand name" endpoint)](/brands/src/main/resources/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](./b3A6MTgwOTAyOTE-get-brands-by-brand-name).'
           required: false
           style: form
           explode: false
@@ -60,6 +61,12 @@ paths:
           explode: false
           schema:
             type: string
+        - name: AdditionalFields
+          in: query
+          description: Using that resource, the response will include the product identifiers.
+          required: false
+          schema:
+            $ref: ../models/products-collection/AdditionalFields.v1.yaml
         - name: excludeCategories
           in: query
           description: Comma-delimited list of category ids to exclude.
@@ -98,9 +105,20 @@ paths:
           explode: false
           schema:
             $ref: ../models/products-collection/ResourceType.v1.yaml
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -144,18 +162,18 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+  #      security:
+  #        - apiKey: []
+  #          appId: []
   /v4/products/summary:
     get:
       tags:
-        - Products collection endpoints
+        - Sync endpoints
       operationId: get-products-collection-summary
       summary: Get products collection summary
       description: |-
         This is a synchronous API endpoint. This endpoint returns summary of a product list according to the brand and marketplaces provided.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       parameters:
         - name: local
           required: false
@@ -166,7 +184,7 @@ paths:
             default: US
         - name: brandId
           in: query
-          description: 'Cluster unique Brand Id [(see "Get Brands by brand name" endpoint)](/brands/src/main/resources/api-reference/brands-api-1.0.yaml/paths/~1v4~1brands/get).'
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](./b3A6MTgwOTAyOTA-get-brand-by-brand-id).'
           required: false
           style: form
           explode: false
@@ -198,9 +216,20 @@ paths:
             type: array
             items:
               type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -218,14 +247,14 @@ paths:
                       brands:
                         - title: nike
                           id: 11nohTBQB_
-                          precentage: 97.6
+                          percentage: 97.6
                       categories:
                         - id: '7148223411'
-                          precentage: 100
+                          percentage: 100
                       manufacturers:
                         - title: nike
                           id: 11nohTBQB_
-                          precentage: 83.3
+                          percentage: 83.3
         '400':
           $ref: '../models/common/responses/statuscode400.v1.yaml'
         '401':
@@ -236,18 +265,19 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+      x-internal: true
+  #      security:
+  #        - apiKey: []
+  #          appId: []
   /v4/products/reports:
     post:
       tags:
-        - Products collection endpoints
+        - Report
       operationId: create-products-collection-report
       summary: Create a products report
       description: |-
-        Request creating a products report. This endpoint triggers the background creation of a report. Use the ["Get report status"](../~1v4~1products~1reports~1status/get) endpoint to get the status of the report generation. use the ["Get ready report"](../~1v4~1products~1reports~1%7BreportId%7D/get) endpoint to download the report.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        Request creating a products report. This endpoint triggers the background creation of a report. Use the ["Get report status"](./b3A6MTgwOTAzMDA-get-report-status) endpoint to get the status of the report generation. use the ["Get ready report"](./b3A6MTgwOTAzMDE-get-ready-report) endpoint to download the report.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       parameters:
         - name: local
           required: false
@@ -266,7 +296,15 @@ paths:
             type: string
         - name: brandName
           in: query
-          description: brand name
+          description: 'The name of the brand'
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: manufacturerName
+          in: query
+          description: 'The name of the manufacturer'
           required: false
           style: form
           explode: false
@@ -280,6 +318,18 @@ paths:
           explode: false
           schema:
             type: string
+        - name: resources
+          description: comma delimited resource list to include in the response.
+          in: query
+          explode: false
+          schema:
+            $ref: ../models/products-collection/ResourceType.v1.yaml
+        - name: AdditionalFields
+          in: query
+          description: Using that resource, the response will include the product identifiers.
+          required: false
+          schema:
+            $ref: ../models/products-collection/AdditionalFields.v1.yaml
         - name: excludeCategories
           in: query
           description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale to exclude.
@@ -297,15 +347,20 @@ paths:
           explode: false
           schema:
             type: integer
-        - name: additionalFields
-          description: Comma-delimited advanced market Fields to add to the reports. You must be authirzied for each Field.
-          required: false
-          in: query
+        - name: X-API-KEY
           schema:
-            $ref: ../models/products-collection/AdditionalFields.v1.yaml
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Ok.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -330,16 +385,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+  #      security:
+  #        - apiKey: []
+  #          appId: []
   /v4/products/reports/status:
     get:
       tags:
-        - Products collection endpoints
-      operationId: get-products-report-status
+        - Report
+      operationId: get-products-collection-report-status
       summary: Get report status
-      description: Get all report status.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: Get all report status.<br>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       parameters:
         - name: reportId
           description: Report identifier
@@ -348,9 +403,20 @@ paths:
           explode: false
           schema:
             type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Ok.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -378,21 +444,32 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+  #      security:
+  #        - apiKey: []
+  #          appId: []
   '/v4/products/reports/{reportId}':
     get:
       tags:
-        - Products collection endpoints
+        - Report
       summary: Get ready report
-      description: This endpoint returns collection report file.<br>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      description: This endpoint returns collection report file.<br>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: get-products-collection-report
       parameters:
         - name: reportId
           in: path
           schema:
             type: string
+          required: true
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
           required: true
       responses:
         '200':
@@ -407,16 +484,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: 'Read our [Authentication](/docs/Making-a-request/Authentication.md) article'
+      description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
     appId:
       type: apiKey
       name: X-APP-ID

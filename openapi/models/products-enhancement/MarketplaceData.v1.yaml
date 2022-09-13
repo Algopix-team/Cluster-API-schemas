@@ -44,5 +44,7 @@ properties:
     items:
       $ref: ./MarketplaceProductImage.v1.yaml
   productFit:
-    $ref: ./ProductFit.v1.yaml
+      $ref: ./ProductFit.v1.yaml
+  badges:
+    $ref: ./Badges.v1.yaml
 description: 'All available data points from a specific marketplace'

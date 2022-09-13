@@ -8,7 +8,7 @@ properties:
     description: Seller business name. This data point would appear only if SellerDetails was sent throguh the resources parameter
   businessAddress:
     type: string
-    description: Seller business name. This data point would appear only if SellerDetails was sent throguh the resources parameter
+    description: Seller business address. This data point would appear only if SellerDetails was sent throguh the resources parameter
   defaultShippingCountry:
     type: string
     description: Country code.

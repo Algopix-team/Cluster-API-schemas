@@ -1,0 +1,12 @@
+title: ProductPerformanceResponse
+description: List of product performance signals.
+package: com.algopix.openapi.generated.products_performance
+type: object
+properties:
+  requestDetails:
+    $ref: ./request/ProductPerformanceRequestDetails.v1.yaml
+    description: report requested parameters
+  productsPerformance:
+    type: array
+    items:
+      $ref: ./performance/ProductsPerformance.v1.yaml

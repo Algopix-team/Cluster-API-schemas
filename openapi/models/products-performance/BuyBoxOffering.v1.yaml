@@ -1,0 +1,7 @@
+title: BuyBoxOffering
+type: object
+properties:
+  sellerId:
+    type: string
+  price:
+    $ref: '../common/Price.v1.yaml'

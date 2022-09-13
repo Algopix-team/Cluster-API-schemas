@@ -9,17 +9,17 @@ info:
 servers:
   - url: 'https://api.datacluster.com'
 tags:
-  - name: Search engine results endpoints
+  - name: Sync endpoints
 paths:
   /v4/serp:
     summary: SERP search results with ranking.
     get:
       tags:
-        - Search engine results endpoints
+        - Sync endpoints
       summary: Get Search engine results
       description: |-
         This is a synchronous API endpoint. This endpoint searches a product list with the SERP ranking for the specified market and search terms.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: get-search-engine
       parameters:
         - name: query
@@ -38,15 +38,13 @@ paths:
           schema:
             type: string
         - name: market
-          description: Currently only AMAZON_US market is supported
+          description: currently only AMAZON_US market is supported
           in: query
           style: form
           explode: false
           required: true
           schema:
-            type: string
-            enum:
-              - AMAZON_US
+            $ref: ../models/serp/SerpMarketsRequest.v1.yaml
         - name: resources
           description: Resources is processing the results origin file in the specified format (html or image), which can be retrieved in the appropriate endpoint.
           in: query
@@ -69,9 +67,20 @@ paths:
           schema:
             type: integer
           required: false
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Success – search results returned.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -125,20 +134,20 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+#      security:
+#        - apiKey: []
+#        - appId: []
   '/v4/serp/{pageId}/html':
     get:
       tags:
-        - Search engine results endpoints
+        - Sync endpoints
       summary: Get search engine html
       description: |-
-        This endpoint retrieves the page's raw html results. Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its html.
+        This endpoint retrieves the page's raw html results. Notice - you had to specify this resource in the [Get Search engine results](./b3A6MTgxMDkwMDU-get-search-engine-results) endpoint in order to retrieve its html.
       operationId: get-search-engine-html
       parameters:
         - name: pageId
-          description: The pageId which has been retrieved through the [Get Search engine results](../~1v4~1serp/get) endpoint.
+          description: The pageId which has been retrieved through the [Get Search engine results](./b3A6MTgxMDkwMDU-get-search-engine-results) endpoint.
           in: path
           schema:
             type: string
@@ -150,7 +159,18 @@ paths:
           explode: false
           required: true
           schema:
-            $ref: ../models/common/Markets.v1.yaml
+            $ref: ../models/serp/SerpMarketsRequest.v1.yaml
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
           description: Success - Return Html file.
@@ -164,20 +184,20 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+#      security:
+#        - apiKey: []
+#        - appId: []
   '/v4/serp/{pageId}/image':
     get:
       tags:
-        - Search engine results endpoints
+        - Sync endpoints
       summary: Get search engine image
       description: |-
-        This endpoint retrieves an image of the page's results.  Notice - you had to specify this resource in the [Get Search engine results](../~1v4~1serp/get) endpoint in order to retrieve its image.
+        This endpoint retrieves an image of the page's results.  Notice - you had to specify this resource in the [Get Search engine results](./b3A6MTgxMDkwMDU-get-search-engine-results) endpoint in order to retrieve its image.
       operationId: get-search-engine-image
       parameters:
         - name: pageId
-          description: The pageId which has been retrieved through the [Get Search engine results](../~1v4~1serp/get) endpoint.
+          description: The pageId which has been retrieved through the [Get Search engine results](./b3A6MTgxMDkwMDU-get-search-engine-results) endpoint.
           in: path
           schema:
             type: string
@@ -189,7 +209,18 @@ paths:
           explode: false
           required: true
           schema:
-            $ref: ../models/common/Markets.v1.yaml
+            $ref: ../models/serp/SerpMarketsRequest.v1.yaml
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
           description: Success - Return Image.
@@ -203,16 +234,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-        - appId: []
+#      security:
+#        - apiKey: []
+#        - appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
     appId:
       type: apiKey
       name: X-APP-ID

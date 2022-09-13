@@ -1,0 +1,52 @@
+title: Badge
+type: object
+properties:
+  type:
+    type: string
+    description: "Amazon badge type"
+    enum:
+      - CLIMATE_PLEDGE_FRIENDLY
+      - SMALL_BUSINESS
+  certifiedBy:
+    type: array
+    items:
+      type: string
+      enum:
+        - BIFMA_LEVEL
+        - BLUESIGN
+        - CARBONFREE_CERTIFIED
+        - CARBONNEUTRAL_PRODUCT_BY_NATURAL_CAPITAL_PARTNERS
+        - CARBON_NEUTRAL_BY_CARBON_TRUST
+        - CARBON_NEUTRAL_CERTIFIED_BY_SCS_GLOBAL_SERVICES
+        - CERTIFIED_ANIMAL_WELFARE_APPROVED
+        - CLIMATE_NEUTRAL_BY_CLIMATEPARTNER
+        - COMPACT_BY_DESIGN
+        - CRADLE_TO_CRADLE_CERTIFIED
+        - ECOLOGO
+        - ENERGY_STAR_MOST_EFFICIENT
+        - EPEAT
+        - EWG_VERIFIED
+        - FAIR_TRADE_CERTIFIED
+        - FAIRTRADE_INTERNATIONAL
+        - FAIR_FOR_LIFE
+        - THE_FOREST_STEWARDSHIP_COUNCIL
+        - GLOBAL_ORGANIC_TEXTILE_STANDARD
+        - GLOBAL_RECYCLED_STANDARD
+        - GREEN_SEAL
+        - MADE_IN_GREEN_BY_OEKO-TEX
+        - MADE_SAFE
+        - NATRUE
+        - ORGANIC_CONTENT_STANDARD_100
+        - RAINFOREST_ALLIANCE
+        - ORGANIC_CONTENT_STANDARD_BLENDED
+        - RECYCLED_CLAIM_STANDARD_100
+        - REDUCING_CO2
+        - RECYCLED_CLAIM_STANDARD_BLENDED
+        - REGENERATIVE_ORGANIC_CERTIFIED
+        - RESPONSIBLE_WOOL_STANDARD
+        - U.S._EPA_SAFER_CHOICE
+        - TCO_CERTIFIED
+        - USDA_ORGANIC
+        - WATERSENSE
+    description: "Amazon badge certified by"
+description: "Amazon Badge"

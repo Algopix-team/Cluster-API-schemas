@@ -1,6 +1,6 @@
 title: SNS
 type: object
-description: 'The SNS feature lets customers to register for scheduled or recurring deliveries of the products they use or order on regularly in Amazon. The SNS offer details retrieved by Cluster represent the lowest SNS offer eligible for a certain listing (5%). Any promotion or coupons, if exists, would be applied in addition to the SNS subscription special price.'
+description: 'The SNS feature lets customers to register for scheduled or recurring deliveries of the products they use or order on regularly in Amazon. The SNS offer details retrieved by Algopix represent the lowest SNS offer eligible for a certain listing (5%). Any promotion or coupons, if exists, would be applied in addition to the SNS subscription special price.'
 properties:
   amount:
     type: number

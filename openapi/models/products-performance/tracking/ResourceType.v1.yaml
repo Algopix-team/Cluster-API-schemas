@@ -1,4 +1,4 @@
 title: ResourceType
 type: string
 enum:
-  - PRODUCT_DETAILS
+  - PRODUCT_VARIANTS

@@ -1,0 +1,8 @@
+title: ProductPerformanceReportDataApiResponse
+type: object
+allOf:
+  - $ref: ../../common/api/ApiResult.v1.yaml
+  - type: object
+    properties:
+      result:
+        $ref: ./ProductPerformanceReportDataResult.v1.yaml

@@ -1,0 +1,23 @@
+title: AmazonProductPerformanceTimeSeries
+type: object
+required:
+  - objectType
+properties:
+  asin:
+    type: string
+  fromDate:
+    type: string
+  toDate:
+    type: string
+  averageNumberOfOfferings:
+    type: number
+  # unitsSold:
+  #   $ref: unitsSold.v1.yaml
+  averageBestSellerRanking:
+    $ref: ../PerformanceAmazonCategory.v1.yaml
+  buyBoxOffering:
+    $ref: ./AggregatedBuyBoxOffering.v1.yaml
+  promotions:
+    $ref: ../Promotions.v1.yaml
+  averageRatings:
+    $ref: ../../common/product/CustomerRating.v1.yaml

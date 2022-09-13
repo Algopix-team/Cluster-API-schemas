@@ -1,0 +1,21 @@
+title: ProductPerformanceRequestDetails
+type: object
+properties:
+  id:
+    type : string
+  idType:
+    $ref: ../request/IdType.v1.yaml
+  markets:
+    type: array
+    items:
+      $ref: ../performance/ProductPerformanceMarketsRequest.v1.yaml
+  fromDate:
+    type: string
+    format: JavaTimeLocalDate
+  toDate:
+    type: string
+    format: JavaTimeLocalDate
+  resourceTypes:
+    type: array
+    items:
+      $ref: ../request/Resource.v1.yaml

@@ -1,0 +1,9 @@
+title: SellerStorePageResponse
+type: object
+properties:
+  totalPages:
+    type: integer
+  products:
+    type: array
+    items: 
+      $ref: './SellerProduct.v1.yaml'

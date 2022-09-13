@@ -2,10 +2,13 @@ title: Product
 type: object
 properties:
   aid:
-    description: Cluster identifier.
+    description: Algopix identifier.
     type: string
   parentAid:
-    description: Cluster identifier's parent.
+    description: Algopix identifier's parent.
+    type: string
+  asin:
+    description: Amazon Identifier.
     type: string
   title:
     description: The title of the product.

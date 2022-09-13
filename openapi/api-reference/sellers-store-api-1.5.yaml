@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: Sellers Store
+  description: Sellers Store API provides a product list with with SERP ranking for the specified seller on market.
+  version: '1.0'
+  contact:
+    name: Cluster Support
+    email: support@datacluster.com
+servers:
+  - url: 'https://api.datacluster.com'
+tags:
+  - name: Sync endpoint
+    description: This API set is the Cluster sellers store search. V1.0 supports searches using the seller’s id.
+paths:
+  '/v4/sellers/{sellerId}/listings':
+    get:
+      tags:
+        - Sync endpoint
+      summary: Get sellers store
+      description: |-
+        This is a synchronous API endpoint. This endpoint returns a listings list with SERP ranking for the specified seller on market.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+      operationId: get-sellers-store
+      parameters:
+        - name: sellerId
+          in: path
+          description: 'Unique identifier of the seller. This can be sourced from the payload of the [Buy Box Owners API](./YXBpOjE4MDg5OTQ2-buy-box-owners).'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: market
+          required: false
+          description: 'The market of the store, currently supported market is AMAZON_US'
+          in: query
+          style: form
+          schema:
+            type: string
+            enum:
+              - AMAZON_US
+            default: AMAZON_US
+        - name: maxItems
+          description: Sets a max number of items to return in the collection.
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+        - name: contextKey
+          description: This key is used to retreive the following results pages. It was returned when making the initial request for products. this
+          in: query
+          explode: false
+          style: form
+          schema:
+            type: string
+          required: false
+        - name: pageNumber
+          description: The page number of the results to retreive. This parameter must be used in tandem with contextKey
+          in: query
+          explode: true
+          schema:
+            type: integer
+          required: false
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/sellers-store/SellerStoreApiResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610532938
+                    status: SUCCESS
+                    statusMessage: Ok
+                    statusCode: 200
+                    requestId: 60ff66fe-76b2-4a70-882a-3168947038ca
+                    result:
+                      contextKey: 60ff66fe-76b2-4a70-882a-3168947038ca
+                      totalPages: 13
+                      products:
+                        - productId:
+                            value: "0439887461"
+                            type: ASIN
+                          title: 25 NEW Illustrated Sight Word Readers Phonics Teaching Supples Prek Scholastic 25 Books That Teach 50 Must-know Sight Words!! (Sight Word Readers)
+                          offeredPrice:
+                            price:
+                              currencyCode: USD
+                              amount: 22.95
+                            date: 2021-08-09
+                          imageUrl: https://m.media-amazon.com/images/I/91XqAnOEqzL._AC_UY218_.jpg
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+#      security:
+#        - apiKey: []
+#          appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

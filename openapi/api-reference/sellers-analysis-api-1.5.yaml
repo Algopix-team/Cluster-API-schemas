@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: Sellers Analysis
+  description: Sellers Analysis API provides analysis for the seller listings
+  version: '1.0'
+  contact:
+    name: Cluster Support
+    email: support@datacluster.com
+servers:
+  - url: 'https://api.datacluster.com'
+tags:
+  - name: Sync endpoint
+    description: This API set is the Algopix sellers analysis.
+paths:
+  '/v4/sellers/{sellerId}/analysis':
+    get:
+      tags:
+        - Sync endpoint
+      summary: Get sellers analysis
+      description: |-
+        This is a synchronous API endpoint. That get the seller analysis data
+      operationId: get-sellers-analysis
+      parameters:
+        - name: sellerId
+          in: path
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/sellers-analysis/SellerAnalysisApiResponse.v1.yaml
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+#      security:
+#        - apiKey: []
+#        - appId: []
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

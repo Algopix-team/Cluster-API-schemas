@@ -1,7 +1,7 @@
 title: Report
 type: object
 properties:
-  id:
+  reportId:
     type: string
   status:
     $ref: 'ReportStatus.v1.yaml'

@@ -1,0 +1,11 @@
+title: ProductPerformanceReportDataResult
+type: object
+properties:
+  requestDetails:
+    $ref: ../request/ProductPerformanceRequestDetails.v1.yaml
+    description: report requested parameters
+  productsPerformance:
+    description: Array containing aggregated product performance
+    type: array
+    items:
+      $ref: ./ProductPerformanceReportData.v1.yaml

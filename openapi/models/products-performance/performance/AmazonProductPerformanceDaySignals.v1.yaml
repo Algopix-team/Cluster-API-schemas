@@ -1,0 +1,19 @@
+title: AmazonProductPerformanceDaySignals
+type: object
+properties:
+  date:
+    type: string
+  estimatedSales:
+    $ref: ../Sales.v1.yaml
+  numberOfOfferings:
+    type: number
+  bestSellerRanking:
+    type: array
+    items:
+      $ref: ../PerformanceAmazonCategory.v1.yaml
+  buyBoxOffering:
+    $ref: ../BuyBoxOffering.v1.yaml
+  promotions:
+    $ref: ../Promotions.v1.yaml
+  ratings:
+    $ref: ../../common/product/CustomerRating.v1.yaml
