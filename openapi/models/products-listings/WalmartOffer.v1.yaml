@@ -7,7 +7,7 @@ properties:
       - WALMART
   aid:
     type: string
-    description: the Cluster AID associated with the product
+    description: the Algopix AID associated with the product
   walmartItemId:
     type: number
   listings:

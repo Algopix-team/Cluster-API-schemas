@@ -11,18 +11,18 @@ servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
 tags:
-  - name: Buy Box Owners endpoints
+  - name: Async endpoints
 paths:
   /v3/async/sellers/buyboxowners:
     get:
       description: |-
-        This is an asynchronous API endpoint. This endpoint searches info about the sellers that sell an specified item (given a specified item identifier) for a given marketplace. The results may be retrieved from [Buy Box Owners results](../~1v3~1async~1sellers~1buyboxowners~1results/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is an asynchronous API endpoint. This endpoint searches info about the sellers that sell an specified item (given a specified item identifier) for a given marketplace. The results may be retrieved from [Buy Box Owners results](./b3A6MTgxMDkwMDM-buy-box-owners-results).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: request-products-sellers
       tags:
-        - Buy Box Owners endpoints
-      summary: Request Buy Box Owners
+        - Async endpoints
+      summary: Buy Box Owners request
       parameters:
         - name: productId
           in: query
@@ -73,6 +73,17 @@ paths:
             type: string
             enum:
               - SellerDetails
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'
@@ -86,22 +97,34 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
   /v3/async/sellers/buyboxowners/results:
     get:
       tags:
-        - Buy Box Owners endpoints
+        - Async endpoints
       summary: Buy Box Owners results
       description: |-
-        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request Buy Box Owners](../~1v3~1async~1sellers~1buyboxowners/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request Buy Box Owners](./b3A6MTgxMDkwMDI-request-buy-box-owners).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: products-sellers-results
+      parameters:
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Successful operation.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -212,16 +235,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
     appId:
       type: apiKey
       name: X-APP-ID

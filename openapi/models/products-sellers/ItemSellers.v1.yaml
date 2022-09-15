@@ -23,37 +23,3 @@ properties:
     $ref: './WalmartOffer.v1.yaml'
   EBAY_US:
     $ref: './EbayOffer.v1.yaml'
-x-examples:
-  example-1:
-    AMAZON_US:
-      - name: string
-        id: string
-        businessName: string
-        businessAddress: string
-        offer:
-          price:
-            currencyCode: string
-          priceSavings:
-            amount:
-              currencyCode: string
-            percentage: 0
-            pricePerUnit:
-              currencyCode: string
-          promotions:
-            - amount: 0
-              currency: string
-              discountPercent: 0
-              displayAmount: string
-              pricePerUnit: 0
-              type: string
-          deliveryInfo:
-            isAmazonFulfilled: true
-            isFreeShippingEligible: true
-            isPrimeEligible: true
-          isBuyBoxWinner: true
-          programEligibility:
-            primePantry: true
-        defaultShippingCountry: string
-        businessType: string
-        tradeRegisterNumber: string
-        vatNumber: string

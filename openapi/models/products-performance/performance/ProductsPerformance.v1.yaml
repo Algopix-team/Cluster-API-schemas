@@ -1,0 +1,10 @@
+title: ProductsPerformance
+type: object
+properties:
+  aid:
+    type: string
+  dailyProductPerformance:
+    type: array
+    description: Array containing markets product performance
+    items:
+      $ref: ./ProductPerformanceDay.v1.yaml

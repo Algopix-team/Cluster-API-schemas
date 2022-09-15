@@ -9,13 +9,13 @@ info:
 servers:
   - url: 'https://api.datacluster.com'
 tags:
-  - name: Store listings endpoints
+  - name: Sync endpoint
     description: This API set is the Cluster Store listing search. V1.0 supports searches using the seller’s id.
 paths:
   '/v4/sellers/{sellerId}/listings':
     get:
       tags:
-        - Store listings endpoints
+        - Sync endpoint
       summary: Get store listings
       description: |-
         ## Introduction and Use Case
@@ -28,7 +28,7 @@ paths:
 
         **Store Listings** is a synchronous API endpoint that gets the sellers’ store listings. This API also allows users to retrieve seller storefront listings including the product listing variants, if they are being offered by the seller requested.
 
-        If the store listings have not been called from the Cluster database, the results will show no listings exist until a background process extracts the seller’s store data, and prepares the data for the API. This guarantees the most updated seller store data.
+        If the store listings have not been called from the Algopix database, the results will show no listings exist until a background process extracts the seller’s store data, and prepares the data for the API. This guarantees the most updated seller store data.
 
         > ### Note:
         >
@@ -36,9 +36,7 @@ paths:
 
         The maximum amount of Amazon storefront listings that can be retrieved is limited to 2,400 items. However, with the addition of variations and the listings that do not appear in the seller storefront, the number of listings associated with the seller can reach up to 0.5M products.
 
-        This version currently supports only Amazon US stores.
-
-        The associated API schemas can be found [here](https://github.com/Algopix-team/Cluster-API-schemas/blob/master/openapi/api-reference/store-listings-api-1.5.yaml).
+        The associated API schemas can be found [here](https://github.com/Algopix-team/Algopix-API-schemas/blob/master/openapi/api-reference/store-listings-api-1.5.yaml).
       operationId: get-store-listings
       parameters:
         - name: sellerId
@@ -49,14 +47,13 @@ paths:
           schema:
             type: string
         - name: market
-          required: true
-          description: 'The market of the store. The current supported market is AMAZON_US.'
+          required: false
+          description: 'The market of the store.'
           in: query
           style: form
           schema:
-            type: string
-            enum:
-              - AMAZON_US
+            $ref: ../models/sellers-listings/SellerListingsMarkets.v1.yaml
+            default: AMAZON_US
         - name: daysLastUpdated
           in: query
           description: 'If the seller listings last retrieval is older than the daysLastUpdated, force new data retrieval processes. When the results are ready, they can be retrieved. The minimum days allowed is 7 days. (Note, due to the granularity of the data, the process can be lengthy.) If the parameters haven׳t been sent, the data that will be retrieved is the recent updated data of the seller. The recommendation is to have the data updated for the last 30 days.'
@@ -65,11 +62,11 @@ paths:
           schema:
             type: integer
         - name: resources
-          description: 'Comma-delimited resource list to be included in the response.</br>If PRODUCT_DETAILS is being requested, additional attributes will be retrieved: Brand, Title, Image URL, Leaf Categories, and Root Categories. If this parameter hasn’t been sent, the data that will be retrieved for each listing is the ASIN, price, and last updated date. The last updated date refers to the update of the listing offer state in the Cluster database.'
+          description: 'Comma-delimited resource list to be included in the response.</br>Currently available only for the US market.</br>If PRODUCT_DETAILS is being requested, additional attributes will be retrieved: Brand, Title, Image URL, Leaf Categories, and Root Categories. If this parameter hasn’t been sent, the data that will be retrieved for each listing is the ASIN, price, and last updated date. The last updated date refers to the update of the listing offer state in the Algopix database.'
           in: query
           explode: false
           schema:
-            $ref: ../models/sellers-listings/ResourceType.v1.yaml
+            $ref: ../models/sellers-listings/SellerListingsResourceType.v1.yaml
         - name: responseType
           required: false
           description: 'The default response format is CSV, but can also be retrieved via JSON if needed.'

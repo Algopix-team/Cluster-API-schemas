@@ -1,0 +1,7 @@
+title: ProductsCollectionCreateReportResult
+type: object
+properties:
+  reports:
+    type: array
+    items:
+      $ref: ./Report.v1.yaml

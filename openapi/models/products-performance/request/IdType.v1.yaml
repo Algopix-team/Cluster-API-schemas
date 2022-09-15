@@ -1,0 +1,5 @@
+title: IdType
+type: string
+enum:
+  - ASIN
+  - AID

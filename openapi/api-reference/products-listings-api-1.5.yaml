@@ -11,19 +11,19 @@ servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
 tags:
-  - name: Products Listings endpoints
+  - name: Async endpoints
 paths:
   /v3/async/products/listings:
     get:
       description: |-
         This is an asynchronous API endpoint. This endpoint searches info about the product listings of a specified item (given a specified item identifier) for a given marketplace. The results may be retrieved from [Products Listings results](./b3A6MjI1NjIxMzE-products-listings-results).
         <br/>Note: In some responses, you may see duplicate sellers. The reason is that sellers may have more than one listing for the same product (different price, different shipping etc.)
-        <br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
-        <br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: request-products-listings
       tags:
-        - Products Listings endpoints
-      summary: Request Products Listings
+        - Async endpoints
+      summary: Products Listings request
       parameters:
         - name: productId
           in: query
@@ -34,7 +34,7 @@ paths:
             type: string
         - name: productIdType
           in: query
-          description: The type of the product id. Currently supports ASIN and AID (Cluster Identifier).
+          description: The type of the product id. Currently supports ASIN and AID (Algopix Identifier).
           required: true
           style: form
           explode: false
@@ -78,6 +78,17 @@ paths:
           schema:
             $ref: ../models/common/product/ItemCondition.v1.yaml
             default: NEW
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'
@@ -91,22 +102,34 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
   /v3/async/products/listings/results:
     get:
       tags:
-        - Products Listings endpoints
+        - Async endpoints
       summary: Products Listings results
       description: |-
         This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request Products Listings](./b3A6MjI1NjIxMzA-request-products-listings).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
-        <br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: products-listings-results
+      parameters:
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Successful operation.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -229,9 +252,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:

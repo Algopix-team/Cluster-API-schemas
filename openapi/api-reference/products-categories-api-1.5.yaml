@@ -12,23 +12,23 @@ servers:
     description: Cluster API
 
 tags:
-  - name: Products categories endpoints
+  - name: Async endpoints
     description: This API allows users to search for products within specified categories.
 paths:
   /v3/async/categories/products:
     get:
       description: |-
-        This is an asynchronous API endpoint. This endpoint return products that belong to the specified category (as specified by browseNodeId or googleCategoryId). Currently available only for Amazon US market. for The results may be retrieved from [Products categories results](../~1v3~1async~1categories~1products~1results/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is an asynchronous API endpoint. This endpoint return products that belong to the specified category (as specified by browseNodeId or googleCategoryId). Currently available only for Amazon US market. for The results may be retrieved from [Products categories results](./b3A6MTgxMDg5OTc-products-categories-results).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       tags:
-        - Products categories endpoints
-      summary: Request Products categories
+        - Async endpoints
+      summary: Products categories request
       operationId: request-products-category
       parameters:
         - name: browseNodeId
           in: query
-          description: A valid Amazon node id that represents an Cluster category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
+          description: A valid Amazon node id that represents an Algopix category. A full list of Amazon ids can be found [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). Note, either pass a broseNodeId here or a googleCategoryId below.
           style: form
           required: true
           explode: true
@@ -86,6 +86,17 @@ paths:
           in: query
           name: toDate
           description: Search for products added to the category before the ISO date (time defaults to end of day), e.g., '2020-01-22'.
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'
@@ -99,22 +110,34 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
   /v3/async/categories/products/results:
     get:
       description: |-
-        This is an asynchronous API endpoint. This endpoint retrieves the results for the category analysis search from the endpoint [Request Products categories](../~1v3~1async~1categories~1products/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is an asynchronous API endpoint. This endpoint retrieves the results for the category analysis search from the endpoint [Request Products categories](./b3A6MTgxMDg5OTY-request-products-categories).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       tags:
-        - Products categories endpoints
+        - Async endpoints
       summary: Products categories results
       operationId: products-category-results
+      parameters:
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Success.</br>**Notice - our examples were generate with mock data**
+          description: 'Success.</br>**Note: Examples were generated with mock data.**'
           #          description: Success – category results returned. May contain multiple responses. Each product (result) is assigned with metadata and request id; representing the call that has been made in order to retrieve it while performing GET category/analysisAsync/.
           content:
             application/json:
@@ -211,16 +234,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
     appId:
       type: apiKey
       name: X-APP-ID

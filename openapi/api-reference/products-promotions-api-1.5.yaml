@@ -11,22 +11,22 @@ servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
 tags:
-  - name: Products promotions endpoints
+  - name: Async endpoints
 paths:
   /v3/async/promotions:
     get:
       tags:
-        - Products promotions endpoints
+        - Async endpoints
       description: |-
-        This is an asynchronous API endpoint. This endpoint searches promotional data in specified Amazon listings by AID or ASIN. The results may be retrieved from [Products promotions results](../~1v3~1async~1promotions~1results/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is an asynchronous API endpoint. This endpoint searches promotional data in specified Amazon listings by AID or ASIN. The results may be retrieved from [Products promotions results](./b3A6MTgxMDkwMDE-products-promotions-results).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: request-products-promotions
-      summary: Request products promotions
+      summary: Products promotions request
       parameters:
         - name: productId
           in: query
-          description: 'Currently available AID (Cluster Identifier) or ASIN. Identify which was applied in productIdType below.'
+          description: 'Currently available AID (Algopix Identifier) or ASIN. Identify which was applied in productIdType below.'
           required: true
           explode: false
           schema:
@@ -50,6 +50,17 @@ paths:
             type: string
             enum:
               - AMAZON_US
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'
@@ -63,22 +74,34 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
   /v3/async/promotions/results:
     get:
       tags:
-        - Products promotions endpoints
+        - Async endpoints
       summary: Products promotions results
       description: |-
-        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products promotions](../~1v3~1async~1promotions/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products promotions](./b3A6MTgxMDkwMDA-request-products-promotions).
+        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       operationId: products-promotions-results
+      parameters:
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Success.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -138,16 +161,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
+      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
     appId:
       type: apiKey
       name: X-APP-ID

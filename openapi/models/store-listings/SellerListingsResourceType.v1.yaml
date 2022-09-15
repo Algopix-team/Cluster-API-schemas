@@ -1,4 +1,4 @@
-title: ResourceType
+title: SellerListingsResourceType
 type: string
 enum:
   - PRODUCT_DETAILS

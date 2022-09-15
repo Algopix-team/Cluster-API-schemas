@@ -1,5 +1,5 @@
 title: ProductPromotionsResponse
-allOf:
+allOf: 
   - $ref: '../common/api/ApiResult.v1.yaml'
   - type: object
     properties:

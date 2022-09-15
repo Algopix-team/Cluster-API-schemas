@@ -4,6 +4,8 @@ properties:
   title:
     type: string
     description: Product title
+  identifiers:
+    $ref: ./ProductIdentifiers.v1.yaml
   aid:
     type: string
   matchingScores:

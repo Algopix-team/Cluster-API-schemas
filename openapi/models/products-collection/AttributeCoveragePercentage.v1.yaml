@@ -5,5 +5,5 @@ properties:
     type: string
   id:
      type: string
-  precentage:
+  percentage:
     type: number

@@ -12,4 +12,4 @@ properties:
       $ref: ./ProductMatch.v1.yaml
   totalMatches:
     type: number
-    description: Total number of results
+    description: Total number of results. The results are up to 10 matching items.

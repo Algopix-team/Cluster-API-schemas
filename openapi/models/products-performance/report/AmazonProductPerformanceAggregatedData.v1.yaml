@@ -1,0 +1,11 @@
+title: AmazonProductPerformanceAggregatedData
+type: object
+required:
+  - objectType
+properties:
+  market:
+    $ref: ../performance/ProductPerformanceMarketsRequest.v1.yaml
+  timeSeries:
+    type: array
+    items:
+      $ref: ./AmazonProductPerformanceTimeSeries.v1.yaml

@@ -1,4 +1,4 @@
-description: 'Request throttled. Please refer to the [common status code errors](/docs/Making-a-request/How-to-handle-a-response.md#common-status-code-errors) section.</br>**Notice - our examples were generate with mock data**'
+description: 'Request throttled. Please refer to the [common status code errors](./ZG9jOjE3ODE1Mjg2-how-to-handle-a-response#common-status-code-errors) section.</br>**Note: Examples were generated with mock data.**'
 content:
   application/json:
     schema:

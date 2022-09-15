@@ -1,13 +1,8 @@
-title: ProductsCollectionReportStatus
+title: ProductsCollectionReportStatusResponse
 type: object
 allOf:
   - $ref: ../common/api/ApiResult.v1.yaml
   - type: object
     properties:
       result:
-        type: object
-        properties:
-          reports:
-            type: array
-            items:
-              $ref: ./Report.v1.yaml
+        $ref: ./ProductsCollectionReportStatusResult.v1.yaml

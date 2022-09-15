@@ -1,0 +1,25 @@
+title: TrackingGroup
+type: object
+properties:
+  market:
+    default: AMAZON_US
+    $ref: ../performance/ProductPerformanceMarketsRequest.v1.yaml
+  description:
+    type: string
+  groupId:
+    type: string
+  createdAt:
+    type: string
+    format: JavaTimeLocalDate
+  status:
+    $ref: TrackingGroupStatus.v1.yaml
+  numberOfItems:
+    type: integer
+  parameters:
+    type: object
+    additionalProperties:
+      type: string
+  signals:
+    type: array
+    items:
+      $ref: ../request/Resource.v1.yaml

@@ -1,0 +1,10 @@
+title: PerformanceAmazonCategory
+type: object
+properties:
+  name:
+    type: string
+  id:
+    type: string
+  bestSellerRanking:
+    type: integer
+    description: The product's Best Sellers Rank on Amazon for the category identified.

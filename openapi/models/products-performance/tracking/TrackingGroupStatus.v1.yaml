@@ -1,0 +1,8 @@
+title: TrackingGroupStatus
+type: string
+enum:
+  - INITIALIZING
+  - UPDATING
+  - ACTIVE
+  - CANCELED
+  - FAILED

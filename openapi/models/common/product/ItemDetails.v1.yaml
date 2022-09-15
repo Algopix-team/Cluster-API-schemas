@@ -3,7 +3,7 @@ type: object
 properties:
   aid:
     type: string
-    description: Cluster item identifier
+    description: algopix item identifier
   relatedAids:
     type: array
     description: AIDs of items that are related to this item. 

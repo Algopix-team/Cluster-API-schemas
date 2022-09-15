@@ -1,0 +1,9 @@
+title: EbayConditionItemDetails
+type: object
+properties:
+  conditionCode:
+    type: integer
+    description: 'The condition status code of the product'
+  conditionName:
+    type: string
+    description: 'The condition status name of the product'

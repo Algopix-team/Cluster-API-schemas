@@ -1,0 +1,6 @@
+title: SellerListingsMarkets
+type: string
+enum:
+  - AMAZON_US
+  - AMAZON_FR
+example: AMAZON_US

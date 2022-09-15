@@ -11,28 +11,27 @@ servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
 tags:
-  - name: Products details endpoints
+  - name: Async endpoints
+  - name: Sync endpoint
 paths:
-  /v3/async/products/details:
+  /v3/products/{productId}/details:
     get:
       description: |-
-        This is an asynchronous API endpoint. This endpoint searches available attributes data in specified products by GTIN, ASIN or AID. The results may be retrieved from [Products details results](../~1v3~1async~1products~1details~1results/get).
-        <br/>Please notice our ["How to Handle an asynchronous Response"](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is a synchronous API endpoint.
       tags:
-        - Products details endpoints
-      summary: Request products details
-      operationId: request-product-details
+        - Sync endpoint
+      summary: Products details
+      operationId: get-product-details
       parameters:
         - name: productId
-          in: query
-          description: 'A product identifier to send through the API. Cluster supports GTIN in 12 or 13 digit format, ASIN and AID (Cluster identifier)'
+          in: path
+          description: 'A product identifier to send through the API. Algopix supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)'
           required: true
           explode: false
           schema:
             type: string
         - name: productIdType
-          description: The type of the product id. Currently supports ASIN, UPC, EAN and AID (Cluster Identifier).
+          description: The type of the product id. Currently supports ASIN, UPC, EAN and AID (Algopix Identifier).
           in: query
           style: form
           schema:
@@ -44,7 +43,7 @@ paths:
               - EAN
         - name: markets
           in: query
-          description: 'Comma-delimited market list to search for market specific data. In this version,Cluster supports Amazon_US and eBay_US markets'
+          description: 'Comma-delimited market list to search for market specific data. In this version,Algopix supports Amazon_US and eBay_US markets'
           required: false
           style: form
           explode: true
@@ -55,7 +54,7 @@ paths:
               - AMAZON_US
         - name: resources
           in: query
-          description: 'Comma-delimited resource list to search for specific product. In this version,Cluster supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available. '
+          description: 'Comma-delimited resource list to search for specific product. In this version,Algopix supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available. '
           required: false
           style: form
           explode: true
@@ -65,45 +64,22 @@ paths:
               - TAXONOMY
               - MARKETPLACE_DATA
         - name: marketPlaceDataDaysUpdated
-            in: query
-            description: 'use to get update market place data with the resource MARKETPLACE_DATA, but has performance impact'
-            required: true
-            explode: false
-            schema:
-              type: integer
+          in: query
+          description: |-
+            Relevant only when using the MARKETPLACE_DATA resource. 
+            This parameter defines the maximal number of days ago the marketplace data will be considered up-to-date. If the data isn't considered up-to-date, the API response time will take much longer.
+            If the parameter haven't been sent, the default value will be 14 days.
+          required: false
+          explode: false
+          schema:
+            type: integer
       responses:
         '200':
-          $ref: '../models/common/responses/statuscode200.v1.yaml'
-        '400':
-          $ref: '../models/common/responses/statuscode400.v1.yaml'
-        '401':
-          $ref: '../models/common/responses/statuscode401.v1.yaml'
-        '403':
-          $ref: '../models/common/responses/statuscode403.v1.yaml'
-        '429':
-          $ref: '../models/common/responses/statuscode429.v1.yaml'
-        '500':
-          $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
-  /v3/async/products/details/results:
-    get:
-      description: |-
-        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products details](../~1v3~1async~1products~1details/get).
-        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
-      tags:
-        - Products details endpoints
-      operationId: products-details-results
-      summary: Products details results
-      responses:
-        '200':
-          description: SUCCESS.</br>**Notice - our examples were generate with mock data**
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
-                $ref: ../models/products-enhancement/ProductEnhancementResults.v1.yaml
+                $ref: ../models/products-enhancement/ProductEnhancementResponse.v1.yaml
               examples:
                 Response Example:
                   value:
@@ -269,6 +245,343 @@ paths:
                               imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51KoS8eouqL._AC_.jpg'
                             - imageType: small
                               imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51KoS8eouqL._AC_SR38,50_.jpg'
+                          productFit:
+                            size: "True to size. Order usual size."
+                            text: "Customers say this fits true to size."
+                            quoting:
+                              - "I ordered just the black to see how I liked them and now am going to order a couple more."
+                              - "The fit is always perfect and they are very comfortable."
+                              - "Fits perfect."
+                            reviewBreakDown:
+                              tooSmall: 5
+                              someWhatSmall: 8
+                              trueToSize: 285
+                              someWhatLarge: 3
+                              tooLarge: 1
+                          badges:
+                            - type: "CLIMATE_PLEDGE_FRIENDLY"
+                              certifiedBy: "U.S._EPA_SAFER_CHOICE"
+                            - type: "SMALL_BUSINESS"
+                      taxonomy:
+                        US:
+                          AMAZON:
+                            - name: Shops
+                              id: '7581669011'
+                              ancestorsPathIds:
+                                - '7141123011'
+                                - '7141124011'
+                                - '7147441011'
+                              ancestorsPathNames:
+                                - 'Clothing, Shoes & Jewelry'
+                                - Departments
+                                - Men
+                            - name: Wrist Watches
+                              id: '6358540011'
+                              ancestorsPathIds:
+                                - '7141123011'
+                                - '7141124011'
+                                - '7147441011'
+                                - '6358539011'
+                              ancestorsPathNames:
+                                - 'Clothing, Shoes & Jewelry'
+                                - Departments
+                                - Men
+                                - Watches
+                          GOOGLE:
+                            - name: Watches
+                              id: '201'
+                              ancestorsPathIds:
+                                - '166'
+                                - '188'
+                              ancestorsPathNames:
+                                - Apparel & Accessories
+                                - Jewelry
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+      security:
+        - apiKey: [ ]
+          appId: [ ]
+  /v3/async/products/details:
+    get:
+      description: |-
+        This is an asynchronous API endpoint. This endpoint searches available attributes data in specified products by GTIN, ASIN or AID. The results may be retrieved from [Products details results](../~1v3~1async~1products~1details~1results/get).
+        <br/>Please notice our ["How to Handle an asynchronous Response"](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      tags:
+          - Async endpoints
+      summary: Products details request
+      operationId: request-product-details
+      parameters:
+        - name: productId
+          in: query
+          description: 'A product identifier to send through the API. Algopix supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: productIdType
+          description: The type of the product id. Currently supports ASIN, UPC, EAN and AID (Algopix Identifier).
+          in: query
+          style: form
+          schema:
+            type: string
+            enum:
+              - ASIN
+              - AID
+              - UPC
+              - EAN
+        - name: markets
+          in: query
+          description: 'Comma-delimited market list to search for market specific data. In this version,Algopix supports Amazon_US and eBay_US markets'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - EBAY_US
+              - AMAZON_US
+        - name: resources
+          in: query
+          description: 'Comma-delimited resource list to search for specific product. In this version,Algopix supports TAXONOMY and MARKETPLACE_DATA only. The Taxonomy is available for the markets that were being asked for, if available. '
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+            enum:
+              - TAXONOMY
+              - MARKETPLACE_DATA
+        - name: marketPlaceDataDaysUpdated
+          in: query
+          description: 'When using MARKETPLACE_DATA resource - use in order to get updated marketplace data. Attention - has performance impact.'
+          required: false
+          explode: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          $ref: '../models/common/responses/statuscode200.v1.yaml'
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+      security:
+        - apiKey: []
+          appId: []
+  /v3/async/products/details/results:
+    get:
+      description: |-
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products details](../~1v3~1async~1products~1details/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+      tags:
+        - Async endpoints
+      operationId: products-details-results
+      summary: Products details results
+      responses:
+        '200':
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-enhancement/ProductEnhancementResults.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    result:
+                      aid: AIDSNOFJ1000
+                      relatedAids:
+                        - AIDSNOFJ1050
+                        - AIDSNOFJ1051
+                      baseTitle:  Casio watch
+                      titles:
+                        en: String
+                        de: String
+                        it: String
+                        fr: String
+                        es: String
+                      description: String 
+                      brand: Casio
+                      model: CA-53W-1ER
+                      color: grey
+                      size: String
+                      msrp:
+                        currencyCode: USD
+                        amount: 53.60
+                      itemDimensions:
+                        width:
+                          value: 0.94
+                          unit: INCH
+                        length:
+                          value: 0.39
+                          unit: INCH
+                        height:
+                          value: 1.3
+                          unit: INCH
+                        weight:
+                          value: 0.96
+                          unit: OUNCE
+                        origin: String
+                      packageDimensions:
+                        width:
+                          value: 1.34
+                          unit: INCH
+                        length:
+                          value: 2.19
+                          unit: INCH
+                        height:
+                          value: 1.5
+                          unit: INCH
+                        weight:
+                          value: 0.96
+                          unit: OUNCE
+                        origin: String
+                      imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41nAvjbpbIL._AC_SR38,50_.jpg'
+                      algopixValidatedAttributes:
+                        partNumber: CA53W-1CR
+                        bandMaterialType: Plastic
+                        claspType: Buckle
+                        contributors:
+                          - name: Casio
+                            role: Designer
+                        label: Casio
+                        contentLanguages:
+                          - languageName: english
+                            type: Unknown
+                        materialTypes:
+                          - Resin
+                        metalStamp: staineless steel
+                        numberOfItems: 1
+                        publisher: Casio
+                        studio: Casio
+                        title: Casio Men's Vintage CA53W-1 Calculator Watch
+                        warranty: 1 year warranty
+                        lang: en-US
+                        adultProduct: false
+                        autographed: false
+                        memorabilia: false
+                      marketplacesData:
+                        AMAZON_US:
+                          title: Casio Men's Vintage CA53W-1 Calculator Watch
+                          features:
+                            - Imported
+                            - '8-Digit Calculator, Constants for addition, subtraction, multiplication and division'
+                            - Water Resistant
+                            - |
+                              '1/100 second stopwatch, Measuring capacity: 23:59''59.99"; Measuring modes: Elapsed time, split time, 1st-2nd place times'
+                            - Auto Calendar (pre-programmed until the year 2079)
+                            - 'Size of case/total weight, 42.0 x 33.0 x 7.0mm / 29g'
+                            - Dual Time
+                            - Daily Alarm
+                            - Hourly Time Signal
+                            - |
+                              'Accuracy: +/-15 seconds per month'
+                            - Battery CR2016
+                            - |
+                              'Approx. battery life: 5 year'
+                            - Module 437/3208
+                          productDetails:
+                            brandSellerOrCollectionName: Casio
+                            modelNumber: CA-53W-1ER
+                            partNumber: CA53W-1CR
+                            modelYear: '2018'
+                            itemShape: Rectangle
+                            dialWindowMaterialType: Mineral
+                            displayType: Digital
+                            clasp: Buckle
+                            metalStamp: staineless steel
+                            caseMaterial: Resin
+                            caseDiameter: 35 millimeters
+                            caseThickness: 8 millimeters
+                            bandMaterial: Plastic
+                            bandLength: mens
+                            bandWidth: 20 millimeters
+                            bandColor: Black
+                            dialColor: Black
+                            bezelMaterial: Resin
+                            bezelFunction: Stationary
+                            calendar: Perpetual Calendar
+                            specialFeatures: 'alarm-feature, Luminous, Water Resistant'
+                            movement: Quartz
+                            waterResistantDepth: 165 Feet
+                            warranty: 'If this product is sold by Amazon, please review the manufacturer’s website for warranty information. If this product is sold by another party, please contact the seller directly for warranty information for this product. You may also be able to find warranty information on the manufacturer’s website.'
+                          productOverview:
+                            brand: casio
+                          productDescription: 'Ever unsure just how much to tip your server at a restaurant? With this 8-digit calculator watch, you can do so with confidence.'
+                          images:
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/61uWaEms7CL._AC_UL1015_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41On7KcSztL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41On7KcSztL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/61O2x0OT-kL._AC_UL1500_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41nAvjbpbIL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41nAvjbpbIL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/512YOMhiYBL._AC_UL1454_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/31KJig6OgcL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/31KJig6OgcL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/61%2B9M-bAivL._AC_UL1110_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41h5l0JZoiL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41h5l0JZoiL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/71ehj94Ai9L._AC_UL1500_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/410JYKnP2xL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/410JYKnP2xL._AC_SR38,50_.jpg'
+                            - imageType: large
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/71iNmxLoXCL._AC_UL1111_.jpg'
+                            - imageType: medium
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51KoS8eouqL._AC_.jpg'
+                            - imageType: small
+                              imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51KoS8eouqL._AC_SR38,50_.jpg'
+                          productFit:
+                            size: "True to size. Order usual size."
+                            text: "Customers say this fits true to size."
+                            quoting:
+                              - "I ordered just the black to see how I liked them and now am going to order a couple more."
+                              - "The fit is always perfect and they are very comfortable."
+                              - "Fits perfect."
+                            reviewBreakDown:
+                              tooSmall: 5
+                              someWhatSmall: 8
+                              trueToSize: 285
+                              someWhatLarge: 3
+                              tooLarge: 1
+                          badges:
+                            - type: "CLIMATE_PLEDGE_FRIENDLY"
+                              certifiedBy: "U.S._EPA_SAFER_CHOICE"
+                            - type: "SMALL_BUSINESS"
                       taxonomy:
                         US:
                           AMAZON:

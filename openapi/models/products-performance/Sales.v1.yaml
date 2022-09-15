@@ -1,0 +1,11 @@
+title: Sales
+type: object
+properties:
+  unitsSold:
+    $ref: './NumberOfSales.v1.yaml'
+  includesVariants:
+    type: boolean
+  calculatedVariants:
+    type: integer
+  revenue:
+    $ref: '../common/Price.v1.yaml'

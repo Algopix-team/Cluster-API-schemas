@@ -1,0 +1,344 @@
+openapi: 3.0.0
+info:
+  title: Product Performance
+  description: |-
+    > ### **Note**: 
+    > Product Performance **Groups** is a mandatory endpoint related to the creation of Product Performance **Reports**. If your tracking group ID is already set up and you need to create a report, [**start here**](./8d6f50a9db44a-create-report). 
+    
+    ## Introduction and Use Case
+    The **Product Performance API** was created for users to retrieve daily product performance of a chosen category or brand. These real-time insights are typically used for:
+    - Gaining a multichannel overview of product trends and market needs.
+    - Analytics teams to make more informed decisions regarding their presence in the market and (and report back to stakeholders).
+    - Data companies, hedge funds, etc. To aggregate the data for insights regarding the performance of a brand/company over time.
+    
+    |        |                                                                                                                                                                | 
+    |--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | step 1 | Choose a category or brand to track (see available categories [**here**](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt)).                        |
+    | step 2 | Contact your Cluster representative to request a tracking group ID, [**here**](mailto:jkobs@datacluster.com).                                                  |                                                 
+    | step 3 | Copy the tracking group ID that has been created. Using this tracking group, you will be able to [**generate a report here**](./8d6f50a9db44a-create-report).  |
+    
+    ## Important Terminology    
+    * **Category**: The Category ID that is being used by Amazon.com (with plans to expand to other marketplaces). The list of all Amazon.com taxonomy is available [here](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt). 
+    * **Tracking Group**: The list of products, and the products signals that live under those chosen categories, that will be tracked over time. This updating of the products signals is a backend process that constantly runs until the group has been deleted by the user. 
+      - New products added to the marketplace (in the chosen category) will automatically be added to this group. 
+    * **Report**:  A CSV output containing all of the tracking group performance data within a given time period (up to three months prior). Click here to [**create a report**](./8d6f50a9db44a-create-report).
+    
+    ## Report Example 
+    [View CSV](https://docs.google.com/spreadsheets/d/e/2PACX-1vSfz0ir5_lM2c0Lmc2LPtzQVG75TOgNQ98R0qjTjFgC7tWJ8PHDNpglFFW5evKcvZu83GiyX-Agegm3/pubhtml).
+  #     ![report_example_image](../images/report_example_image.png)
+  version: '2.0'
+servers:
+  - url: 'https://api.datacluster.com'
+    description: Cluster API
+tags:
+  - name: Tracking group
+    description:
+  - name: Report
+    description:
+paths:
+  /v4/async/products/performance/tracking-group:
+    get:
+      description: |-
+        Once the tracking group is created using the tracking group endpoint, you can View a Tracking Group using this endpoint. Once you have viewed a tracking group, you can next delete the tracking group, or create a performance report using the tracking group created. 
+
+        The Product Performance API was created for users to retrieve daily product performance of a chosen category or brand. Read more details in the [**API Overview**](./0c985244d875c-product-performance).
+      tags:
+        - Tracking group
+      summary: View Tracking Group
+      operationId: product-performance-tracking-group-get
+      parameters:
+        - name: groupId
+          in: query
+          description: Tracking group id related to this app id.
+          required: false
+          explode: false
+          schema:
+            type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: '../models/products-performance/tracking/TrackingGroupGetApiResponse.v1.yaml'
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+  #      security:
+  #        - apiKey: []
+  #          appId: []
+  /v4/products/performance/tracking-group/{groupId}:
+    delete:
+      description: |-
+        Cancel the tracking of the group.\
+        Once the tracking group is created, viewed, or no longer needed, you can Delete a Tracking Group using this endpoint. To request a new tracking group ID, [click here](mailto:jkobs@datacluster.com).
+
+        > ### **Note**:
+        > There are a limited number of tracking groups that can be created by each customer. In order to remain under the threshold, you can delete a tracking group and create new tracking groups as needed.
+        
+        The Product Performance API was created for users to retrieve daily product performance of a chosen category or brand. Read more details in the [**API Overview**](./0c985244d875c-product-performance).
+      tags:
+        - Tracking group
+      summary: Delete Tracking Group
+      operationId: product-performance-tracking-group-cancel
+      parameters:
+        - name: groupId
+          in: path
+          description: 'Tracking group id related to this app id.'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: Success - request submitted
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+#      security:
+#        - apiKey: []
+#          appId: []
+  /v4/products/performance/tracking-group/report:
+    post:
+      tags:
+        - Report
+      operationId: create-products-performance-tracking-group-report
+      summary: Create Report
+      description: |-
+        ## API Overview
+        After a tracking group ID is created, users can continue to create a report. It is important to note that the report data will be determined by the tracking group signals, so be sure to select the required product tracking signals.\
+        In this **product performance report API**, users can more specifically:
+        1. Use the tracking group ID via the groups endpoint to create a report. 
+        2. View or check the report status. 
+        3. Get (download) the report once the status is labeled “SUCCESS.” 
+        
+        <!-- theme: warning -->
+        > #### Pay attention
+        > Pay attention, the response contains the id of the report we would like to get,
+        > so please save the id in the result.\
+        > Example: 78bb16ff-b93e-41e3-83c1-3fd9ddde8126
+        
+        > #### Next step
+        > Check the status of the report progress use the [View Report Status](./c5029e763576b-view-status-report) endpoint.  
+
+      parameters:
+        - name: groupId
+          in: query
+          description: 'Tracking group identifier to generate a report.'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: fromDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: JavaTimeLocalDate
+          description: 'From which date start the report, must be within the last 90 days.'
+          example: '2022-01-13'
+        - name: toDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: JavaTimeLocalDate
+          description: 'Indicates dates for the report to run. Must be greater than fromDate and less than today.'
+          example: '2022-01-13'
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-performance/report/TrackingGroupCreateReportResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    result:
+                      id: ef4ee7dd-afdc-4ebb-b1a2-85298f7ba64d
+                      numberOfItems: 1000
+                      status: IN_PROGRESS
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+        security:
+          - apiKey: [ ]
+          - appId: [ ]
+  /v4/products/performance/tracking-group/report/status:
+    get:
+      tags:
+        - Report
+      operationId: get-report-status
+      summary: View Report Status
+      description: |
+        Check the status of the report progress.\
+        The Product Performance API was created for users to retrieve daily product performance of a chosen category or brand. Read more details in the [**API Overview**](./0c985244d875c-product-performance).
+        > #### Next step
+        > To get the created report use [Get Report](./ec09039a39019-get-report) endpoint.
+      parameters:
+        - name: reportId
+          in: query
+          description: 'Tracking group identifier to generate a report.'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-performance/report/TrackingGroupReportStatusResponse.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: 1610533241
+                    status: SUCCESS
+                    statusCode: 200
+                    statusMessage: Ok
+                    requestId: 9c73bfbfcff03f826d8807571561fbca
+                    result:
+                      id: ef4ee7dd-afdc-4ebb-b1a2-85298f7ba64d
+                      appId: cdPy33AIpvotIF5m9csqRm
+                      status: IN_PROGRESS
+                      tracking_group_id: 37a404e5-00b4-4a94-9010-81229cdabdaa
+                      sent_items: 10000
+                      created_items: 4000
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+        security:
+          - apiKey: [ ]
+          - appId: [ ]
+  /v4/products/performance/tracking-group/report/{reportId}:
+    get:
+      tags:
+        - Report
+      operationId: get-ready-report
+      summary: Get Report
+      description: |
+        This endpoint returns performance tracking group report file.\
+        The Product Performance API was created for users to retrieve daily product performance of a chosen category or brand. Read more details in the [**API Overview**](./0c985244d875c-product-performance).
+
+      parameters:
+        - name: reportId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: Success – return zipped csv file.
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+      security:
+        - apiKey: [ ]
+        - appId: [ ]
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

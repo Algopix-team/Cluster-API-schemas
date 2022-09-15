@@ -9,7 +9,7 @@ properties:
     description: currently supported product Id is ASIN.
     $ref: ../common/product/ProductIdType.v1.yaml
   serpRank:
-    description: the position of this product in the search results.
+    description: the position of this product in the search results. 
     type: integer
   title:
     type: string
@@ -19,12 +19,8 @@ properties:
     $ref: ../common/Price.v1.yaml
   originalPrice:
     $ref: ../common/Price.v1.yaml
-  rating:
-    description: the average review score given by customers for this product
-    type: number
-  reviews:
-    description: the number of customers who reviewed this product
-    type: integer
+  customerRating:
+    $ref: ./SerpCustomerRating.v1.yaml
   isAmazonChoice:
     type: boolean
   isBestSeller:

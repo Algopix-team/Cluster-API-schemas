@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Brands API
-  description: 'Brands API provides Cluster brands names, ids and sub brands, by identifying specified brands.'
+  description: 'Brands API provides Algopix brands names, ids and sub brands, by identifying specified brands.'
   termsOfService: 'https://datacluster.com/privacy-policy'
   contact:
     name: Cluster Support
@@ -11,15 +11,15 @@ servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
 tags:
-  - name: Brands endpoints
+  - name: Sync endpoints
 paths:
   /v4/brands:
     get:
       description: |-
         This is a synchronous API endpoint. This endpoint retrieves brand names, ids and sub brands for the specified brand name.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       tags:
-        - Brands endpoints
+        - Sync endpoints
       summary: Get Brands by brand name
       operationId: get-brands-by-name
       parameters:
@@ -30,9 +30,20 @@ paths:
           description: The name of the brand.
           schema:
             type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
+          description: 'Success - request submitted.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -53,38 +64,49 @@ paths:
                           subBrands:
                             - null
         '400':
-          $ref: '../models/common/responses/statuscode400.v1.yaml'
+          $ref: ../models/common/responses/statuscode400.v1.yaml
         '401':
-          $ref: '../models/common/responses/statuscode401.v1.yaml'
+          $ref: ../models/common/responses/statuscode401.v1.yaml
         '403':
-          $ref: '../models/common/responses/statuscode403.v1.yaml'
+          $ref: ../models/common/responses/statuscode403.v1.yaml
         '429':
-          $ref: '../models/common/responses/statuscode429.v1.yaml'
+          $ref: ../models/common/responses/statuscode429.v1.yaml
         '500':
-          $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+          $ref: ../models/common/responses/statuscode500.v1.yaml
+#      security:
+#        - apiKey: []
+#          appId: []
   '/v4/brands/{brandId}':
     get:
       description: |-
-        This is a synchronous API endpoint. This endpoint retrieves Cluster name, and sub brands for the specified brandId.
-        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
+        This is a synchronous API endpoint. This endpoint retrieves Algopix name, and sub brands for the specified brandId.
+        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
       tags:
-        - Brands endpoints
+        - Sync endpoints
       summary: Get Brand by brand id
       operationId: get-brand-by-id
       parameters:
         - name: brandId
           in: path
-          description: 'Cluster unique Brand Id [(see "Get Brands by brand name" endpoint)](../~1v4~1brands/get).'
+          description: 'Algopix unique Brand Id [(see "Get Brands by brand name" endpoint)](./b3A6MTgwOTAyOTE-get-brands-by-brand-name).'
           required: true
           explode: false
           schema:
             type: string
+        - name: X-API-KEY
+          schema:
+            type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+            type: string
+          in: header
+          required: true
       responses:
         '200':
-          description: Success - request submitted.</br>**Notice - our examples were generate with mock data**
+          description: 'Success - request submitted.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -105,25 +127,25 @@ paths:
                           subBrands:
                             - null
         '400':
-          $ref: '../models/common/responses/statuscode400.v1.yaml'
+          $ref: ../models/common/responses/statuscode400.v1.yaml
         '401':
-          $ref: '../models/common/responses/statuscode401.v1.yaml'
+          $ref: ../models/common/responses/statuscode401.v1.yaml
         '403':
-          $ref: '../models/common/responses/statuscode403.v1.yaml'
+          $ref: ../models/common/responses/statuscode403.v1.yaml
         '429':
-          $ref: '../models/common/responses/statuscode429.v1.yaml'
+          $ref: ../models/common/responses/statuscode429.v1.yaml
         '500':
-          $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+          $ref: ../models/common/responses/statuscode500.v1.yaml
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: 'Read our [Authentication](/docs/Making-a-request/Authentication.md) article'
+      description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
     appId:
       type: apiKey
       name: X-APP-ID

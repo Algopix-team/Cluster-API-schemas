@@ -1,0 +1,20 @@
+title: TrackingGroupReportStatusDetails
+type: object
+properties:
+  reportId:
+    type: string
+  appId:
+    type: string
+  status:
+    type: string
+    enum:
+      - DONE
+      - FAILED
+      - IN_PROGRESS
+      - GENERATING_REPORT
+  tracking_group_id:
+    type: string
+  sent_items:
+    type: integer
+  created_items:
+    type: integer

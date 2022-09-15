@@ -1,0 +1,6 @@
+title: ProductPerformanceMarketsRequest
+description: The market to retrive results for.
+type: string
+enum:
+  - AMAZON_US
+example: AMAZON_US

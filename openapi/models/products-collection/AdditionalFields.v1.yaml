@@ -1,10 +1,6 @@
 title: AdditionalFields
 type: string
 enum:
+  - ASIN
   - UPC
   - EAN
-  - COLOR
-  - BRAND
-  - MANUFACTURER
-  - UPC_PREFIX
-  - ATTRIBUTES
