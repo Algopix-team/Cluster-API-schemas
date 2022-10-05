@@ -48,5 +48,17 @@ properties:
         - TCO_CERTIFIED
         - USDA_ORGANIC
         - WATERSENSE
+        - PRE-OWNED_CERTIFIED
+        - BLUE_ANGEL
+        - GREENCIRCLE_CERTIFIED
+        - ASSOCIAZIONE_ITALIANA_AGRICOLTURA_BIOLOGICA
+        - BIOLAND
+        - EU_ECOLABEL
+        - ENERGY_LABEL
+        - EU_ORGANIC
+        - FAIR_RUBBER
+        - NORDIC_SWAN_ECOLABEL
+        - SOIL_ASSOCIATION
+        - FOREST_STEWARDSHIP_COUNCIL
     description: "Amazon badge certified by"
 description: "Amazon Badge"
