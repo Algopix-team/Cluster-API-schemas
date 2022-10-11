@@ -111,6 +111,8 @@ paths:
               - USD
               - EUR
               - CAD
+              - AUD
+              - MXN
         - name: X-API-KEY
           schema:
             type: string
@@ -404,6 +406,8 @@ paths:
               - USD
               - EUR
               - CAD
+              - AUD
+              - MXN
         - name: X-API-KEY
           schema:
             type: string
