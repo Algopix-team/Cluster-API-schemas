@@ -4,5 +4,7 @@ allOf:
   - $ref: ../common/api/ApiResult.v1.yaml
   - type: object
     properties:
+      requestDetails:
+        $ref: ./RequestDetails.v1.yaml
       result:
         $ref: ./EnhancedItemDetails.v1.yaml

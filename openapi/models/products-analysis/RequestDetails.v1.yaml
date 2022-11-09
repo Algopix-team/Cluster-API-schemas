@@ -1,0 +1,18 @@
+title: RequestDetails
+type: object
+properties:
+  requestTimestamp:
+    type: integer
+  params:
+    markets:
+      type: array
+      items:
+        $ref: '../common/Markets.v1.yaml'
+    keywords:
+      type: string
+    currencyCode:
+      type: string
+      description: ISO 4217[currency codes](https://en.wikipedia.org/wiki/ISO_4217)
+    productCondition:
+      $ref: '../common/product/ItemCondition.v1.yaml'
+

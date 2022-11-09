@@ -6,7 +6,7 @@ info:
   contact:
     name: Cluster Support
     email: support@datacluster.com
-  version: 1.0.1
+  version: '2.0'
 servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
@@ -83,7 +83,7 @@ paths:
             type: number
         - name: minPrice
           in: query
-          description: ' The minimum price of a products to return by the search.'
+          description: 'The minimum price of a products to return by the search.'
           required: false
           style: form
           explode: true
@@ -91,7 +91,7 @@ paths:
             type: number
         - name: maxPrice
           in: query
-          description: ' The maximum price of a products to return by the search.'
+          description: 'The maximum price of a products to return by the search.'
           required: false
           style: form
           explode: true
@@ -110,20 +110,9 @@ paths:
               - EUR
               - CAD
             default: USD
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
       responses:
         '200':
-          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -180,15 +169,15 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-        security:
-          - apiKey: [ ]
-            appId: [ ]
+      security:
+        - apiKey: [ ]
+          appId: [ ]
   /v3/async/products/matches:
     get:
       description: |-
-        This is an asynchronous API endpoint. This endpoint searches retail products data, specified by keywords and other attributes. The results may be retrieved from [Products matching results](./b3A6MTgwOTAzMDY-products-matching-results).
-        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
-        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+        This is an asynchronous API endpoint. This endpoint searches retail products data, specified by keywords and other attributes. The results may be retrieved from [Products matching results](../~1v3~1async~1products~1matches~1results/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       operationId: request-products-matching
       summary: Products matching request
       tags:
@@ -281,17 +270,6 @@ paths:
               - EUR
               - CAD
             default: USD
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'
@@ -305,34 +283,22 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-  #      security:
-  #        - apiKey: []
-  #          appId: []
+      security:
+        - apiKey: []
+          appId: []
   /v3/async/products/matches/results:
     get:
       operationId: products-matching-results
       description: |-
-        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products matching](./b3A6MTgwOTAzMDU-request-products-matching).
-        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
-        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the search from the endpoint [Request products matching](../~1v3~1async~1products~1matches/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Async endpoints
       summary: Products matching results
-      parameters:
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
       responses:
         '200':
-          description: 'SUCCESS</br>**Note: Examples were generated with mock data.**'
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -354,6 +320,10 @@ paths:
                         statusMessage: Ok
                         statusCode: 200
                         requestId: 49735463-e4b6-4960-bd83-7c90043bd14b
+                        requestDetails:
+                          requestTimestamp: 1610532837069
+                          params:
+                            keywords: Casio Watch
                         result:
                           matchingProducts:
                             - title: Casio Men's Vintage A168WA-1 Electro Luminescence Watch
@@ -398,16 +368,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-#      security:
-#        - apiKey: []
-#          appId: []
+      security:
+        - apiKey: []
+          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
+      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
     appId:
       type: apiKey
       name: X-APP-ID

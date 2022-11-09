@@ -1,0 +1,19 @@
+title: RequestDetails
+type: object
+properties:
+  requestTimestamp:
+    type: integer
+  params:
+    productId:
+      type: string
+    productIdType:
+      $ref: '../common/product/ProductIdType.v1.yaml'
+    markets:
+      type: array
+      items:
+        $ref: '../common/Markets.v1.yaml'
+    marketPlaceDataDaysUpdated:
+      type: integer
+    resources:
+      $ref: './Resources.v1.yaml'
+

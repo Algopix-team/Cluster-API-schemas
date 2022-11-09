@@ -6,7 +6,7 @@ info:
   contact:
     name: Cluster Support
     email: support@datacluster.com
-  version: '1.0'
+  version: '2.0'
 servers:
   - url: 'https://api.datacluster.com'
     description: Cluster API
@@ -316,7 +316,7 @@ paths:
         <br/>Please notice our ["How to Handle an asynchronous Response"](/docs/Making-a-request/How-to-use-the-async-API.md) article.
         <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
-          - Async endpoints
+        - Async endpoints
       summary: Products details request
       operationId: request-product-details
       parameters:
@@ -356,10 +356,7 @@ paths:
           style: form
           explode: true
           schema:
-            type: string
-            enum:
-              - TAXONOMY
-              - MARKETPLACE_DATA
+            $ref: '../models/products-enhancement/Resources.v1.yaml'
         - name: marketPlaceDataDaysUpdated
           in: query
           description: 'When using MARKETPLACE_DATA resource - use in order to get updated marketplace data. Attention - has performance impact.'
@@ -408,6 +405,13 @@ paths:
                     statusCode: 200
                     statusMessage: Ok
                     requestId: efb6cfea-4921-40c3-941a-7977d84f12f7
+                    requestDetails:
+                      requestTimestamp: 1610533240863
+                      params:
+                        marketPlaceDataDaysUpdated: 14
+                        markets:
+                        productId: AIDSNOFJ1000
+                        resources:
                     result:
                       aid: AIDSNOFJ1000
                       relatedAids:
@@ -420,7 +424,7 @@ paths:
                         it: String
                         fr: String
                         es: String
-                      description: String 
+                      description: String
                       brand: Casio
                       model: CA-53W-1ER
                       color: grey

@@ -113,20 +113,9 @@ paths:
               - CAD
               - AUD
               - MXN
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
       responses:
         '200':
-          description: 'Success – results returned.</br>**Note: Examples were generated with mock data.**'
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -311,9 +300,9 @@ paths:
   /v3/async/products/analysis:
     get:
       description: |-
-        This is an asynchronous API endpoint. This endpoint identifies a product and returns its product analysis information in selected markets. The results may be retrieved from [Products analysis results](./b3A6MTgxMDg5OTU-products-analysis-results).
-        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
-        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+        This is an asynchronous API endpoint. This endpoint identifies a product and returns its product analysis information in selected markets. The results may be retrieved from [Products analysis results](../~1v3~1async~1products~1analysis~1results/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Async endpoints
       summary: Products analysis request
@@ -408,17 +397,6 @@ paths:
               - CAD
               - AUD
               - MXN
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
       responses:
         '200':
           $ref: '../models/common/responses/statuscode200.v1.yaml'
@@ -432,34 +410,22 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-#      security:
-#        - apiKey: []
-#          appId: []
+      security:
+        - apiKey: []
+          appId: []
   /v3/async/products/analysis/results:
     get:
       operationId: products-analysis-results
       description: |-
-        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products analysis](./b3A6MTgwOTAyOTQ-request-products-analysis).
-        <br/><br/>Please notice our [“How to Handle an asynchronous Response”](./ZG9jOjE3ODE1Mjg3-how-to-use-the-async-api) article.
-        <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+        This is an asynchronous API endpoint. This endpoint retrieves the results of the asynchronous search from the endpoint [Request products analysis](../~1v3~1async~1products~1analysis/get).
+        <br/>Please notice our [“How to Handle an asynchronous Response”](/docs/Making-a-request/How-to-use-the-async-API.md) article.
+        <br/>[**Don't miss our schemas**](/docs/Making-a-request/Our-schemas.md)
       tags:
         - Async endpoints
       summary: Products analysis results
-      parameters:
-        - name: X-API-KEY
-          schema:
-            type: string
-          in: header
-          required: true
-          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
-        - name: X-APP-ID
-          schema:
-            type: string
-          in: header
-          required: true
       responses:
         '200':
-          description: 'Success – results returned.</br>**Note: Examples were generated with mock data.**'
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
           content:
             application/json:
               schema:
@@ -475,12 +441,16 @@ paths:
                     asyncApiStatus:
                       resultsReadyCount: 3
                       pendingRequestCount: 0
-                    result:
+                    responseList:
                       - timestamp: 1628508641
                         status: SUCCESS
                         statusMessage: Ok
                         statusCode: 200
                         requestId: 60ff66fe-76b2-4a70-882a-3168947038ca
+                        requestDetails:
+                          requestTimestamp: 1628508640769
+                          params:
+                            keywords: Harry Potter and the Sorcerer's Stone
                         result:
                           itemDetails:
                             aid: AIDLGDA02005
@@ -650,16 +620,16 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-#      security:
-#        - apiKey: []
-#          appId: []
+      security:
+        - apiKey: []
+          appId: []
 components:
   securitySchemes:
     apiKey:
       type: apiKey
       name: X-API-KEY
       in: header
-      description: Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article
+      description: Read our [Authentication](/docs/Making-a-request/Authentication.md) article
     appId:
       type: apiKey
       name: X-APP-ID
