@@ -36,7 +36,7 @@ tags:
   - name: Report
     description:
 paths:
-  /v4/async/products/performance/tracking-group:
+  /v4/products/performance/tracking-group:
     get:
       description: |-
         Once the tracking group is created using the tracking group endpoint, you can View a Tracking Group using this endpoint. Once you have viewed a tracking group, you can next delete the tracking group, or create a performance report using the tracking group created. 
