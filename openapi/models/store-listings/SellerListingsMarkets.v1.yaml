@@ -3,4 +3,8 @@ type: string
 enum:
   - AMAZON_US
   - AMAZON_FR
+  - AMAZON_DE
+  - AMAZON_ES
+  - AMAZON_IT
+  - AMAZON_UK
 example: AMAZON_US

@@ -1,15 +1,22 @@
-title: SellerStoreResponse
+title: SellerListingResponse
 allOf:
   - type: object
     properties:
-      lastUpdated:
+      lastUpdatedAt:
         type: string
-        format: JavaTimeLocalDate
-      isRefreshing:
-          type: boolean
-      refreshStartedAt:
+        format: yyyy-MM-dd
+        description: Date of the last completed execution for the requested sellerId and market.
+      refreshProcessStatus:
+          type: string
+          enum:
+            - DONE
+            - PENDING
+            - IN_PROGRESS
+          description: The status of the current processing execution.
+      refreshRequestedAt:
         type: string
-        format: JavaTimeZoneDateTime
+        format: yyyy-MM-dd HH:mm z
+        description: The date that the current processing execution was requested.
       products:
           type: array
           items:

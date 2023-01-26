@@ -5,18 +5,18 @@ properties:
     $ref: './ProductId.v1.yaml'
   offeredPrice:
     $ref: './OfferedPrice.v1.yaml'
+  isFba:
+    type: boolean
+    description: Does this product fulfilled by Amazon
   brand:
     type: string
   title:
     type: string
   imageUrl:
     type: string
-  leafCatgories:
+  leafCategories:
     type: array
     items:
       type: string
-  rootCatgories:
-    type: array
-    items:
-      type: string
-
+  rootCategory:
+    type: string
