@@ -128,6 +128,13 @@ paths:
                     result:
                       matchingProducts:
                         - title: Casio Men's Vintage A168WA-1 Electro Luminescence Watch
+                          identifiers:
+                            ASIN:
+                              - "05457908495"
+                            UPC:
+                              - "7805457904687"
+                            EAN:
+                              - "7805457904689"
                           aid: AIDSNOFJ1000
                           matchingScores:
                             titleMatchingScore: 0.043
@@ -137,13 +144,22 @@ paths:
                             modelMatchingScore: 0.0
                             algopixTotalScore: 0.039
                           image:
-                            imageType: small
-                            imageUrl: https://m.media-amazon.com/images/I/418AS4GdpcS._SL75_.jpg
+                            imageType: MAIN
+                            imageUrl: https://m.media-amazon.com/images/I/21EaQK+HRUS._SL75_.jpg
                             imageHeight:
-                              value: 75.00
+                              value: 24.00
                               unit: PIXELS
                             imageWidth:
-                              value: 40.00
+                              value: 75.00
+                              unit: PIXELS
+                          largestImage:
+                            imageType: MAIN
+                            imageUrl: https://m.media-amazon.com/images/I/71pii4nJGML.jpg
+                            imageHeight:
+                              value: 2560.00
+                              unit: PIXELS
+                            imageWidth:
+                              value: 1296.00
                               unit: PIXELS
                           price:
                             currencyCode: USD
@@ -169,9 +185,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: [ ]
-          appId: [ ]
+#      security:
+#        - apiKey: [ ]
+#          appId: [ ]
   /v3/async/products/matches:
     get:
       description: |-
@@ -283,9 +299,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
   /v3/async/products/matches/results:
     get:
       operationId: products-matching-results
@@ -327,6 +343,13 @@ paths:
                         result:
                           matchingProducts:
                             - title: Casio Men's Vintage A168WA-1 Electro Luminescence Watch
+                              identifiers:
+                                ASIN:
+                                  - "05457908495"
+                                UPC:
+                                  - "7805457904687"
+                                EAN:
+                                  - "7805457904689"
                               aid: AIDSNOFJ1000
                               matchingScores:
                                 titleMatchingScore: 0.043
@@ -336,13 +359,22 @@ paths:
                                 modelMatchingScore: 0.0
                                 algopixTotalScore: 0.039
                               image:
-                                imageType: small
-                                imageUrl: https://m.media-amazon.com/images/I/418AS4GdpcS._SL75_.jpg
+                                imageType: MAIN
+                                imageUrl: https://m.media-amazon.com/images/I/21EaQK+HRUS._SL75_.jpg
                                 imageHeight:
-                                  value: 75.00
+                                  value: 24.00
                                   unit: PIXELS
                                 imageWidth:
-                                  value: 40.00
+                                  value: 75.00
+                                  unit: PIXELS
+                              largestImage:
+                                imageType: MAIN
+                                imageUrl: https://m.media-amazon.com/images/I/71pii4nJGML.jpg
+                                imageHeight:
+                                  value: 2560.00
+                                  unit: PIXELS
+                                imageWidth:
+                                  value: 1296.00
                                   unit: PIXELS
                               price:
                                 currencyCode: USD
@@ -368,9 +400,9 @@ paths:
           $ref: '../models/common/responses/statuscode429.v1.yaml'
         '500':
           $ref: '../models/common/responses/statuscode500.v1.yaml'
-      security:
-        - apiKey: []
-          appId: []
+#      security:
+#        - apiKey: []
+#          appId: []
 components:
   securitySchemes:
     apiKey:

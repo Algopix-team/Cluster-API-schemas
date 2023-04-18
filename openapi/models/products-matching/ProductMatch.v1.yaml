@@ -12,6 +12,8 @@ properties:
     $ref: ./ProductMatchingScores.v1.yaml
   image:
     $ref: ./Image.v1.yaml
+  largestImage:
+    $ref: ./Image.v1.yaml
   price:
     $ref: ../common/Price.v1.yaml
   attributes:
