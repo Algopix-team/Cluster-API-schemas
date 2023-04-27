@@ -1,0 +1,10 @@
+title: OneOfProductDetailsV2ChannelSpecificAttributes
+type: object
+oneOf:
+  - $ref: ./AmazonChannelSpecificAttributes.v1.yaml
+  - $ref: ./WalmartChannelSpecificAttributes.v1.yaml
+discriminator:
+  propertyName: objectType
+  mapping:
+    "AMAZON": ./AmazonChannelSpecificAttributes.v1.yaml
+    "WALMART": ./WalmartChannelSpecificAttributes.v1.yaml

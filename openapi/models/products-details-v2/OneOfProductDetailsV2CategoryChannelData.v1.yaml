@@ -1,0 +1,9 @@
+title: OneOfProductDetailsV2CategoryChannelData
+type: object
+oneOf:
+  - $ref: ./AmazonChannelSpecificCategoryChannelData.v1.yaml
+discriminator:
+  propertyName: objectType
+  mapping:
+    "AmazonChannelData": ./AmazonChannelSpecificCategoryChannelData.v1.yaml
+description: Specific category channel data

@@ -1,0 +1,8 @@
+title: ProductDetailsV2IdentifiersType
+type: string
+enum:
+  - UPC
+  - EAN
+  - ISBN
+  - GTIN
+  - ASIN

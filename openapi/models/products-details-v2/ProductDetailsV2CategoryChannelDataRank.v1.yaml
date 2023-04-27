@@ -1,0 +1,9 @@
+title: ProductDetailsV2CategoryChannelDataRank
+type: object
+properties:
+  value:
+    type: integer
+    description: Rank number.
+  lastUpdate:
+    type: string
+    format: JavaTimeLocalDate

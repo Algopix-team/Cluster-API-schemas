@@ -1,0 +1,5 @@
+title: ProductDetailsV2RelationType
+type: string
+enum:
+  - PARENT
+  - VARIATION

@@ -1,0 +1,19 @@
+title: ProductDetailsV2LengthUnit
+description: SI Units (International System of Units)
+type: string
+enum:
+  - INCH
+  - FEET
+  - ANGSTROM
+  - MIL #000.1 INCH
+  - HUNDREDTHS_INCH
+  - MILE
+  - YARD
+  - CM
+  - MM #millimeters
+  - DM #decimeters
+  - KM #kilometers
+  - M   #Meters
+  - YM  #micrometer
+  - NM  #nanometer
+  - PM  #picometer

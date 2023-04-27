@@ -1,0 +1,33 @@
+title: AmazonChannelSpecificAttributes
+x-extends: ProductDetailsV2ChannelSpecificAttributes
+required:
+  - objectType
+type: object
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AMAZON'
+      - 'WALMART'
+  productType:
+    type: string
+  websiteDisplayGroup:
+    type: string
+  websiteDisplayGroupName:
+    type: string
+  style:
+    type: string
+  itemClassification:
+    type: string
+  browseClassification:
+    title: AmazonChannelSpecificAttributesBrowseClassification
+    type: object
+    properties:
+      displayName:
+        type: string
+      classificationId :
+        type: string
+  releaseDate:
+    type: string
+  tradeInEligible:
+    type: boolean

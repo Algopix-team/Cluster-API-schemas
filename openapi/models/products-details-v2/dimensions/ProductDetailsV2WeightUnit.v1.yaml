@@ -1,0 +1,10 @@
+title: ProductDetailsV2WeightUnit
+type: string
+enum:
+  - OUNCE
+  - POUND
+  - HUNDREDTHS_POUND
+  - GRAM
+  - KILOGRAM
+  - MILLIGRAM
+  - TON

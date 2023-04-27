@@ -1,0 +1,11 @@
+title: ProductDetailsV2LengthValue
+type: object
+properties:
+  value:
+    type: number
+  unit:
+    $ref: './ProductDetailsV2LengthUnit.v1.yaml'
+required:
+  - value
+  - unit
+description: 'A Object representing a length measurement value for a specific unit type. e.g. 10 INCH '

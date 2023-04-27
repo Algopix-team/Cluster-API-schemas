@@ -1,0 +1,11 @@
+title: ProductDetailsV2WeightValue
+type: object
+properties:
+  value:
+    type: number
+  unit:
+    $ref: ./ProductDetailsV2WeightUnit.v1.yaml
+required:
+  - value
+  - unit
+description: 'A Object representing a weight measurement value for a specific unit type. e.g. 10 Pounds '

@@ -1,0 +1,7 @@
+title: ProductDetailsV2Attributes
+type: object
+properties:
+  color:
+    type: string
+  size:
+    type: string

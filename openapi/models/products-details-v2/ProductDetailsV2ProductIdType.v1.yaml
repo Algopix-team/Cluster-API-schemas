@@ -1,0 +1,7 @@
+title: ProductDetailsV2ProductIdType
+type: string
+enum:
+  - ASIN
+  - AID
+  - UPC
+  - EAN

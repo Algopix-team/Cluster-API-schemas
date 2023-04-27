@@ -1,0 +1,9 @@
+title: ProductDetailsV2Identifiers
+type: object
+properties:
+  type:
+    $ref: ./ProductDetailsV2IdentifiersType.v1.yaml
+  values:
+    type: array
+    items:
+      type: string

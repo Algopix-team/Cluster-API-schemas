@@ -1,0 +1,4 @@
+title: ProductDetailsV2ChannelSpecificAttributes
+type: object
+allOf:
+  - $ref: './OneOfProductDetailsV2ChannelSpecificAttributes.v1.yaml'

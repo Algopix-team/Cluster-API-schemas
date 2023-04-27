@@ -1,0 +1,17 @@
+title: ProductDetailsV2RequestDetails
+type: object
+properties:
+  requestTimestamp:
+    type: integer
+    format: int64
+  params:
+    title: ProductDetailsV2RequestDetailsParams
+    type: object
+    properties:
+      productId:
+        type: string
+      productIdType:
+        $ref: ./ProductDetailsV2ProductIdType.v1.yaml
+      channel:
+        $ref: ./ProductDetailsV2ChannelsRequest.v1.yaml
+

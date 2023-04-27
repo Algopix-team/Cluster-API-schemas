@@ -1,0 +1,7 @@
+title: ProductDetailsV2Dimensions
+type: object
+properties:
+  itemDimensions:
+    $ref: './dimensions/ProductDetailsV2Dimension.v1.yaml'
+  packageDimensions:
+    $ref: './dimensions/ProductDetailsV2Dimension.v1.yaml'

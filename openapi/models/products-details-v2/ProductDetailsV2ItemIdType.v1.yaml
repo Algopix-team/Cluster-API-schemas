@@ -1,0 +1,4 @@
+title: ProductDetailsV2ItemIdType
+type: string
+enum:
+  - ASIN

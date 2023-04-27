@@ -1,0 +1,9 @@
+title: ProductDetailsV2VariationTheme
+type: object
+properties:
+  attributes:
+    type: array
+    items:
+      type: string
+  theme:
+    type: string

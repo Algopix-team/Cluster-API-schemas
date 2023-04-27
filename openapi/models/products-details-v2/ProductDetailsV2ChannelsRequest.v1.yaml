@@ -1,0 +1,26 @@
+title: ProductDetailsV2ChannelsRequest
+description: The market to retrieve results for.
+type: string
+enum:
+  - AMAZON_US
+  - AMAZON_CA
+  - AMAZON_MX
+  - AMAZON_DE
+  - AMAZON_SE
+  - AMAZON_FR
+  - AMAZON_IT
+  - AMAZON_NL
+  - AMAZON_PL
+  - AMAZON_ES
+  - AMAZON_UK
+  - AMAZON_BE
+  - AMAZON_AU
+  - AMAZON_TR
+  - AMAZON_BR
+  - AMAZON_IN
+  - AMAZON_AE
+  - AMAZON_EG
+  - AMAZON_JP
+  - AMAZON_SA
+  - AMAZON_SG
+example: AMAZON_US

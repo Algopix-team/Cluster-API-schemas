@@ -1,0 +1,12 @@
+title: ProductDetailsV2Dimension
+type: object
+description: 'Container object for Height, Length, Weight, and Width'
+properties:
+  width:
+    $ref: ./ProductDetailsV2LengthValue.v1.yaml
+  length:
+    $ref: ./ProductDetailsV2LengthValue.v1.yaml
+  height:
+    $ref: ./ProductDetailsV2LengthValue.v1.yaml
+  weight:
+    $ref: ./ProductDetailsV2WeightValue.v1.yaml

@@ -1,0 +1,413 @@
+openapi: 3.0.3
+info:
+  title: Product Details
+  description: 'Product Details v2 API provides available attributes data in specified products by GTIN, ASIN or AID.'
+  termsOfService: 'https://datacluster.com/privacy-policy'
+  contact:
+    name: Cluster Support
+    email: support@datacluster.com
+  version: 1.0.1
+servers:
+  - url: 'https://api.datacluster.com'
+    description: Cluster API
+tags:
+  - name: Sync endpoint
+paths:
+  /v4/products/details:
+    get:
+      description: |-
+        The P.Details V2 Endpoint is a new API solution that allows marketplaces to enhance their product data catalog by searching for available attributes data in specified products using GTIN, ASIN or AID. 
+        This will result in a better search experience for end users, leading to an improvement in conversion rates and increased sales. 
+        The updated API version provides more attributes per category with an average support of 60 attributes per category.
+        > ### Note:
+        >
+        > When searching for a GTIN using our API, the returned result will provide full data exclusively for the best seller ASIN associated with the requested GTIN. Within the 'identifiers' section of the response, we will list all ASINs that are associated with the GTIN. Please be aware that different products may be associated with the same GTIN.
+      tags:
+        - Sync endpoint
+      summary: Products details v2
+      operationId: get-product-details-v2
+      parameters:
+        - name: productId
+          in: query
+          description: 'A product identifier to send through the API. Algopix supports GTIN in 12 or 13 digit format, ASIN and AID (Algopix identifier)'
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: productIdType
+          description: The type of the product id. Currently supports ASIN, UPC, EAN and AID (Algopix Identifier).
+          required: true
+          in: query
+          style: form
+          schema:
+            $ref: ../models/products-details-v2/ProductDetailsV2ProductIdType.v1.yaml
+        - name: channel
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            $ref: ../models/products-details-v2/ProductDetailsV2ChannelsRequest.v1.yaml
+        - name: X-API-KEY
+          schema:
+           type: string
+          in: header
+          required: true
+          description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+        - name: X-APP-ID
+          schema:
+           type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
+          content:
+            application/json:
+              schema:
+                $ref: ../models/products-details-v2/ProductDetailsV2Response.v1.yaml
+              examples:
+                Response Example:
+                  value:
+                    timestamp: '1675174748'
+                    status: SUCCESS
+                    statusCode: '200'
+                    statusMessage: 'Ok'
+                    requestId: 'efb6cfea-4921-40c3-941a-7977d84f12f7'
+                    result:
+                      requestDetails:
+                        requestTimestamp: '1675174748146'
+                        params:
+                          productId: 'B000GAWSDG'
+                          productIdType: 'ASIN'
+                          channel: 'AMAZON_US'
+                      result:
+                        aid: 'AIDSNOFJ1000'
+                        channel: 'AMAZON_US'
+                        primaryChannelIdType: 'ASIN'
+                        primaryChannelId: 'B000GAWSDG'
+                        commonAttributes:
+                          brand: 'Casio'
+                          color: 'Black'
+                          title: 'Casio F91W-1 Classic Resin Strap Digital Sport Watch'
+                          manufacturer: 'Casio'
+                          modelNumber: 'EAW-F-91W-1'
+                          partNumber: 'F91W-1'
+                          adultProduct: false
+                          autographed: false
+                        identifiers:
+                          - type: 'EAN'
+                            values:
+                              - '0079767246280'
+                              - '0079767299248'
+                              - '0601852959722'
+                              - '0601879045538'
+                              - '0701380905205'
+                              - '0701383358176'
+                              - '0799665012953'
+                              - '0801904026277'
+                              - '0801925273216'
+                              - '0801950575217'
+                              - '0802935732724'
+                              - '0891422830081'
+                              - '0940356555147'
+                              - '3341628976542'
+                              - '4971850246282'
+                              - '5053086511965'
+                              - '5053368132703'
+                              - '8801019222566'
+                              - '9123456829979'
+                          - type: 'UPC'
+                            values:
+                              - '079767246280'
+                              - '079767299248'
+                              - '601852959722'
+                              - '601879045538'
+                              - '701380905205'
+                              - '701383358176'
+                              - '799665012953'
+                              - '801904026277'
+                              - '801925273216'
+                              - '801950575217'
+                              - '802935732724'
+                              - '891422830081'
+                              - '940356555147'
+                        relationships:
+                          - parentProductAid: 'AID6AVJ21001'
+                            parentProductId: 'B09TXZHKLG'
+                            parentProductIdType: 'ASIN'
+                            type: 'VARIATION'
+                            variationTheme:
+                              attributes:
+                                - 'color'
+                              theme:
+                                type: 'COLOR_NAME'
+                        categories:
+                          - name: 'Wrist Watches'
+                            id: '6358540011'
+                            ancestors:
+                              - id: '7141123011'
+                                name: 'Clothing'
+                              - id: '7141124011'
+                                name: ' Shoes & Jewelry'
+                              - id: '7147441011'
+                                name: 'Men'
+                              - id: '6358539011'
+                                name: 'Watches'
+                              - id: '6358540011'
+                                name: 'Wrist Watches'
+                            channelData:
+                              objectType: 'AmazonChannelData'
+                              isWebSiteDisplayGroup: false
+                          - name: 'Wrist Watches'
+                            id: '6358544011'
+                            ancestors:
+                              - id: '7141123011'
+                                name: 'Clothing'
+                              - id: '7141124011'
+                                name: ' Shoes & Jewelry'
+                              - id: '7147440011'
+                                name: 'Women'
+                              - id: '6358543011'
+                                name: 'Watches'
+                              - id: '6358544011'
+                                name: 'Wrist Watches'
+                            channelData:
+                              objectType: 'AmazonChannelData'
+                              isWebSiteDisplayGroup: false
+                          - name: 'Clothing'
+                            id: '7141123011'
+                            channelData:
+                              objectType: 'AmazonChannelData'
+                              isWebSiteDisplayGroup: true
+                        dimensions:
+                          itemDimensions:
+                            width:
+                              value: '13.385826758'
+                              unit: 'INCH'
+                            length:
+                              value: '3.543307083'
+                              unit: 'INCH'
+                            height:
+                              value: '15.354330693'
+                              unit: 'INCH'
+                            weight:
+                              value: '0.12125424410'
+                              unit: 'POUND'
+                          packageDimensions:
+                            width:
+                              value: '3.349999996583'
+                              unit: 'INCH'
+                            length:
+                              value: '4.2899999956242'
+                              unit: 'INCH'
+                            height:
+                              value: '2.8299999971134'
+                              unit: 'INCH'
+                            weight:
+                              value: '0.24030386558'
+                              unit: 'POUND'
+                          images:
+                            - type: 'MAIN'
+                              url: 'https://m.media-amazon.com/images/I/51Nk5SEBARL.jpg'
+                              height: '1102'
+                              width: '827'
+                            - type: 'MAIN'
+                              url: 'https://m.media-amazon.com/images/I/31VLMW8N5pL.jpg'
+                              height: '500'
+                              width: '375'
+                            - type: 'MAIN'
+                              url: 'https://m.media-amazon.com/images/I/31VLMW8N5pL._SL75_.jpg'
+                              height: '75'
+                              width: '56'
+                            - type: 'PT01'
+                              url: 'https://m.media-amazon.com/images/I/61rzetvyEhL.jpg'
+                              height: '1727'
+                              width: '1511'
+                            - type: 'PT01'
+                              url: 'https://m.media-amazon.com/images/I/41UbhuzzNnL.jpg'
+                              height: '500'
+                              width: '437'
+                            - type: 'PT01'
+                              url: 'https://m.media-amazon.com/images/I/41UbhuzzNnL._SL75_.jpg'
+                              height: '75'
+                              width: '66'
+                            - type: 'PT02'
+                              url: 'https://m.media-amazon.com/images/I/51ZxQ6WxLJL.jpg'
+                              height: '2560'
+                              width: '420'
+                            - type: 'PT02'
+                              url: 'https://m.media-amazon.com/images/I/21AgpF0++3L.jpg'
+                              height: '500'
+                              width: '82'
+                            - type: 'PT02'
+                              url: 'https://m.media-amazon.com/images/I/21AgpF0++3L._SL75_.jpg'
+                              height: '75'
+                              width: '12'
+                            - type: 'PT03'
+                              url: 'https://m.media-amazon.com/images/I/51XCLxEFYLL.jpg'
+                              height: '2560'
+                              width: '469'
+                            - type: 'PT03'
+                              url: 'https://m.media-amazon.com/images/I/21uc85isC9L.jpg'
+                              height: '500'
+                              width: '92'
+                            - type: 'PT03'
+                              url: 'https://m.media-amazon.com/images/I/21uc85isC9L._SL75_.jpg'
+                              height: '75'
+                              width: '14'
+                            - type: 'PT04'
+                              url: 'https://m.media-amazon.com/images/I/61Dzez8Tk-L.jpg'
+                              height: '1892'
+                              width: '1315'
+                            - type: 'PT04'
+                              url: 'https://m.media-amazon.com/images/I/41MrGjv9ajL.jpg'
+                              height: '500'
+                              width: '348'
+                            - type: 'PT04'
+                              url: 'https://m.media-amazon.com/images/I/41MrGjv9ajL._SL75_.jpg'
+                              height: '75'
+                              width: '52'
+                            - type: 'PT05'
+                              url: 'https://m.media-amazon.com/images/I/51ErgHuWHcL.jpg'
+                              height: '2189'
+                              width: '1712'
+                            - type: 'PT05'
+                              url: 'https://m.media-amazon.com/images/I/21mbMpvH0tL.jpg'
+                              height: '500'
+                              width: '391'
+                            - type: 'PT05'
+                              url: 'https://m.media-amazon.com/images/I/21mbMpvH0tL._SL75_.jpg'
+                              height: '75'
+                              width: '59'
+                          channelSpecificAttributes:
+                            objectType: 'AMAZON'
+                            productType: 'WATCH'
+                            websiteDisplayGroupName: 'Speakers'
+                            style: 'Classic'
+                            itemClassification: 'BASE_PRODUCT'
+                            browseClassification:
+                              displayName: 'Wrist Watches'
+                              classificationId: '6358540011'
+                            releaseDate: '2015-11-08'
+                            tradeInEligible: false
+                          additionalAttributes:
+                            warrantyType: 'Manufacturer'
+                            variationTheme:
+                              name: 'COLOR_NAME'
+                            itemShape: 'rectangle'
+                            dialWindow:
+                              material_type: 'mineral'
+                            waterResistanceDepth:
+                              value: '30.0'
+                              unit: 'meters'
+                            department: 'Unisex'
+                            battery:
+                              cellComposition: 'silver_oxide'
+                              weight:
+                                value: '1.9'
+                                unit: 'grams'
+                            lithiumBattery:
+                              energyContent:
+                                value: '1.0'
+                                unit: 'watt_hours'
+                              weight:
+                                value: '1.0'
+                                unit: 'grams'
+                              packaging: 'batteries_packed_with_equipment'
+                            numBatteries:
+                              - quantity: 1
+                                type: 'lithium_metal'
+                              - quantity: 1
+                                type: 'cr123a'
+                              - quantity: 1
+                                type: 'lithium_ion'
+                              - quantity: 1
+                                type: 'product_specific'
+                              - quantity: 1
+                                type: 'unknown'
+                            cpsiaCautionaryStatement: 'no_warning_applicable'
+                            itemTypeKeyword: 'watches'
+                            bezel:
+                              material: 'Resin'
+                              function: 'Stationary'
+                            bulletPoint:
+                              - 'LED light, Stopwatch, Daily Alarm'
+                              - 'Auto-calendar, 12/24 Hour Format'
+                              - 'Approx. battery life: 7 years on CR2016'
+                              - 'Water Resistant - Do not submerge in water, item is not waterproof, not meant for showering/bathing or swimming'
+                            numberOfLithiumIonCells: 1
+                            waterResistanceLevel: 'water_resistant'
+                            dial:
+                              color: 'Gray'
+                            display:
+                              type: 'Digital'
+                            includedComponents:
+                              - 'All'
+                            specialFeature:
+                              - 'Water Resistant, Alarm, Lightweight'
+                            ageRangeDescription: 'Adult'
+                            targetGender: 'unisex'
+                            listPrice:
+                              currency: 'USD'
+                              value: '22.95'
+                            batteriesRequired: false
+                            watchMovementType: 'Quartz'
+                            pesticideMarking:
+                              - markingType: 'epa_registration_number'
+                                registrationStatus: 'fifra_not_considered_pesticide'
+                            batteriesIncluded: true
+                            fccRadioFrequencyEmissionCompliance:
+                              registrationStatus: 'not_capable_emitting_rf_energy'
+                            band:
+                              color: 'Black'
+                              material: 'Resin'
+                              size: 'mens'
+                              width:
+                                value: '18.0'
+                                unit: 'millimeters'
+                            itemTypeName: 'Casual Watch'
+                            claspType: 'Buckle'
+                            supplierDeclaredDgHzRegulation:
+                              - 'unknown'
+                            sportType:
+                              - 'Running'
+                              - 'fitness'
+                            calendarType: 'Day-Date'
+                            collection: 'Classic'
+                            powerSourceType: 'Battery Powered'
+                            numberOfLithiumMetalCells: 1
+                            supplierDeclaredMaterialRegulation:
+                              - 'not_applicable'
+                            case:
+                              diameter:
+                                value: '33.0'
+                                unit: 'millimeters'
+                              material: 'Resin'
+                              thickness:
+                                value: '8.0'
+                                unit: 'millimeters'
+        '400':
+          $ref: '../models/common/responses/statuscode400.v1.yaml'
+        '401':
+          $ref: '../models/common/responses/statuscode401.v1.yaml'
+        '403':
+          $ref: '../models/common/responses/statuscode403.v1.yaml'
+        '429':
+          $ref: '../models/common/responses/statuscode429.v1.yaml'
+        '500':
+          $ref: '../models/common/responses/statuscode500.v1.yaml'
+#      security:
+#        - apiKey: [ ]
+#          appId: [ ]
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: X-API-KEY
+      in: header
+      description: 'Read our [Authentication](./ZG9jOjE3ODE1Mjg1-authentication) article'
+    appId:
+      type: apiKey
+      name: X-APP-ID
+      in: header

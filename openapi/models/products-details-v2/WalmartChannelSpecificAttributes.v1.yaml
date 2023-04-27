@@ -1,0 +1,21 @@
+title: WalmartChannelSpecificAttributes
+x-extends: ProductDetailsV2ChannelSpecificAttributes
+required:
+  - objectType
+type: object
+properties:
+  objectType:
+    type: string
+    enum:
+      - 'AMAZON'
+      - 'WALMART'
+  productType:
+    type: string
+  shortDescription:
+    type: string
+  longDescription:
+    type: string
+  sellerInfo:
+    type: string
+  bundle:
+    type: boolean

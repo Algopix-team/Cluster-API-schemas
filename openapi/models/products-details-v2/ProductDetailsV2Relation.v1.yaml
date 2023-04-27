@@ -1,0 +1,19 @@
+title: ProductDetailsV2Relation
+type: object
+properties:
+  parentProductAid:
+    type: string
+  parentProductId:
+    type: string
+  parentProductIdType:
+    $ref: '../common/product/ProductIdType.v1.yaml'
+  childProductIdType:
+    $ref: '../common/product/ProductIdType.v1.yaml'
+  childProductIds:
+    type: array
+    items:
+      type: string
+  type:
+    $ref: ./ProductDetailsV2RelationType.v1.yaml
+  variationTheme:
+    $ref: ./ProductDetailsV2VariationTheme.v1.yaml

@@ -1,0 +1,32 @@
+title: ProductDetailsV2CommonAttributes
+type: object
+properties:
+  brand:
+    type: string
+  color:
+    type: string
+  title:
+    type: string
+  manufacturer:
+    type: string
+  modelNumber:
+    type: string
+  partNumber:
+    type: string
+  adultProduct:
+    type: boolean
+  autographed:
+    type: boolean
+  memorabilia:
+    type: boolean
+  contributors:
+    type: array
+    items:
+      title: ProductDetailsV2CommonAttributesContributors
+      type: object
+      properties:
+        role:
+          type: string
+        name:
+          type: string
+
