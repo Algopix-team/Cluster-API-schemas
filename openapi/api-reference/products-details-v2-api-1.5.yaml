@@ -43,11 +43,20 @@ paths:
             $ref: ../models/products-details-v2/ProductDetailsV2ProductIdType.v1.yaml
         - name: channel
           in: query
-          required: true
+          required: false
+          description: Filter by channel. Either 'channel' or 'language' need to be used, but not both.
           style: form
           explode: true
           schema:
             $ref: ../models/products-details-v2/ProductDetailsV2ChannelsRequest.v1.yaml
+        - name: language
+          in: query
+          required: false
+          description: Filter by language. Either 'channel' or 'language' need to be used, but not both.
+          style: form
+          explode: true
+          schema:
+            $ref: ../models/products-details-v2/ProductDetailsV2LanguagesRequest.v1.yaml
         - name: X-API-KEY
           schema:
            type: string

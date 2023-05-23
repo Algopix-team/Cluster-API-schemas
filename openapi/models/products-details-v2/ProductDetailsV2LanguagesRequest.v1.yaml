@@ -1,0 +1,9 @@
+title: ProductDetailsV2LanguagesRequest
+description: The language to retrieve results for.
+type: string
+enum:
+  - ENGLISH_US
+  - ENGLISH_UK
+  - ENGLISH_CA
+  - ENGLISH_AU
+example: ENGLISH_US

@@ -9,6 +9,8 @@ allOf:
         description: algopix item identifier
       channel:
         $ref: ./ProductDetailsV2ChannelsRequest.v1.yaml
+      language:
+        $ref: ./ProductDetailsV2LanguagesRequest.v1.yaml
       primaryChannelIdType:
         $ref: ./ProductDetailsV2ItemIdType.v1.yaml
       primaryChannelId:
