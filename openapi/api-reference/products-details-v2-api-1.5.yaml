@@ -68,6 +68,12 @@ paths:
            type: string
           in: header
           required: true
+        - name: resources
+          description: 'Cluster images.'
+          in: query
+          explode: false
+          schema:
+            $ref: ../models/products-details-v2/ProductDetailsV2ResourceType.v1.yaml
       responses:
         '200':
           description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'

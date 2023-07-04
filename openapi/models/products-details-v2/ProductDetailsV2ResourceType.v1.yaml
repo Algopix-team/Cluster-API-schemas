@@ -1,0 +1,5 @@
+title: ProductDetailsV2ResourceType
+type: string
+enum:
+  - CLUSTER_IMAGE
+example: CLUSTER_IMAGE
