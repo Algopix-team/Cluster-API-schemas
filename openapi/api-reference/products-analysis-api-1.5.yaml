@@ -221,6 +221,10 @@ paths:
                               currencyCode: USD
                               amount: 127901.16
                             estimatedUnitSold: 7479
+                            customerReviews:
+                              reviewsCount: 7929
+                              rating: 4.5
+                              updatedOn: 2023-09-13
                           offers:
                             NEW:
                               marketPrice:
