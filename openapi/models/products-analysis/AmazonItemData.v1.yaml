@@ -25,5 +25,5 @@ properties:
     description: 'TRUE if the product is sold via FBA by another seller, FALSE otherwise.'
   numberOfOffersSoldViaFBA:
     type: integer
-  customerRatingInfo:
+  customerReviews:
     $ref: './CustomerRating.v1.yaml'
