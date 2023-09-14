@@ -3,12 +3,12 @@ type: object
 properties:
   rating:
     type: number
-    description: 'The product rating system is 1 to 5 stars, with 5 stars being the best'
+    description: 'The product rating ranges from 1 to 5, with 5 indicating the highest satisfaction or quality.'
   reviewsCount:
     type: integer
-    description: The numbers of users who have rated the product
+    description: The total number of users who have rated the product.
   updatedOn:
     type: string
     format: JavaTimeLocalDate
-    description: Date on which ratings were updated, e.g., '2020-01-22'.
+    description: The date when the ratings were last updated.
 description: Reviews and number of raters
