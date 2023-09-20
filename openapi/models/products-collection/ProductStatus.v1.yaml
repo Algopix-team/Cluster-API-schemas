@@ -1,0 +1,7 @@
+title: ProductStatus
+type: string
+enum:
+  - ACTIVE
+  - INACTIVE
+  - ACTIVE_WITH_OFFERS
+  - ACTIVE_WITHOUT_OFFERS

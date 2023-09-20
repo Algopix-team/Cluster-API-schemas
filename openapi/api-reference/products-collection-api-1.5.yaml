@@ -21,6 +21,10 @@ paths:
       description: |-
         This is a synchronous API endpoint. This endpoint returns a product list according to the brand and marketplaces provided.
         <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)'
+        > ### Note:
+        >
+        > One of the below parameters is mandatory:
+        ><br/>brandId, brandName, categories or manufacturerName
       parameters:
         - name: local
           required: false
@@ -174,6 +178,10 @@ paths:
       description: |-
         Request creating a products report. This endpoint triggers the background creation of a report. Use the ["Get report status"](./b3A6MTgwOTAzMDA-get-report-status) endpoint to get the status of the report generation. use the ["Get ready report"](./b3A6MTgwOTAzMDE-get-ready-report) endpoint to download the report.
         <br/><br/>[**Don't miss our schemas**](./ZG9jOjE4MzgyNTcx-our-schemas)
+        > ### Note:
+        >
+        > One of the below parameters is mandatory:
+        ><br/>brandName, manufacturerName, productVariant, categories, color, sellerIds, productStatus, excludeCategories, minPrice, maxPrice, minSalesRank or maxSalesRank
       parameters:
         - name: local
           required: false
@@ -182,14 +190,6 @@ paths:
           schema:
             $ref: ../models/common/Locals.v1.yaml
             default: US
-        - name: brandId
-          in: query
-          description: Unique identifier for a brand.
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
         - name: brandName
           in: query
           description: 'The name of the brand'
@@ -206,6 +206,14 @@ paths:
           explode: false
           schema:
             type: string
+        - name: productVariant
+          in: query
+          description: 'Type of the product'
+          required: false
+          style: form
+          explode: false
+          schema:
+            $ref: ../models/products-collection/ProductVariant.v1.yaml
         - name: categories
           in: query
           description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale.
@@ -213,19 +221,47 @@ paths:
           style: form
           explode: false
           schema:
-            type: string
-        - name: resources
-          description: comma delimited resource list to include in the response.
+            type: array
+            items:
+              type: string
+        - name: color
           in: query
+          description: List of Comma-delimited color of the product.
+          required: false
+          style: form
           explode: false
           schema:
-            $ref: ../models/products-collection/ResourceType.v1.yaml
-        - name: AdditionalFields
+            type: array
+            items:
+              type: string
+        - name: sellerIds
           in: query
-          description: Using that resource, the response will include the product identifiers.
+          description: List of Comma-delimited unique seller ids.
           required: false
+          style: form
+          explode: false
           schema:
-            $ref: ../models/products-collection/AdditionalFields.v1.yaml
+            type: array
+            items:
+              type: string
+        - name: productStatus
+          in: query
+          description: List of Comma-delimited status of product.
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              $ref: ../models/products-collection/ProductStatus.v1.yaml
+        - name: additionalFields
+          description: Comma-delimited advanced market Fields to add to the reports.
+          required: false
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: ../models/products-collection/ReportAdditionalFields.v1.yaml
         - name: excludeCategories
           in: query
           description: List of comma delimited [amazon category ids](https://algopix.com/taxonomy/amazon_browse_node_info_US.txt) by locale to exclude.
@@ -236,6 +272,34 @@ paths:
             type: array
             items:
               type: string
+        - name: minPrice
+          description: Minimum price of the product to include in the report.
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: integer
+        - name: maxPrice
+          description: Maximum price of the product to include in the report.
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: integer
+        - name: minSalesRank
+          description: Minimum rank of the product to include in the report.
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: integer
+        - name: maxSalesRank
+          description: Maximum rank of the product to include in the report.
+          in: query
+          style: form
+          explode: false
+          schema:
+            type: integer
         - name: maxItems
           description: Set a max number of items to return in the collection.
           in: query

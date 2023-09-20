@@ -1,0 +1,16 @@
+title: AdditionalFields
+type: string
+enum:
+  - CATEGORIES_ID
+  - BRAND
+  - MANUFACTURER
+  - TITLE
+  - DESCRIPTION
+  - COLOR
+  - IMAGES
+  - MSRP
+  - PARENT_ASIN
+  - SIGNALS
+  - SELLER_ID
+  - STATUS
+  - NUMBER_OF_OFFERS
