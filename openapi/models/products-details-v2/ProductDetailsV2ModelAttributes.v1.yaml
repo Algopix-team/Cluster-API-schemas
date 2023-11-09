@@ -1,0 +1,10 @@
+title: ProductDetailsV2ModelAttributes
+type: object
+properties:
+  type:
+    $ref: ./ProductDetailsV2ModelsRequest.v1.yaml
+  value:
+    type: object
+  confidenceScore:
+    type: number
+    format: Double

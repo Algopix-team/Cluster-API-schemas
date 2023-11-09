@@ -1,0 +1,7 @@
+title: ProductDetailsV2TitleModelType
+type: string
+enum:
+  - SHORT
+  - MEDIUM
+  - LONG
+example: SHORT

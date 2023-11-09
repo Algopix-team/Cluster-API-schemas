@@ -33,6 +33,10 @@ allOf:
         type: array
         items:
           $ref: ./ProductDetailsV2Relation.v1.yaml
+      modelAttributes:
+        type: array
+        items:
+          $ref: ./ProductDetailsV2ModelAttributes.v1.yaml
       channelSpecificAttributes:
           $ref: ./ProductDetailsV2ChannelSpecificAttributes.v1.yaml
       commonAttributes:

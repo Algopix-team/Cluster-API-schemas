@@ -1,0 +1,9 @@
+title: ProductDetailsV2ModelsRequest
+description: The models to retrieve results for.
+type: string
+enum:
+  - TITLE
+  - DESCRIPTION
+  - ATTRIBUTE
+  - BULLET_POINT
+example: TITLE

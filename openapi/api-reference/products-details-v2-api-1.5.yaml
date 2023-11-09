@@ -69,11 +69,26 @@ paths:
           in: header
           required: true
         - name: resources
-          description: 'Cluster images.'
+          description: 'Cluster images (Contact us to get access).'
           in: query
           explode: false
           schema:
             $ref: ../models/products-details-v2/ProductDetailsV2ResourceType.v1.yaml
+        - name: models
+          in: query
+          description: 'Comma-delimited list of models to get data from (Contact us to get access).'
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: ../models/products-details-v2/ProductDetailsV2ModelsRequest.v1.yaml
+        - name: titleModelType
+          description: 'Type of title model (Contact us to get access).'
+          required: false
+          in: query
+          explode: false
+          schema:
+            $ref: ../models/products-details-v2/ProductDetailsV2TitleModelType.v1.yaml
       responses:
         '200':
           description: 'SUCCESS.</br>**Note: Examples were generated with mock data.**'
@@ -295,6 +310,26 @@ paths:
                               url: 'https://m.media-amazon.com/images/I/21mbMpvH0tL._SL75_.jpg'
                               height: '75'
                               width: '59'
+                          modelAttributes:
+                            - type: 'TITLE'
+                              value:
+                                title: 'Casio F91W-1 Classic Resin Strap Digital Sport Watch'
+                              confidenceScore: 0.9658057063390388
+                            - type: 'DESCRIPTION'
+                              value:
+                                description: 'Introducing the Casio F91W-1 Classic Resin Strap Digital Sport Watch - the ultimate companion for your fitness and running adventures. Crafted with precision and designed for durability, this watch is a must-have for any active individual'
+                              confidenceScore: 0.7945561146099968
+                            - type: 'BULLET_POINT'
+                              value:
+                                bulletPoints:
+                                  - text: '- Water Resistant: Avoid submerging in water with the Casio F91W-1 Classic Resin Strap Digital Sport Watch.'
+                                    confidence_score: 0.9167529420569491
+                                  - text: '- LED Light: The watch features a built-in LED light, allowing you to easily see your surroundings without the need for a flashlight or alarm.'
+                                    confidence_score: 0.796870823271805
+                              confidenceScore: 0.8412834052664747
+                            - type: 'ATTRIBUTE'
+                              value:
+                                attributes: '{"duration":{"value":{"value":7,"unit":"years"},"confidence_score":0.993632260680131},"itemWaterResistanceDepth":{"value":{"value":50,"unit":"meters"},"confidence_score":0.9461198621490176}}'
                           channelSpecificAttributes:
                             objectType: 'AMAZON'
                             productType: 'WATCH'
